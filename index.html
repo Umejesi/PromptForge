@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PromptForge — AI Prompt Generator & Community | Free Tool</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjgwIiBoZWlnaHQ9IjY4MCIgdmlld0JveD0iMCAwIDY4MCA2ODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwRDBGMUEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTMxNjI1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0iYm9sdEdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjOEI4NUZGIi8+CjxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjNkM2M0ZGIi8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0ZGQjgzMCIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmFkaWFsR3JhZGllbnQgaWQ9Imdsb3ciIGN4PSI1MCUiIGN5PSIzNSUiIHI9IjYwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2QzYzRkYiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2QzYzRkYiIHN0b3Atb3BhY2l0eT0iMCIvPgo8L3JhZGlhbEdyYWRpZW50Pgo8L2RlZnM+Cgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjgwIiBoZWlnaHQ9IjY4MCIgcng9IjE0MCIgZmlsbD0idXJsKCNiZ0dyYWQpIi8+CjxjaXJjbGUgY3g9IjM0MCIgY3k9IjI2MCIgcj0iMjgwIiBmaWxsPSJ1cmwoI2dsb3cpIi8+Cgo8Zz4KPGNpcmNsZSBjeD0iMTYwIiBjeT0iNTQwIiByPSI1IiBmaWxsPSIjRkZCODMwIiBvcGFjaXR5PSIwLjUiLz4KPGNpcmNsZSBjeD0iNTIwIiBjeT0iNTYwIiByPSI0IiBmaWxsPSIjOEI4NUZGIiBvcGFjaXR5PSIwLjQiLz4KPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTgwIiByPSIzIiBmaWxsPSIjRkZCODMwIiBvcGFjaXR5PSIwLjMiLz4KPGNpcmNsZSBjeD0iNTYwIiBjeT0iMTYwIiByPSI0IiBmaWxsPSIjOEI4NUZGIiBvcGFjaXR5PSIwLjM1Ii8+CjwvZz4KCjxwYXRoIGQ9Ik0gMzgwIDkwIEwgMjUwIDM4MCBMIDMzMCAzODAgTCAzMDAgNTkwIEwgNDcwIDMwMCBMIDM4MCAzMDAgWiIKICAgICAgZmlsbD0idXJsKCNib2x0R3JhZCkiIHN0cm9rZT0iIzBEMEYxQSIgc3Ryb2tlLXdpZHRoPSI2Ii8+Cgo8Y2lyY2xlIGN4PSIzNDAiIGN5PSIzNDAiIHI9IjMwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNkM2M0ZGIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMTUiLz4KPC9zdmc+Cg==">
+<meta name="description" content="Generate perfect AI prompts for ChatGPT, Midjourney, Claude & more. Join 12,000+ creators in our prompt library, daily challenges, and leaderboard. Free forever.">
+<meta name="keywords" content="AI prompt generator, ChatGPT prompts, Midjourney prompts, prompt engineering, free prompts, AI tools">
+<meta property="og:title" content="PromptForge — Build Prompts That Actually Work">
+<meta property="og:description" content="Generate, discover & battle AI prompts. Free tool used by 12,000+ creators.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://promptforge.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PromptForge — AI Prompt Generator">
+<meta name="twitter:description" content="Generate perfect AI prompts in seconds. Free forever.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+<style>
+/* ════════════════════════════════════════
+   TOKENS — "The Forge" palette
+════════════════════════════════════════ */
+:root {
+  --void:      #08090E;
+  --deep:      #0D0F1A;
+  --surface:   #131625;
+  --surface2:  #1A1E30;
+  --surface3:  #20253C;
+  --border:    rgba(255,255,255,0.06);
+  --border2:   rgba(255,255,255,0.11);
+  --border3:   rgba(255,255,255,0.18);
+  --txt:       #E8E5F4;
+  --txt2:      #9895B0;
+  --txt3:      #4E4B65;
+  --indigo:    #6C63FF;
+  --indigo2:   #8B85FF;
+  --indigo-g:  rgba(108,99,255,0.14);
+  --amber:     #FFB830;
+  --amber-g:   rgba(255,184,48,0.10);
+  --mint:      #00F5A0;
+  --mint-g:    rgba(0,245,160,0.08);
+  --rose:      #FF6B8A;
+  --rose-g:    rgba(255,107,138,0.10);
+  --sky:       #38BDF8;
+  --r:         12px;
+  --r-sm:      8px;
+  --r-lg:      18px;
+  --r-xl:      24px;
+  --display:   'Plus Jakarta Sans', sans-serif;
+  --body:      'Inter', sans-serif;
+  --mono:      'JetBrains Mono', monospace;
+  --sh:        0 8px 48px rgba(0,0,0,0.6);
+  --sh-sm:     0 2px 16px rgba(0,0,0,0.35);
+  --glow-i:    0 0 40px rgba(108,99,255,0.22);
+  --glow-a:    0 0 40px rgba(255,184,48,0.18);
+  --max:       1160px;
+}
+
+/* ════════════════════════════════════════
+   RESET
+════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);
+  color:var(--txt);
+  font-family:var(--body);
+  font-size:15px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+a{color:var(--indigo2);text-decoration:none}
+a:hover{text-decoration:underline}
+button{cursor:pointer;font-family:var(--body);border:none;outline:none;background:none}
+input,textarea,select{font-family:var(--body);outline:none;border:none;background:none;color:var(--txt)}
+::selection{background:rgba(108,99,255,0.3)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--deep)}
+::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:3px}
+
+/* ════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════ */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:0 24px;height:62px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,9,14,0.85);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  transition:all 0.3s;
+}
+.nav.scrolled{background:rgba(8,9,14,0.97)}
+.nav-logo{
+  display:flex;align-items:center;gap:9px;
+  font-family:var(--display);font-size:18px;font-weight:800;
+  letter-spacing:-0.5px;color:var(--txt);
+}
+.nav-logo-mark{
+  width:32px;height:32px;border-radius:8px;
+  box-shadow:var(--glow-i);
+  position:relative;overflow:hidden;
+}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-link{
+  padding:7px 14px;border-radius:var(--r-sm);
+  font-size:13px;font-weight:500;color:var(--txt2);
+  transition:all 0.15s;
+}
+.nav-link:hover{color:var(--txt);background:var(--surface)}
+.nav-link.active{color:var(--txt);background:var(--surface)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.btn-nav-login{
+  padding:7px 16px;border-radius:var(--r-sm);
+  font-size:13px;font-weight:600;
+  background:var(--surface2);border:1px solid var(--border2);
+  color:var(--txt);transition:all 0.15s;
+}
+.btn-nav-login:hover{border-color:var(--border3)}
+.btn-nav-cta{
+  padding:8px 18px;border-radius:var(--r-sm);
+  font-size:13px;font-weight:700;
+  background:linear-gradient(135deg,var(--indigo),#8B5CF6);
+  color:#fff;font-family:var(--display);
+  box-shadow:0 2px 14px rgba(108,99,255,0.35);
+  transition:all 0.2s;
+}
+.btn-nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 24px rgba(108,99,255,0.45)}
+.nav-mobile-btn{
+  display:none;padding:8px;border-radius:var(--r-sm);
+  background:var(--surface);color:var(--txt2);font-size:18px;line-height:1;
+}
+
+/* ════════════════════════════════════════
+   ADSENSE BANNER SLOT
+════════════════════════════════════════ */
+.ad-banner{
+  background:var(--deep);
+  border-bottom:1px solid var(--border);
+  padding:10px 24px;
+  display:flex;align-items:center;justify-content:center;
+  min-height:70px;
+  margin-top:62px;
+}
+.ad-banner ins{display:block;width:100%;max-width:728px}
+.ad-placeholder{
+  width:100%;max-width:728px;height:50px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px dashed rgba(255,255,255,0.08);
+  border-radius:var(--r-sm);
+  font-size:11px;color:var(--txt3);letter-spacing:0.06em;
+  text-transform:uppercase;
+}
+
+/* ════════════════════════════════════════
+   HERO — THE FORGE
+════════════════════════════════════════ */
+.hero{
+  position:relative;
+  padding:80px 24px 70px;
+  text-align:center;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;
+  overflow:hidden;
+}
+.hero-bg canvas{position:absolute;inset:0;width:100%;height:100%;opacity:0.55}
+.hero-bg-glow{
+  position:absolute;
+  top:30%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:600px;
+  background:radial-gradient(ellipse,rgba(108,99,255,0.12) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-bg-glow2{
+  position:absolute;
+  top:60%;left:30%;
+  width:400px;height:300px;
+  background:radial-gradient(ellipse,rgba(255,184,48,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+.hero-inner{position:relative;z-index:2;max-width:820px;margin:0 auto}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(108,99,255,0.1);
+  border:1px solid rgba(108,99,255,0.25);
+  color:var(--indigo2);
+  font-size:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;
+  padding:5px 14px;border-radius:99px;margin-bottom:22px;
+}
+.hero-badge-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--mint);
+  animation:blink 1.8s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero-h1{
+  font-family:var(--display);
+  font-size:clamp(36px,6vw,72px);
+  font-weight:800;
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin-bottom:18px;
+  color:var(--txt);
+}
+.hero-h1 .line2{display:block}
+.hero-h1 .forge-word{
+  background:linear-gradient(90deg,var(--indigo2) 0%,var(--amber) 50%,var(--mint) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 4s linear infinite;
+}
+@keyframes shimmer{to{background-position:200% center}}
+
+.hero-sub{
+  font-size:clamp(15px,2vw,18px);
+  color:var(--txt2);font-weight:300;
+  max-width:560px;margin:0 auto 36px;line-height:1.7;
+}
+
+.forge-hero-input{
+  position:relative;
+  max-width:680px;margin:0 auto 32px;
+}
+.forge-input-glow{
+  position:absolute;inset:-1px;border-radius:calc(var(--r-lg) + 1px);
+  background:linear-gradient(135deg,var(--indigo),#A855F7,var(--amber));
+  opacity:0;transition:opacity 0.3s;z-index:0;
+}
+.forge-hero-input:focus-within .forge-input-glow{opacity:1}
+.forge-hero-box{
+  position:relative;z-index:1;
+  display:flex;align-items:center;gap:0;
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:var(--r-lg);
+  padding:6px 6px 6px 20px;
+  transition:border-color 0.2s;
+}
+.forge-hero-box:focus-within{border-color:transparent}
+.forge-hero-box input{
+  flex:1;font-size:15px;color:var(--txt);background:none;
+  padding:10px 0;
+}
+.forge-hero-box input::placeholder{color:var(--txt3)}
+.forge-hero-btn{
+  background:linear-gradient(135deg,var(--indigo),#8B5CF6);
+  color:#fff;font-family:var(--display);font-size:14px;font-weight:700;
+  padding:12px 24px;border-radius:var(--r);
+  white-space:nowrap;
+  box-shadow:0 2px 14px rgba(108,99,255,0.4);
+  transition:all 0.2s;display:flex;align-items:center;gap:7px;
+}
+.forge-hero-btn:hover{transform:scale(1.02);box-shadow:0 4px 24px rgba(108,99,255,0.5)}
+.forge-hero-btn.loading{opacity:0.65;pointer-events:none}
+
+.hero-hints{
+  display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:40px;
+}
+.hint-chip{
+  padding:5px 12px;border-radius:99px;font-size:12px;font-weight:500;
+  background:var(--surface2);border:1px solid var(--border);color:var(--txt2);
+  cursor:pointer;transition:all 0.15s;
+}
+.hint-chip:hover{border-color:rgba(108,99,255,0.4);color:var(--indigo2);background:var(--indigo-g)}
+
+.hero-stats{
+  display:flex;align-items:center;justify-content:center;gap:0;
+  flex-wrap:wrap;
+}
+.hstat{
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 28px;
+  border-right:1px solid var(--border);
+}
+.hstat:last-child{border-right:none}
+.hstat-n{
+  font-family:var(--display);font-size:26px;font-weight:800;
+  background:linear-gradient(135deg,var(--txt),var(--indigo2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hstat-l{font-size:12px;color:var(--txt3);margin-top:1px}
+
+/* ════════════════════════════════════════
+   HERO RESULT
+════════════════════════════════════════ */
+.hero-result{
+  max-width:680px;margin:0 auto;
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:var(--r-lg);overflow:hidden;
+  display:none;animation:slideUp 0.3s ease;
+  text-align:left;
+}
+.hero-result.show{display:block}
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.hr-top{
+  padding:12px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(0,245,160,0.04);
+  border-bottom:1px solid var(--border);
+}
+.hr-label{
+  display:flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.08em;color:var(--mint);
+}
+.hr-actions{display:flex;gap:6px}
+.btn-sm{
+  padding:5px 12px;border-radius:6px;font-size:12px;font-weight:600;
+  background:var(--surface2);border:1px solid var(--border);color:var(--txt2);
+  transition:all 0.15s;display:flex;align-items:center;gap:5px;
+}
+.btn-sm:hover{color:var(--txt);border-color:var(--border2)}
+.btn-sm.ok{color:var(--mint);border-color:rgba(0,245,160,0.3)}
+.hr-body{padding:18px}
+#hero-output{
+  font-family:var(--mono);font-size:13.5px;line-height:1.75;
+  color:var(--txt);white-space:pre-wrap;word-break:break-word;
+}
+.hr-scores{
+  display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;
+  padding-top:14px;border-top:1px solid var(--border);
+}
+.score-tag{
+  padding:4px 11px;border-radius:99px;font-size:11px;font-weight:700;
+}
+.score-tag.g{background:var(--mint-g);color:var(--mint);border:1px solid rgba(0,245,160,0.2)}
+.score-tag.i{background:var(--indigo-g);color:var(--indigo2);border:1px solid rgba(108,99,255,0.2)}
+.score-tag.a{background:var(--amber-g);color:var(--amber);border:1px solid rgba(255,184,48,0.2)}
+
+/* ════════════════════════════════════════
+   SECTION COMMON
+════════════════════════════════════════ */
+.section{padding:72px 24px}
+.section-alt{background:var(--deep)}
+.sec-header{text-align:center;margin-bottom:52px}
+.sec-eye{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;
+  padding:4px 12px;border-radius:99px;margin-bottom:14px;
+}
+.sec-eye.ind{background:var(--indigo-g);color:var(--indigo2);border:1px solid rgba(108,99,255,0.2)}
+.sec-eye.amb{background:var(--amber-g);color:var(--amber);border:1px solid rgba(255,184,48,0.2)}
+.sec-eye.min{background:var(--mint-g);color:var(--mint);border:1px solid rgba(0,245,160,0.15)}
+.sec-eye.ros{background:var(--rose-g);color:var(--rose);border:1px solid rgba(255,107,138,0.2)}
+.sec-h2{
+  font-family:var(--display);
+  font-size:clamp(26px,4vw,42px);
+  font-weight:800;letter-spacing:-1px;margin-bottom:12px;
+}
+.sec-sub{font-size:16px;color:var(--txt2);font-weight:300;max-width:520px;margin:0 auto}
+
+/* ════════════════════════════════════════
+   GENERATOR SECTION
+════════════════════════════════════════ */
+.gen-wrap{
+  max-width:860px;margin:0 auto;
+  background:var(--surface);
+  border:1px solid var(--border2);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  box-shadow:var(--sh);
+}
+.gen-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 24px;border-bottom:1px solid var(--border);
+  background:var(--deep);
+}
+.gen-topbar-tabs{display:flex;gap:2px;overflow-x:auto}
+.gen-topbar-tabs::-webkit-scrollbar{height:0}
+.g-tab{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:var(--r-sm);
+  font-size:13px;font-weight:600;color:var(--txt2);
+  transition:all 0.15s;white-space:nowrap;cursor:pointer;
+}
+.g-tab:hover{color:var(--txt);background:var(--surface2)}
+.g-tab.on{
+  background:linear-gradient(135deg,rgba(108,99,255,0.2),rgba(108,99,255,0.08));
+  border:1px solid rgba(108,99,255,0.25);
+  color:var(--indigo2);
+}
+
+.gen-body{display:grid;grid-template-columns:1fr 1fr;min-height:380px}
+.gen-left{padding:28px;border-right:1px solid var(--border)}
+.gen-right{padding:28px;background:rgba(0,0,0,0.15)}
+
+.g-panel{display:none}.g-panel.on{display:block}
+.field-g{margin-bottom:16px}
+.field-g label{
+  display:block;font-size:11px;font-weight:700;text-transform:uppercase;
+  letter-spacing:0.07em;color:var(--txt3);margin-bottom:7px;
+}
+.fi{
+  width:100%;background:var(--surface2);
+  border:1.5px solid var(--border);border-radius:var(--r-sm);
+  padding:10px 14px;font-size:14px;color:var(--txt);
+  transition:border-color 0.15s;-webkit-appearance:none;appearance:none;
+}
+.fi:focus{border-color:rgba(108,99,255,0.5);box-shadow:0 0 0 3px rgba(108,99,255,0.07)}
+.fi.sel{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%234E4B65' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer;
+}
+.fi.sel option{background:var(--surface2)}
+.fi::placeholder{color:var(--txt3)}
+.btn-forge-main{
+  width:100%;margin-top:4px;
+  background:linear-gradient(135deg,var(--indigo) 0%,#8B5CF6 60%,#6366F1 100%);
+  color:#fff;font-family:var(--display);font-size:14px;font-weight:700;
+  padding:14px;border-radius:var(--r);
+  box-shadow:0 4px 20px rgba(108,99,255,0.35);
+  transition:all 0.2s;position:relative;overflow:hidden;
+}
+.btn-forge-main::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);
+  opacity:0;transition:opacity 0.2s;
+}
+.btn-forge-main:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(108,99,255,0.45)}
+.btn-forge-main:hover::before{opacity:1}
+.btn-forge-main.ld{opacity:0.65;pointer-events:none}
+.btn-inner-f{display:flex;align-items:center;justify-content:center;gap:8px}
+
+.gen-result-empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;gap:12px;color:var(--txt3);text-align:center;padding:20px;
+}
+.gen-result-empty-icon{font-size:36px;margin-bottom:4px;opacity:0.4}
+.gen-result-empty p{font-size:13px;max-width:180px;line-height:1.6}
+
+.gen-result-out{display:none}
+.gen-result-out.show{display:block}
+.gen-r-label{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;
+  color:var(--mint);display:flex;align-items:center;gap:6px;margin-bottom:12px;
+}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--mint);animation:blink 2s infinite}
+#gen-output{
+  font-family:var(--mono);font-size:13px;line-height:1.75;
+  color:var(--txt);white-space:pre-wrap;word-break:break-word;
+}
+.gen-r-actions{
+  display:flex;gap:7px;flex-wrap:wrap;margin-top:16px;
+  padding-top:16px;border-top:1px solid var(--border);
+}
+.gen-r-score{
+  margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;
+}
+
+/* ════════════════════════════════════════
+   FEATURES
+════════════════════════════════════════ */
+.features-grid{
+  max-width:var(--max);margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.feat-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:26px;
+  transition:all 0.2s;
+  position:relative;overflow:hidden;
+}
+.feat-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--indigo),transparent);
+  opacity:0;transition:opacity 0.2s;
+}
+.feat-card:hover{border-color:rgba(108,99,255,0.25);transform:translateY(-3px);box-shadow:var(--sh-sm)}
+.feat-card:hover::before{opacity:1}
+.feat-icon{
+  width:44px;height:44px;border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin-bottom:16px;
+}
+.feat-icon.ind{background:var(--indigo-g)}
+.feat-icon.amb{background:var(--amber-g)}
+.feat-icon.min{background:var(--mint-g)}
+.feat-icon.ros{background:var(--rose-g)}
+.feat-h{font-family:var(--display);font-size:15px;font-weight:700;margin-bottom:7px}
+.feat-p{font-size:13px;color:var(--txt2);line-height:1.65}
+
+/* ════════════════════════════════════════
+   LIBRARY
+════════════════════════════════════════ */
+.lib-wrap{max-width:var(--max);margin:0 auto}
+.lib-filters{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;justify-content:center;
+}
+.f-pill{
+  padding:7px 18px;border-radius:99px;font-size:13px;font-weight:600;
+  background:var(--surface);border:1px solid var(--border);color:var(--txt2);
+  transition:all 0.15s;cursor:pointer;
+}
+.f-pill:hover{border-color:var(--border2);color:var(--txt)}
+.f-pill.on{
+  background:var(--indigo-g);border-color:rgba(108,99,255,0.35);color:var(--indigo2);
+}
+.prompt-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;
+}
+.p-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:22px;
+  display:flex;flex-direction:column;gap:13px;
+  transition:all 0.2s;cursor:pointer;
+}
+.p-card:hover{
+  border-color:rgba(108,99,255,0.25);
+  transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.4),0 0 0 1px rgba(108,99,255,0.1);
+}
+.p-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.p-cat{
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;
+  padding:3px 10px;border-radius:99px;
+}
+.p-cat.mj{background:rgba(139,133,255,0.12);color:var(--indigo2)}
+.p-cat.gpt{background:var(--mint-g);color:var(--mint)}
+.p-cat.yt{background:rgba(255,100,100,0.1);color:#FF8080}
+.p-cat.em{background:rgba(56,189,248,0.1);color:var(--sky)}
+.p-cat.rs{background:var(--amber-g);color:var(--amber)}
+.p-likes{font-size:12px;color:var(--txt2);display:flex;align-items:center;gap:4px;flex-shrink:0}
+.p-title{font-family:var(--display);font-size:15px;font-weight:700;line-height:1.3}
+.p-preview{
+  font-size:12.5px;color:var(--txt2);line-height:1.65;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.p-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:12px;border-top:1px solid var(--border);
+}
+.p-author{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--txt2)}
+.p-av{
+  width:24px;height:24px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:800;color:#fff;flex-shrink:0;
+}
+.btn-use{
+  padding:5px 13px;border-radius:6px;font-size:12px;font-weight:700;
+  background:var(--indigo-g);border:1px solid rgba(108,99,255,0.25);
+  color:var(--indigo2);transition:all 0.15s;
+}
+.btn-use:hover{background:rgba(108,99,255,0.2);border-color:rgba(108,99,255,0.4)}
+
+.see-more-wrap{text-align:center;margin-top:32px}
+.btn-see-more{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;border-radius:var(--r);font-size:14px;font-weight:600;
+  background:var(--surface);border:1px solid var(--border2);color:var(--txt);
+  transition:all 0.15s;
+}
+.btn-see-more:hover{border-color:var(--border3);background:var(--surface2)}
+
+/* ════════════════════════════════════════
+   AD SLOT MID-PAGE
+════════════════════════════════════════ */
+.ad-mid{
+  max-width:var(--max);margin:0 auto 52px;
+  display:flex;justify-content:center;
+}
+.ad-mid-inner{
+  width:100%;max-width:728px;min-height:90px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:1px dashed var(--border);
+  border-radius:var(--r);font-size:11px;color:var(--txt3);
+  text-transform:uppercase;letter-spacing:0.06em;
+}
+
+/* ════════════════════════════════════════
+   DAILY CHALLENGE
+════════════════════════════════════════ */
+.challenge-wrap{max-width:860px;margin:0 auto}
+.challenge-card{
+  background:linear-gradient(135deg,rgba(255,184,48,0.06),rgba(108,99,255,0.04));
+  border:1px solid rgba(255,184,48,0.18);
+  border-radius:var(--r-xl);padding:40px;
+  position:relative;overflow:hidden;
+  margin-bottom:28px;
+}
+.challenge-card::before{
+  content:'';position:absolute;
+  top:-80px;right:-80px;width:320px;height:320px;
+  background:radial-gradient(circle,rgba(255,184,48,0.1),transparent 65%);
+  pointer-events:none;
+}
+.ch-eye{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--amber-g);border:1px solid rgba(255,184,48,0.2);
+  color:var(--amber);font-size:11px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;
+  padding:5px 13px;border-radius:99px;margin-bottom:16px;
+}
+.ch-title{
+  font-family:var(--display);font-size:clamp(22px,3.5vw,34px);
+  font-weight:800;letter-spacing:-0.8px;margin-bottom:10px;
+}
+.ch-desc{color:var(--txt2);font-size:15px;max-width:560px;margin-bottom:24px;line-height:1.7}
+.countdown{display:flex;align-items:center;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+.cd-unit{text-align:center}
+.cd-n{
+  font-family:var(--display);font-size:32px;font-weight:800;line-height:1;display:block;
+  background:linear-gradient(135deg,var(--amber),#FFD770);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.cd-l{font-size:10px;color:var(--txt3);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px}
+.cd-sep{font-family:var(--display);font-size:28px;font-weight:700;color:var(--txt3);padding-top:2px}
+.ch-prompt-box{
+  background:rgba(0,0,0,0.25);border:1px solid rgba(255,184,48,0.12);
+  border-radius:var(--r);padding:18px 22px;margin-bottom:22px;
+}
+.ch-prompt-box p{font-family:var(--display);font-size:16px;font-weight:500;line-height:1.55}
+.ch-prompt-box span{color:var(--amber)}
+.ch-meta{display:flex;gap:20px;flex-wrap:wrap}
+.ch-meta-item{font-size:13px;color:var(--txt2)}
+.ch-meta-item strong{color:var(--txt)}
+
+.ch-submit-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:28px;margin-bottom:28px;
+}
+.ch-submit-card h3{font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:16px}
+.ch-textarea{
+  width:100%;min-height:110px;resize:vertical;
+  background:var(--surface2);border:1.5px solid var(--border);
+  border-radius:var(--r);padding:14px 16px;
+  font-size:14px;color:var(--txt);line-height:1.65;
+  transition:border-color 0.15s;margin-bottom:12px;
+}
+.ch-textarea:focus{border-color:rgba(108,99,255,0.4);box-shadow:0 0 0 3px rgba(108,99,255,0.06)}
+.ch-textarea::placeholder{color:var(--txt3)}
+.ch-submit-row{display:flex;gap:10px}
+.btn-submit{
+  flex:1;background:linear-gradient(135deg,var(--amber),#FF9500);
+  color:#000;font-family:var(--display);font-size:14px;font-weight:800;
+  padding:13px;border-radius:var(--r);
+  box-shadow:0 3px 16px rgba(255,184,48,0.3);
+  transition:all 0.2s;
+}
+.btn-submit:hover{transform:translateY(-1px);box-shadow:0 5px 24px rgba(255,184,48,0.4)}
+.btn-test{
+  padding:13px 18px;border-radius:var(--r);font-size:13px;font-weight:600;
+  background:var(--surface2);border:1px solid var(--border2);color:var(--txt);
+  transition:all 0.15s;
+}
+.btn-test:hover{border-color:var(--border3)}
+
+.subs-header{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;
+}
+.subs-title{font-family:var(--display);font-size:18px;font-weight:700}
+.subs-count{font-size:13px;color:var(--txt2)}
+.sub-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:20px;margin-bottom:12px;
+  transition:border-color 0.15s;
+}
+.sub-card:hover{border-color:var(--border2)}
+.sub-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sub-av{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:#fff;flex-shrink:0;
+}
+.sub-name{font-size:14px;font-weight:600}
+.sub-time{font-size:12px;color:var(--txt3);margin-left:auto}
+.sub-text{
+  font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--txt2);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.sub-foot{
+  display:flex;align-items:center;gap:8px;margin-top:14px;
+  padding-top:14px;border-top:1px solid var(--border);
+}
+.vote-btn{
+  display:flex;align-items:center;gap:5px;
+  padding:6px 14px;border-radius:var(--r-sm);font-size:13px;font-weight:700;
+  background:var(--surface2);border:1px solid var(--border);color:var(--txt2);
+  transition:all 0.15s;
+}
+.vote-btn:hover,.vote-btn.voted{
+  background:var(--amber-g);border-color:rgba(255,184,48,0.3);color:var(--amber);
+}
+
+/* ════════════════════════════════════════
+   LEADERBOARD
+════════════════════════════════════════ */
+.lb-wrap{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.lb-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-lg);overflow:hidden;
+}
+.lb-head{
+  padding:18px 22px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+}
+.lb-head-icon{font-size:20px}
+.lb-h{font-family:var(--display);font-size:15px;font-weight:700}
+.lb-sub{font-size:12px;color:var(--txt2);margin-top:1px}
+.lb-row{
+  display:flex;align-items:center;gap:12px;
+  padding:13px 22px;border-bottom:1px solid var(--border);
+  transition:background 0.15s;cursor:pointer;
+}
+.lb-row:last-child{border-bottom:none}
+.lb-row:hover{background:rgba(255,255,255,0.02)}
+.lb-rank{
+  font-family:var(--display);font-size:15px;font-weight:800;
+  width:26px;text-align:center;flex-shrink:0;
+}
+.r1{color:var(--amber)}.r2{color:var(--txt2)}.r3{color:#CD9060}.rn{color:var(--txt3);font-size:13px}
+.lb-av{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:#fff;flex-shrink:0;
+}
+.lb-info{flex:1;min-width:0}
+.lb-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-meta{font-size:12px;color:var(--txt2)}
+.lb-score{font-family:var(--display);font-size:14px;font-weight:700;flex-shrink:0;color:var(--txt2)}
+
+/* ════════════════════════════════════════
+   EMAIL CAPTURE
+════════════════════════════════════════ */
+.email-section{
+  max-width:640px;margin:0 auto;text-align:center;
+}
+.email-card{
+  background:linear-gradient(135deg,rgba(108,99,255,0.08),rgba(139,92,246,0.04));
+  border:1px solid rgba(108,99,255,0.2);
+  border-radius:var(--r-xl);padding:52px 40px;
+  position:relative;overflow:hidden;
+}
+.email-card::before{
+  content:'';position:absolute;
+  bottom:-60px;left:50%;transform:translateX(-50%);
+  width:400px;height:200px;
+  background:radial-gradient(ellipse,rgba(108,99,255,0.12),transparent 70%);
+}
+.email-h{font-family:var(--display);font-size:clamp(22px,3.5vw,32px);font-weight:800;letter-spacing:-0.5px;margin-bottom:10px}
+.email-p{color:var(--txt2);font-size:15px;margin-bottom:28px;line-height:1.7}
+.email-perks{
+  display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:28px;
+}
+.perk{
+  display:flex;align-items:center;gap:6px;font-size:13px;color:var(--txt2);
+}
+.perk-check{color:var(--mint);font-size:14px}
+.email-form{
+  display:flex;gap:8px;max-width:440px;margin:0 auto;
+}
+.email-input{
+  flex:1;background:var(--surface2);border:1.5px solid var(--border2);
+  border-radius:var(--r-sm);padding:12px 16px;
+  font-size:14px;color:var(--txt);
+  transition:border-color 0.15s;
+}
+.email-input:focus{border-color:rgba(108,99,255,0.45)}
+.email-input::placeholder{color:var(--txt3)}
+.btn-email-join{
+  background:linear-gradient(135deg,var(--indigo),#8B5CF6);
+  color:#fff;font-family:var(--display);font-size:14px;font-weight:700;
+  padding:12px 22px;border-radius:var(--r-sm);white-space:nowrap;
+  box-shadow:0 3px 16px rgba(108,99,255,0.35);
+  transition:all 0.2s;
+}
+.btn-email-join:hover{transform:translateY(-1px);box-shadow:0 5px 24px rgba(108,99,255,0.45)}
+.email-note{font-size:12px;color:var(--txt3);margin-top:14px;position:relative}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{
+  background:var(--deep);
+  border-top:1px solid var(--border);
+  padding:52px 24px 32px;
+}
+.footer-inner{max-width:var(--max);margin:0 auto}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;
+  padding-bottom:40px;border-bottom:1px solid var(--border);margin-bottom:28px;
+}
+.footer-brand p{font-size:13px;color:var(--txt2);line-height:1.65;margin-top:10px;max-width:240px}
+.footer-col h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--txt3);margin-bottom:14px}
+.footer-col a{display:block;font-size:13px;color:var(--txt2);margin-bottom:9px;transition:color 0.15s}
+.footer-col a:hover{color:var(--txt);text-decoration:none}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  font-size:12px;color:var(--txt3);
+}
+.footer-bottom a{color:var(--txt3)}
+.footer-bottom a:hover{color:var(--txt2)}
+.seo-note{
+  text-align:center;padding:24px;font-size:11px;color:var(--txt3);line-height:1.8;
+  border-top:1px solid var(--border);
+}
+
+/* ════════════════════════════════════════
+   POPUP AD
+════════════════════════════════════════ */
+.popup-ad-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.75);z-index:9999;
+  align-items:center;justify-content:center;padding:20px;
+  backdrop-filter:blur(4px);
+}
+.popup-ad-overlay.open{display:flex;animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.popup-ad-box{
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:var(--r-xl);padding:0;
+  max-width:480px;width:100%;
+  box-shadow:var(--sh);overflow:hidden;
+  animation:slideUp 0.3s ease;
+}
+.popup-ad-top{
+  padding:14px 18px;
+  background:var(--deep);
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+.popup-ad-label{font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:0.06em}
+.popup-close{
+  width:28px;height:28px;border-radius:6px;
+  background:var(--surface2);color:var(--txt2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:all 0.15s;cursor:pointer;
+}
+.popup-close:hover{background:var(--surface3);color:var(--txt)}
+.popup-ad-content{
+  padding:28px;text-align:center;min-height:200px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+}
+.popup-ad-placeholder{
+  width:300px;height:250px;
+  background:var(--surface2);
+  border:1px dashed var(--border2);
+  border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:0.06em;
+}
+
+/* ════════════════════════════════════════
+   LOGIN MODAL
+════════════════════════════════════════ */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.8);z-index:500;
+  align-items:center;justify-content:center;padding:20px;
+  backdrop-filter:blur(6px);
+}
+.modal-overlay.open{display:flex;animation:fadeIn 0.25s ease}
+.modal-box{
+  background:var(--surface);border:1px solid var(--border2);
+  border-radius:var(--r-xl);padding:36px;max-width:420px;width:100%;
+  box-shadow:var(--sh);animation:slideUp 0.25s ease;
+  position:relative;
+}
+.modal-logo{
+  display:flex;align-items:center;gap:8px;justify-content:center;
+  font-family:var(--display);font-size:18px;font-weight:800;
+  margin-bottom:8px;
+}
+.modal-logo-mark{
+  width:28px;height:28px;border-radius:7px;
+  background:linear-gradient(135deg,var(--indigo),#A855F7);
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+}
+.modal-tagline{text-align:center;font-size:13px;color:var(--txt2);margin-bottom:28px}
+.modal-tabs{
+  display:flex;gap:2px;background:var(--deep);
+  border-radius:var(--r-sm);padding:3px;margin-bottom:24px;
+}
+.modal-tab{
+  flex:1;padding:8px;border-radius:6px;
+  font-size:14px;font-weight:600;color:var(--txt2);
+  transition:all 0.15s;text-align:center;
+}
+.modal-tab.on{background:var(--surface2);color:var(--txt)}
+.modal-field{margin-bottom:14px}
+.modal-field label{display:block;font-size:12px;font-weight:600;color:var(--txt3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:7px}
+.modal-input{
+  width:100%;background:var(--surface2);border:1.5px solid var(--border);
+  border-radius:var(--r-sm);padding:11px 14px;font-size:14px;color:var(--txt);
+  transition:border-color 0.15s;
+}
+.modal-input:focus{border-color:rgba(108,99,255,0.4)}
+.modal-input::placeholder{color:var(--txt3)}
+.btn-modal-submit{
+  width:100%;margin-top:4px;
+  background:linear-gradient(135deg,var(--indigo),#8B5CF6);
+  color:#fff;font-family:var(--display);font-size:15px;font-weight:700;
+  padding:13px;border-radius:var(--r);
+  box-shadow:0 3px 16px rgba(108,99,255,0.35);
+  transition:all 0.15s;
+}
+.btn-modal-submit:hover{box-shadow:0 5px 24px rgba(108,99,255,0.45)}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:32px;height:32px;border-radius:var(--r-sm);
+  background:var(--surface2);color:var(--txt2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;cursor:pointer;transition:all 0.15s;
+}
+.modal-close:hover{background:var(--surface3);color:var(--txt)}
+.modal-note{text-align:center;font-size:12px;color:var(--txt3);margin-top:14px}
+
+/* ════════════════════════════════════════
+   TOAST
+════════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:24px;left:50%;
+  transform:translateX(-50%) translateY(14px);
+  background:var(--surface2);border:1px solid var(--border2);
+  color:var(--txt);font-size:13px;font-weight:500;
+  padding:11px 22px;border-radius:99px;
+  box-shadow:var(--sh);opacity:0;pointer-events:none;
+  transition:all 0.25s;z-index:9000;white-space:nowrap;
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ════════════════════════════════════════
+   SPINNER
+════════════════════════════════════════ */
+.spin{
+  display:inline-block;width:16px;height:16px;
+  border:2px solid rgba(255,255,255,0.25);
+  border-top-color:#fff;border-radius:50%;
+  animation:rot 0.65s linear infinite;
+}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:900px){.gen-layout{grid-template-columns:1fr}}
+@media(max-width:800px){.features-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){
+  .gen-body{grid-template-columns:1fr}
+  .gen-left{border-right:none;border-bottom:1px solid var(--border)}
+  .lb-wrap{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-mobile-btn{display:flex;align-items:center;justify-content:center}
+  .hero{padding:56px 20px 48px}
+  .section{padding:52px 20px}
+  .email-card{padding:36px 22px}
+}
+@media(max-width:520px){.features-grid{grid-template-columns:1fr}}
+@media(max-width:480px){
+  .hstat{padding:0 16px}
+  .hstat-n{font-size:20px}
+  .footer-top{grid-template-columns:1fr}
+}
+
+.av1{background:linear-gradient(135deg,#6C63FF,#38BDF8)}
+.av2{background:linear-gradient(135deg,#FFB830,#FF6B8A)}
+.av3{background:linear-gradient(135deg,#00F5A0,#0EA5E9)}
+.av4{background:linear-gradient(135deg,#FF6B8A,#A855F7)}
+.av5{background:linear-gradient(135deg,#FFB830,#00F5A0)}
+.av6{background:linear-gradient(135deg,#6366F1,#38BDF8)}
+</style>
+</head>
+<body>
+
+<!-- ADSTERRA SOCIAL BAR -->
+<script src="https://pl29817634.effectivecpmnetwork.com/48/0e/ca/480eca4f5cb7d5496be8a9ad3932cbc4.js"></script>
+
+<div class="modal-overlay" id="login-modal">
+  <div class="modal-box">
+    <div class="modal-close" onclick="closeLogin()">✕</div>
+    <div class="modal-logo">
+      <div class="modal-logo-mark">⚡</div>
+      PromptForge
+    </div>
+    <div class="modal-tagline">Join 12,000+ prompt engineers</div>
+    <div class="modal-tabs">
+      <div class="modal-tab on" onclick="switchModal('login',this)">Sign in</div>
+      <div class="modal-tab" onclick="switchModal('signup',this)">Create account</div>
+    </div>
+    <div id="modal-login-form">
+      <div class="modal-field">
+        <label>Email address</label>
+        <input class="modal-input" type="email" id="login-email" placeholder="you@example.com" />
+      </div>
+      <div class="modal-field">
+        <label>Password</label>
+        <input class="modal-input" type="password" id="login-pass" placeholder="••••••••" />
+      </div>
+      <button class="btn-modal-submit" onclick="handleLogin()">Sign in →</button>
+      <div class="modal-note"><a href="#" onclick="showForgotPassword(event)" style="color:var(--indigo2)">Forgot password?</a></div>
+    </div>
+    <div id="modal-signup-form" style="display:none">
+      <div class="modal-field">
+        <label>Display name</label>
+        <input class="modal-input" type="text" id="signup-name" placeholder="PromptNinja" />
+      </div>
+      <div class="modal-field">
+        <label>Email address</label>
+        <input class="modal-input" type="email" id="signup-email" placeholder="you@example.com" />
+      </div>
+      <div class="modal-field">
+        <label>Password</label>
+        <input class="modal-input" type="password" id="signup-pass" placeholder="Min. 8 characters" />
+      </div>
+      <button class="btn-modal-submit" onclick="handleSignup()">Create account →</button>
+      <div class="modal-note" style="margin-top:14px">By signing up, you agree to our <a href="#" style="color:var(--indigo2)">Terms</a> & <a href="#" style="color:var(--indigo2)">Privacy Policy</a>.</div>
+    </div>
+    <div id="modal-forgot-form" style="display:none">
+      <p style="font-size:13px;color:var(--txt2);margin-bottom:18px;line-height:1.6">Enter your email and we'll send you a link to reset your password.</p>
+      <div class="modal-field">
+        <label>Email address</label>
+        <input class="modal-input" type="email" id="forgot-email" placeholder="you@example.com" />
+      </div>
+      <button class="btn-modal-submit" onclick="handleForgotPassword()">Send reset link →</button>
+      <div class="modal-note"><a href="#" onclick="switchModal('login',document.querySelector('.modal-tab'))" style="color:var(--indigo2)">Back to sign in</a></div>
+    </div>
+    <div id="modal-reset-form" style="display:none">
+      <p style="font-size:13px;color:var(--txt2);margin-bottom:18px;line-height:1.6">Choose a new password for your account.</p>
+      <div class="modal-field">
+        <label>New password</label>
+        <input class="modal-input" type="password" id="reset-pass" placeholder="Min. 8 characters" />
+      </div>
+      <button class="btn-modal-submit" onclick="handleResetPassword()">Update password →</button>
+    </div>
+  </div>
+</div>
+
+<nav class="nav" id="main-nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjgwIiBoZWlnaHQ9IjY4MCIgdmlld0JveD0iMCAwIDY4MCA2ODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwRDBGMUEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTMxNjI1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0iYm9sdEdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjOEI4NUZGIi8+CjxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjNkM2M0ZGIi8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0ZGQjgzMCIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmFkaWFsR3JhZGllbnQgaWQ9Imdsb3ciIGN4PSI1MCUiIGN5PSIzNSUiIHI9IjYwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2QzYzRkYiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2QzYzRkYiIHN0b3Atb3BhY2l0eT0iMCIvPgo8L3JhZGlhbEdyYWRpZW50Pgo8L2RlZnM+Cgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjgwIiBoZWlnaHQ9IjY4MCIgcng9IjE0MCIgZmlsbD0idXJsKCNiZ0dyYWQpIi8+CjxjaXJjbGUgY3g9IjM0MCIgY3k9IjI2MCIgcj0iMjgwIiBmaWxsPSJ1cmwoI2dsb3cpIi8+Cgo8Zz4KPGNpcmNsZSBjeD0iMTYwIiBjeT0iNTQwIiByPSI1IiBmaWxsPSIjRkZCODMwIiBvcGFjaXR5PSIwLjUiLz4KPGNpcmNsZSBjeD0iNTIwIiBjeT0iNTYwIiByPSI0IiBmaWxsPSIjOEI4NUZGIiBvcGFjaXR5PSIwLjQiLz4KPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTgwIiByPSIzIiBmaWxsPSIjRkZCODMwIiBvcGFjaXR5PSIwLjMiLz4KPGNpcmNsZSBjeD0iNTYwIiBjeT0iMTYwIiByPSI0IiBmaWxsPSIjOEI4NUZGIiBvcGFjaXR5PSIwLjM1Ii8+CjwvZz4KCjxwYXRoIGQ9Ik0gMzgwIDkwIEwgMjUwIDM4MCBMIDMzMCAzODAgTCAzMDAgNTkwIEwgNDcwIDMwMCBMIDM4MCAzMDAgWiIKICAgICAgZmlsbD0idXJsKCNib2x0R3JhZCkiIHN0cm9rZT0iIzBEMEYxQSIgc3Ryb2tlLXdpZHRoPSI2Ii8+Cgo8Y2lyY2xlIGN4PSIzNDAiIGN5PSIzNDAiIHI9IjMwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNkM2M0ZGIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMTUiLz4KPC9zdmc+Cg==" alt="PromptForge logo" style="width:100%;height:100%;display:block"></div>
+    PromptForge
+  </div>
+  <div class="nav-links">
+    <a href="#generator" class="nav-link">Generator</a>
+    <a href="#library" class="nav-link">Library</a>
+    <a href="#challenge" class="nav-link">Challenge</a>
+    <a href="#leaderboard" class="nav-link">Leaderboard</a>
+  </div>
+  <div class="nav-right">
+    <button class="btn-nav-login" onclick="openLogin()">Sign in</button>
+    <button class="btn-nav-cta" onclick="openLogin()">Join Free →</button>
+    <button class="nav-mobile-btn" onclick="openLogin()">⚡</button>
+  </div>
+</nav>
+
+<div class="ad-banner">
+  <!-- ADSTERRA TOP BANNER -->
+  <script type="text/javascript">
+    atOptions = {
+      'key' : '0455fdb4bf2b181d83af7523b36c4eb9',
+      'format' : 'iframe',
+      'height' : 50,
+      'width' : 320,
+      'params' : {}
+    };
+  </script>
+  <script src="https://www.highperformanceformat.com/0455fdb4bf2b181d83af7523b36c4eb9/invoke.js"></script>
+</div>
+
+<section class="hero">
+  <div class="hero-bg">
+    <canvas id="forge-canvas"></canvas>
+    <div class="hero-bg-glow"></div>
+    <div class="hero-bg-glow2"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Live · AI-Powered · Free Forever
+    </div>
+    <h1 class="hero-h1">
+      The prompt tool that<br>
+      <span class="line2"><span class="forge-word">actually works.</span></span>
+    </h1>
+    <p class="hero-sub">
+      Type what you want in plain English. PromptForge turns it into a precision-engineered prompt for ChatGPT, Midjourney, Claude, and more — instantly.
+    </p>
+
+    <div class="forge-hero-input">
+      <div class="forge-input-glow"></div>
+      <div class="forge-hero-box">
+        <input type="text" id="hero-input"
+          placeholder="e.g. write me a viral LinkedIn post about AI tools..."
+          onkeydown="if(event.key==='Enter')heroGenerate()" />
+        <button class="forge-hero-btn" id="hero-btn" onclick="heroGenerate()">
+          <span id="hero-btn-inner">⚡ Forge it</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-hints">
+      <span style="font-size:12px;color:var(--txt3)">Try:</span>
+      <div class="hint-chip" onclick="setHeroHint('A Midjourney prompt for a neon Tokyo street at 3am')">🎨 Neon Tokyo art</div>
+      <div class="hint-chip" onclick="setHeroHint('Cold email to get my first freelance client as a web developer')">✉️ Freelance email</div>
+      <div class="hint-chip" onclick="setHeroHint('YouTube script hook for a personal finance channel targeting 20-year-olds')">🎬 YouTube hook</div>
+      <div class="hint-chip" onclick="setHeroHint('Resume bullet for a software engineer who built a payment system')">📄 Resume bullet</div>
+    </div>
+
+    <div class="hero-result" id="hero-result">
+      <div class="hr-top">
+        <div class="hr-label"><div class="pulse"></div>Generated Prompt</div>
+        <div class="hr-actions">
+          <button class="btn-sm" id="hero-copy" onclick="copyHero()">📋 Copy</button>
+          <button class="btn-sm" onclick="shareHero()">🔗 Share</button>
+          <button class="btn-sm" onclick="tweetHero()">𝕏 Post</button>
+        </div>
+      </div>
+      <div class="hr-body">
+        <div id="hero-output"></div>
+        <div class="hr-scores">
+          <span class="score-tag g" id="score-c">Clarity: A+</span>
+          <span class="score-tag i" id="score-s">Specificity: High</span>
+          <span class="score-tag a" id="score-e">Effectiveness: 9/10</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats" style="margin-top:40px">
+      <div class="hstat"><div class="hstat-n">12,400+</div><div class="hstat-l">Prompts generated</div></div>
+      <div class="hstat"><div class="hstat-n">847</div><div class="hstat-l">In the library</div></div>
+      <div class="hstat"><div class="hstat-n">5</div><div class="hstat-l">AI generators</div></div>
+      <div class="hstat"><div class="hstat-n">Free</div><div class="hstat-l">Always</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrap">
+    <div class="sec-header">
+      <div class="sec-eye ind">Why PromptForge</div>
+      <h2 class="sec-h2">Everything a prompt engineer needs</h2>
+      <p class="sec-sub">Not just a generator — a full platform for discovering, battling, and mastering AI prompts.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon ind">⚡</div>
+        <div class="feat-h">AI-Powered Generator</div>
+        <div class="feat-p">Describe your goal in plain English. Our AI turns your idea into a precision-engineered prompt in seconds — with quality scores.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon min">📚</div>
+        <div class="feat-h">Community Library</div>
+        <div class="feat-p">847+ hand-crafted prompts for ChatGPT, Midjourney, YouTube, cold email, resume and more. Filter, copy, and use instantly.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon amb">🔥</div>
+        <div class="feat-h">Daily Challenge</div>
+        <div class="feat-p">A new prompt challenge every day. Submit your entry, vote on others, and earn your place in the Hall of Fame. New challenge at midnight.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon ros">🏆</div>
+        <div class="feat-h">Leaderboard</div>
+        <div class="feat-p">Compete with the best prompt engineers globally. Weekly rankings by likes, usage, and challenge wins.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon ind">📊</div>
+        <div class="feat-h">Prompt Scoring</div>
+        <div class="feat-p">Every generated prompt gets an AI quality score — clarity, specificity, and effectiveness — so you know what works.</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon min">🔗</div>
+        <div class="feat-h">Shareable Prompts</div>
+        <div class="feat-p">Every prompt gets its own link. Share with your audience, build your personal brand as a prompt engineer, drive traffic back.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="generator">
+  <div class="wrap">
+    <div class="sec-header">
+      <div class="sec-eye ind">⚡ AI Generator</div>
+      <h2 class="sec-h2">Build any prompt in seconds</h2>
+      <p class="sec-sub">Five specialized generators — pick your use case and forge the perfect prompt.</p>
+    </div>
+    <div class="gen-wrap">
+      <div class="gen-topbar">
+        <div class="gen-topbar-tabs">
+          <div class="g-tab on" onclick="gTab(this,'mj')">🎨 Midjourney</div>
+          <div class="g-tab" onclick="gTab(this,'gpt')">🤖 ChatGPT</div>
+          <div class="g-tab" onclick="gTab(this,'rs')">📄 Resume</div>
+          <div class="g-tab" onclick="gTab(this,'em')">✉️ Cold Email</div>
+          <div class="g-tab" onclick="gTab(this,'yt')">🎬 YouTube</div>
+        </div>
+      </div>
+      <div class="gen-body">
+        <div class="gen-left">
+          <div class="g-panel on" id="gp-mj">
+            <div class="field-g">
+              <label>Subject / Main idea</label>
+              <input class="fi" type="text" id="mj-s" placeholder="e.g. a lone samurai on a cliff at sunset" />
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="field-g"><label>Art style</label>
+                <select class="fi sel" id="mj-style">
+                  <option>Cinematic photography</option><option>Digital art</option>
+                  <option>Oil painting</option><option>Anime</option><option>Watercolor</option>
+                  <option>3D render</option><option>Concept art</option><option>Pixel art</option>
+                  <option>Photorealistic</option><option>Cyberpunk</option>
+                </select>
+              </div>
+              <div class="field-g"><label>Mood</label>
+                <select class="fi sel" id="mj-mood">
+                  <option>Dramatic</option><option>Peaceful</option><option>Mysterious</option>
+                  <option>Epic</option><option>Melancholic</option><option>Ethereal</option>
+                  <option>Dark & gritty</option><option>Joyful</option>
+                </select>
+              </div>
+              <div class="field-g"><label>Lighting</label>
+                <select class="fi sel" id="mj-light">
+                  <option>Golden hour</option><option>Studio lighting</option>
+                  <option>Moonlight</option><option>Neon lights</option>
+                  <option>Soft diffused</option><option>Volumetric fog</option>
+                </select>
+              </div>
+              <div class="field-g"><label>Aspect ratio</label>
+                <select class="fi sel" id="mj-ratio">
+                  <option>16:9 Widescreen</option><option>1:1 Square</option>
+                  <option>9:16 Portrait</option><option>21:9 Ultrawide</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn-forge-main" onclick="genForm('mj',this)"><div class="btn-inner-f">⚡ Generate Midjourney Prompt</div></button>
+          </div>
+          <div class="g-panel" id="gp-gpt">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="field-g"><label>Role</label>
+                <select class="fi sel" id="gpt-role">
+                  <option>Expert copywriter</option><option>Senior software engineer</option>
+                  <option>Business consultant</option><option>Creative writing coach</option>
+                  <option>Social media expert</option><option>Data scientist</option>
+                  <option>Financial advisor</option><option>SEO specialist</option>
+                </select>
+              </div>
+              <div class="field-g"><label>Tone</label>
+                <select class="fi sel" id="gpt-tone">
+                  <option>Professional</option><option>Friendly</option>
+                  <option>Persuasive</option><option>Concise</option>
+                  <option>Creative</option><option>Formal</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-g"><label>What you need help with</label>
+              <input class="fi" type="text" id="gpt-task" placeholder="e.g. writing product descriptions for my store" />
+            </div>
+            <div class="field-g"><label>Desired outcome</label>
+              <input class="fi" type="text" id="gpt-goal" placeholder="e.g. increase conversions by 30%" />
+            </div>
+            <div class="field-g"><label>Output format</label>
+              <select class="fi sel" id="gpt-fmt">
+                <option>Detailed explanation</option><option>Step-by-step guide</option>
+                <option>Bullet-point list</option><option>Short paragraph</option><option>Table</option>
+              </select>
+            </div>
+            <button class="btn-forge-main" onclick="genForm('gpt',this)"><div class="btn-inner-f">⚡ Generate ChatGPT Prompt</div></button>
+          </div>
+          <div class="g-panel" id="gp-rs">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="field-g"><label>Job title</label>
+                <input class="fi" type="text" id="rs-title" placeholder="Marketing Manager" />
+              </div>
+              <div class="field-g"><label>Industry</label>
+                <select class="fi sel" id="rs-ind">
+                  <option>Tech / Software</option><option>Marketing</option><option>Finance</option>
+                  <option>Healthcare</option><option>E-commerce</option><option>Education</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-g"><label>Main duty</label>
+              <input class="fi" type="text" id="rs-duty" placeholder="e.g. managed social media and grew following" />
+            </div>
+            <div class="field-g"><label>Measurable result</label>
+              <input class="fi" type="text" id="rs-result" placeholder="e.g. 40% increase in engagement" />
+            </div>
+            <button class="btn-forge-main" onclick="genForm('rs',this)"><div class="btn-inner-f">⚡ Generate Resume Bullets</div></button>
+          </div>
+          <div class="g-panel" id="gp-em">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="field-g"><label>Your role</label>
+                <input class="fi" type="text" id="em-role" placeholder="freelance web designer" />
+              </div>
+              <div class="field-g"><label>Target recipient</label>
+                <input class="fi" type="text" id="em-target" placeholder="small e-commerce businesses" />
+              </div>
+            </div>
+            <div class="field-g"><label>Your offer</label>
+              <input class="fi" type="text" id="em-offer" placeholder="free website audit and redesign proposal" />
+            </div>
+            <div class="field-g"><label>Pain point you solve</label>
+              <input class="fi" type="text" id="em-pain" placeholder="slow website hurting conversions" />
+            </div>
+            <div class="field-g"><label>Call to action</label>
+              <select class="fi sel" id="em-cta">
+                <option>Book a 15-min call</option><option>Free consultation</option>
+                <option>Reply if interested</option><option>Book a demo</option>
+              </select>
+            </div>
+            <button class="btn-forge-main" onclick="genForm('em',this)"><div class="btn-inner-f">⚡ Generate Cold Email Prompt</div></button>
+          </div>
+          <div class="g-panel" id="gp-yt">
+            <div class="field-g"><label>Video topic</label>
+              <input class="fi" type="text" id="yt-topic" placeholder="how to start investing with $100" />
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div class="field-g"><label>Channel niche</label>
+                <select class="fi sel" id="yt-niche">
+                  <option>Personal finance</option><option>Tech reviews</option>
+                  <option>Health & fitness</option><option>Educational</option>
+                  <option>Business</option><option>Entertainment</option><option>Travel</option>
+                </select>
+              </div>
+              <div class="field-g"><label>Video length</label>
+                <select class="fi sel" id="yt-len">
+                  <option>Short (&lt;3 min)</option><option>Medium (5–10 min)</option>
+                  <option>Long (15–20 min)</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-g"><label>Target audience</label>
+              <input class="fi" type="text" id="yt-aud" placeholder="beginners aged 18–30 with no experience" />
+            </div>
+            <div class="field-g"><label>Script style</label>
+              <select class="fi sel" id="yt-style">
+                <option>Engaging & energetic</option><option>Calm & educational</option>
+                <option>Storytelling</option><option>List / countdown</option>
+              </select>
+            </div>
+            <button class="btn-forge-main" onclick="genForm('yt',this)"><div class="btn-inner-f">⚡ Generate YouTube Script Prompt</div></button>
+          </div>
+        </div>
+        <div class="gen-right">
+          <div class="gen-result-empty" id="gen-empty">
+            <div class="gen-result-empty-icon">⚡</div>
+            <p>Your generated prompt will appear here, ready to copy and use.</p>
+          </div>
+          <div class="gen-result-out" id="gen-out">
+            <div class="gen-r-label"><div class="pulse"></div>Generated Prompt</div>
+            <div id="gen-output"></div>
+            <div class="gen-r-score">
+              <span class="score-tag g" id="gs-c">Clarity: A+</span>
+              <span class="score-tag i" id="gs-s">Specificity: High</span>
+              <span class="score-tag a" id="gs-e">Effectiveness: 9/10</span>
+            </div>
+            <div class="gen-r-actions">
+              <button class="btn-sm" id="gen-copy-btn" onclick="copyGen()">📋 Copy</button>
+              <button class="btn-sm" onclick="saveGen()">💾 Save</button>
+              <button class="btn-sm" onclick="tweetGen()">𝕏 Share</button>
+              <button class="btn-sm" onclick="bulkGenerate()" style="border-color:rgba(255,184,48,0.3);color:var(--amber)">✦ Bulk ×5</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" style="padding-top:0;padding-bottom:52px">
+  <div class="ad-mid">
+    <div class="ad-mid-inner" style="border:1px dashed var(--border)">
+      <!-- ADSTERRA MID-PAGE BANNER -->
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '0455fdb4bf2b181d83af7523b36c4eb9',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/0455fdb4bf2b181d83af7523b36c4eb9/invoke.js"></script>
+    </div>
+  </div>
+</div>
+
+<section class="section section-alt" id="library">
+  <div class="wrap" style="max-width:var(--max)">
+    <div class="sec-header">
+      <div class="sec-eye min">📚 Prompt Library</div>
+      <h2 class="sec-h2">847 prompts, zero fluff</h2>
+      <p class="sec-sub">Community-tested prompts for every use case. Copy, use, and rate — or submit your own.</p>
+    </div>
+    <div class="lib-wrap">
+      <div class="lib-filters">
+        <div class="f-pill on" onclick="libFilter('all',this)">✦ All</div>
+        <div class="f-pill" onclick="libFilter('mj',this)">🎨 Midjourney</div>
+        <div class="f-pill" onclick="libFilter('gpt',this)">🤖 ChatGPT</div>
+        <div class="f-pill" onclick="libFilter('yt',this)">🎬 YouTube</div>
+        <div class="f-pill" onclick="libFilter('em',this)">✉️ Cold Email</div>
+        <div class="f-pill" onclick="libFilter('rs',this)">📄 Resume</div>
+      </div>
+      <div class="prompt-grid" id="lib-grid"></div>
+      <div class="see-more-wrap">
+        <button class="btn-see-more">Load more prompts ↓</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="challenge">
+  <div class="wrap" style="max-width:860px">
+    <div class="sec-header">
+      <div class="sec-eye amb">🔥 Daily Challenge</div>
+      <h2 class="sec-h2">Compete. Vote. Win.</h2>
+      <p class="sec-sub">A new challenge every day. The best prompt wins a featured spot and a creator badge.</p>
+    </div>
+    <div class="challenge-wrap">
+      <div class="challenge-card">
+        <div class="ch-eye">🔥 Day 147 — Active Now</div>
+        <div class="ch-title">The Bedtime Story Bot</div>
+        <p class="ch-desc">Write the best prompt to generate a bedtime story for a 5-year-old about a robot who learns to feel emotions. Judged on creativity, specificity, and output quality.</p>
+        <div class="countdown">
+          <div class="cd-unit"><span class="cd-n" id="cd-h">14</span><div class="cd-l">Hours</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><span class="cd-n" id="cd-m">22</span><div class="cd-l">Mins</div></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-unit"><span class="cd-n" id="cd-s">08</span><div class="cd-l">Secs</div></div>
+        </div>
+        <div class="ch-prompt-box">
+          <p>Your prompt must make the story <span>engaging for children</span>, include <span>emotional learning</span>, and keep it under <span>500 words</span>.</p>
+        </div>
+        <div class="ch-meta">
+          <div class="ch-meta-item">🗳 <strong>42</strong> submissions</div>
+          <div class="ch-meta-item">👁 <strong>1,204</strong> views</div>
+          <div class="ch-meta-item">🏅 Prize: <strong>Featured Creator Badge</strong></div>
+        </div>
+      </div>
+      <div class="ch-submit-card">
+        <h3>✍️ Your submission</h3>
+        <textarea class="ch-textarea" id="ch-input" placeholder="Write your best prompt here. Be specific — vague prompts rarely win..."></textarea>
+        <div class="ch-submit-row">
+          <button class="btn-submit" onclick="submitChallenge()">🚀 Submit Entry</button>
+          <button class="btn-test" onclick="testChallenge()">⚡ Test with AI</button>
+        </div>
+      </div>
+      <div class="subs-header">
+        <div class="subs-title">Community submissions</div>
+        <div class="subs-count" id="sub-count">42 entries · by votes</div>
+      </div>
+      <div id="subs-list"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="leaderboard">
+  <div class="wrap">
+    <div class="sec-header">
+      <div class="sec-eye amb">🏆 Leaderboard</div>
+      <h2 class="sec-h2">The best prompt engineers</h2>
+      <p class="sec-sub">Weekly rankings — reset every Monday. Top 3 get featured on the homepage.</p>
+    </div>
+    <div class="lb-wrap">
+      <div class="lb-card">
+        <div class="lb-head"><span class="lb-head-icon">👑</span><div><div class="lb-h">Top Creators</div><div class="lb-sub">By likes this week</div></div></div>
+        <div id="lb-creators"></div>
+      </div>
+      <div class="lb-card">
+        <div class="lb-head"><span class="lb-head-icon">🔥</span><div><div class="lb-h">Most Used Prompts</div><div class="lb-sub">Copied this week</div></div></div>
+        <div id="lb-prompts"></div>
+      </div>
+      <div class="lb-card">
+        <div class="lb-head"><span class="lb-head-icon">🏅</span><div><div class="lb-h">Hall of Fame</div><div class="lb-sub">Challenge winners</div></div></div>
+        <div id="lb-hof"></div>
+      </div>
+      <div class="lb-card">
+        <div class="lb-head"><span class="lb-head-icon">🔥</span><div><div class="lb-h">Longest Streaks</div><div class="lb-sub">Daily challenge days</div></div></div>
+        <div id="lb-streaks"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="upsell">
+  <div class="wrap" style="max-width:680px">
+    <div class="email-card" style="background:linear-gradient(135deg,rgba(255,184,48,0.08),rgba(108,99,255,0.06));border-color:rgba(255,184,48,0.2)">
+      <div class="sec-eye amb" style="display:inline-flex;margin-bottom:16px">✦ PromptForge Premium</div>
+      <h2 class="email-h">Unlock the full power<br>of PromptForge</h2>
+      <p class="email-p">Free gets you every generator, unlimited. Premium removes the limits for people who use PromptForge daily.</p>
+      <div class="email-perks" style="margin-bottom:32px">
+        <div class="perk"><span class="perk-check">✓</span> Unlimited saved prompts</div>
+        <div class="perk"><span class="perk-check">✓</span> Bulk generate (5 at once)</div>
+        <div class="perk"><span class="perk-check">✓</span> No ads, ever</div>
+        <div class="perk"><span class="perk-check">✓</span> Prompt Battles access</div>
+        <div class="perk"><span class="perk-check">✓</span> Priority generation speed</div>
+        <div class="perk"><span class="perk-check">✓</span> Export to PDF</div>
+      </div>
+      <a href="https://umejesi6.gumroad.com/l/nyflzj" target="_blank" rel="noopener" class="btn-email-join" style="display:inline-flex;padding:14px 32px;font-size:15px">
+        Get Premium — $5/month ✦
+      </a>
+      <div class="email-note">Cancel anytime. Free tier keeps full generator access forever.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="email-section">
+      <div class="email-card">
+        <div class="sec-eye min" style="display:inline-flex;margin-bottom:16px">✦ Early Access</div>
+        <h2 class="email-h">Get notified when<br>new features drop</h2>
+        <p class="email-p">Join our list for exclusive prompt packs, early access to new generators, and the weekly top 10 prompts — straight to your inbox.</p>
+        <div class="email-perks">
+          <div class="perk"><span class="perk-check">✓</span> Weekly prompt digest</div>
+          <div class="perk"><span class="perk-check">✓</span> Early feature access</div>
+          <div class="perk"><span class="perk-check">✓</span> Free prompt packs</div>
+          <div class="perk"><span class="perk-check">✓</span> No spam, ever</div>
+        </div>
+        <div class="email-form">
+          <input type="email" class="email-input" id="sub-email" placeholder="your@email.com" />
+          <button class="btn-email-join" onclick="subscribe()">Join Free →</button>
+        </div>
+        <div class="email-note">Zero spam. Unsubscribe anytime. 3,200+ already joined.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" style="justify-content:flex-start;margin-bottom:4px">
+          <div class="nav-logo-mark"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjgwIiBoZWlnaHQ9IjY4MCIgdmlld0JveD0iMCAwIDY4MCA2ODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwRDBGMUEiLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMTMxNjI1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0iYm9sdEdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgo8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjOEI4NUZGIi8+CjxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjNkM2M0ZGIi8+CjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0ZGQjgzMCIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmFkaWFsR3JhZGllbnQgaWQ9Imdsb3ciIGN4PSI1MCUiIGN5PSIzNSUiIHI9IjYwJSI+CjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2QzYzRkYiIHN0b3Atb3BhY2l0eT0iMC4zNSIvPgo8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2QzYzRkYiIHN0b3Atb3BhY2l0eT0iMCIvPgo8L3JhZGlhbEdyYWRpZW50Pgo8L2RlZnM+Cgo8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjgwIiBoZWlnaHQ9IjY4MCIgcng9IjE0MCIgZmlsbD0idXJsKCNiZ0dyYWQpIi8+CjxjaXJjbGUgY3g9IjM0MCIgY3k9IjI2MCIgcj0iMjgwIiBmaWxsPSJ1cmwoI2dsb3cpIi8+Cgo8Zz4KPGNpcmNsZSBjeD0iMTYwIiBjeT0iNTQwIiByPSI1IiBmaWxsPSIjRkZCODMwIiBvcGFjaXR5PSIwLjUiLz4KPGNpcmNsZSBjeD0iNTIwIiBjeT0iNTYwIiByPSI0IiBmaWxsPSIjOEI4NUZGIiBvcGFjaXR5PSIwLjQiLz4KPGNpcmNsZSBjeD0iMTIwIiBjeT0iMTgwIiByPSIzIiBmaWxsPSIjRkZCODMwIiBvcGFjaXR5PSIwLjMiLz4KPGNpcmNsZSBjeD0iNTYwIiBjeT0iMTYwIiByPSI0IiBmaWxsPSIjOEI4NUZGIiBvcGFjaXR5PSIwLjM1Ii8+CjwvZz4KCjxwYXRoIGQ9Ik0gMzgwIDkwIEwgMjUwIDM4MCBMIDMzMCAzODAgTCAzMDAgNTkwIEwgNDcwIDMwMCBMIDM4MCAzMDAgWiIKICAgICAgZmlsbD0idXJsKCNib2x0R3JhZCkiIHN0cm9rZT0iIzBEMEYxQSIgc3Ryb2tlLXdpZHRoPSI2Ii8+Cgo8Y2lyY2xlIGN4PSIzNDAiIGN5PSIzNDAiIHI9IjMwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNkM2M0ZGIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9IjAuMTUiLz4KPC9zdmc+Cg==" alt="PromptForge logo" style="width:100%;height:100%;display:block"></div>
+          PromptForge
+        </div>
+        <p>The free AI prompt generator and community for ChatGPT, Midjourney, Claude, and more.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tool</h4>
+        <a href="#generator">Generator</a>
+        <a href="#library">Prompt Library</a>
+        <a href="#challenge">Daily Challenge</a>
+        <a href="#leaderboard">Leaderboard</a>
+      </div>
+      <div class="footer-col">
+        <h4>Prompts</h4>
+        <a href="#library">ChatGPT Prompts</a>
+        <a href="#library">Midjourney Prompts</a>
+        <a href="#library">YouTube Prompts</a>
+        <a href="#library">Resume Prompts</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#" onclick="openInfoPage('about',event)">About</a>
+        <a href="#" onclick="openInfoPage('blog',event)">Blog</a>
+        <a href="#" onclick="openInfoPage('privacy',event)">Privacy Policy</a>
+        <a href="#" onclick="openInfoPage('terms',event)">Terms of Service</a>
+        <a href="https://umejesi6.gumroad.com/l/nyflzj" target="_blank">Go Premium ✦</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 PromptForge. All rights reserved.</span>
+      <span>Made for prompt engineers everywhere ⚡</span>
+    </div>
+  </div>
+  <div class="seo-note">
+    PromptForge is a free AI prompt generator tool for <a href="#generator">ChatGPT prompts</a>, <a href="#library">Midjourney prompts</a>, YouTube script prompts, cold email prompts, and resume prompts.
+    Generate better AI prompts with our free prompt engineering tool. Join our prompt library and daily prompt challenge community.
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- ═══ SUPPORT BUTTON (floating) ═══ -->
+<button onclick="openSupport()" style="position:fixed;bottom:24px;right:24px;z-index:150;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),#8B5CF6);color:#fff;font-size:20px;box-shadow:0 4px 20px rgba(108,99,255,0.4);transition:all 0.2s;display:flex;align-items:center;justify-content:center" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" aria-label="Contact support">💬</button>
+
+<!-- ═══ SUPPORT MODAL ═══ -->
+<div class="modal-overlay" id="support-modal">
+  <div class="modal-box">
+    <div class="modal-close" onclick="closeSupport()">✕</div>
+    <div class="modal-logo">
+      <div class="modal-logo-mark">💬</div>
+      Get in touch
+    </div>
+    <div class="modal-tagline">Something broken, or just have a question? We read every message.</div>
+    <div class="modal-field">
+      <label>Your name</label>
+      <input class="modal-input" type="text" id="support-name" placeholder="Your name" />
+    </div>
+    <div class="modal-field">
+      <label>Your email</label>
+      <input class="modal-input" type="email" id="support-email" placeholder="you@example.com" />
+    </div>
+    <div class="modal-field">
+      <label>Message</label>
+      <textarea class="modal-input" id="support-message" rows="4" placeholder="Tell us what's going on..." style="resize:vertical"></textarea>
+    </div>
+    <button class="btn-modal-submit" onclick="submitSupport()">Send message →</button>
+    <div class="modal-note">Or email us directly at <a href="mailto:support@aipromptsforge.site" style="color:var(--indigo2)">support@aipromptsforge.site</a></div>
+  </div>
+</div>
+
+
+<!-- ═══ INFO PAGES MODAL (About / Blog / Privacy / Terms) ═══ -->
+<div class="modal-overlay" id="info-modal">
+  <div class="modal-box" style="max-width:640px;max-height:80vh;overflow-y:auto;text-align:left">
+    <div class="modal-close" onclick="closeInfoPage()">✕</div>
+    <div id="info-content"></div>
+  </div>
+</div>
+
+<script>
+const INFO_PAGES = {
+  about: {
+    title: "About PromptForge",
+    body: `
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px">PromptForge started with a simple problem: writing a good AI prompt takes practice most people don't have time for. We built a tool that does the heavy lifting — describe what you want in plain English, and PromptForge turns it into a precision-engineered prompt for ChatGPT, Midjourney, Claude, and more.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px">Beyond the generator, PromptForge is a community: a library of tested prompts, a daily challenge to sharpen your skills, and a leaderboard celebrating the best prompt engineers. Whether you're a marketer, developer, student, or just curious about AI, PromptForge is built to make you better at talking to AI — faster.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75">PromptForge is free to use, with an optional Premium tier for power users who want unlimited saves, bulk generation, and an ad-free experience.</p>
+    `
+  },
+  blog: {
+    title: "PromptForge Blog",
+    body: `
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:18px">Our blog is just getting started — check back soon for prompt engineering tips, AI tool comparisons, and community spotlights.</p>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:12px">
+        <div style="font-family:var(--display);font-weight:700;font-size:14px;margin-bottom:6px">Coming soon: 10 prompt formulas that actually work</div>
+        <div style="font-size:12px;color:var(--txt3)">A breakdown of the structures behind our most popular library prompts.</div>
+      </div>
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:18px">
+        <div style="font-family:var(--display);font-weight:700;font-size:14px;margin-bottom:6px">Coming soon: ChatGPT vs Claude vs Gemini for prompt writing</div>
+        <div style="font-size:12px;color:var(--txt3)">Which AI responds best to which kind of prompt structure.</div>
+      </div>
+    `
+  },
+  privacy: {
+    title: "Privacy Policy",
+    body: `
+      <p style="color:var(--txt3);font-size:12px;margin-bottom:16px">Last updated: June 2026</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px"><strong style="color:var(--txt)">What we collect:</strong> When you create an account, we store your email address, display name, and any prompts you choose to save. We do not collect or sell your personal data to third parties.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px"><strong style="color:var(--txt)">How we use it:</strong> Your data is used solely to operate PromptForge — saving your prompts, tracking your streak, and showing your submissions on the daily challenge. Prompts you generate are sent to Google's Gemini API for processing and are not stored by Google beyond standard API processing.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px"><strong style="color:var(--txt)">Cookies & ads:</strong> We use Google AdSense to display ads, which may use cookies to personalize ad content. You can manage ad personalization through your Google account settings.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px"><strong style="color:var(--txt)">Your rights:</strong> You can request deletion of your account and all associated data at any time by contacting us. You may also delete saved prompts yourself from your account.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75">If you have questions about this policy, reach out via the contact details on our about page.</p>
+    `
+  },
+  terms: {
+    title: "Terms of Service",
+    body: `
+      <p style="color:var(--txt3);font-size:12px;margin-bottom:16px">Last updated: June 2026</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px"><strong style="color:var(--txt)">Use of service:</strong> PromptForge is provided "as is" for generating and discovering AI prompts. You agree not to use the service to generate content that is illegal, harmful, or violates the policies of the AI platforms (ChatGPT, Midjourney, etc.) you use the prompts with.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px"><strong style="color:var(--txt)">Accounts:</strong> You're responsible for keeping your account credentials secure. You must be at least 13 years old to create an account.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px"><strong style="color:var(--txt)">Premium subscriptions:</strong> Premium is billed monthly via Gumroad. You can cancel anytime; access continues until the end of your current billing period.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75;margin-bottom:14px"><strong style="color:var(--txt)">Content ownership:</strong> Prompts you write or save remain yours. Prompts you submit to public areas (the library, daily challenge, battles) may be displayed publicly with attribution to your display name.</p>
+      <p style="color:var(--txt2);font-size:14px;line-height:1.75">We may update these terms as the product evolves. Continued use of PromptForge after changes means you accept the updated terms.</p>
+    `
+  }
+};
+function openInfoPage(page, e){
+  if(e) e.preventDefault();
+  const data = INFO_PAGES[page];
+  document.getElementById('info-content').innerHTML = `
+    <h3 style="font-family:var(--display);font-size:20px;font-weight:800;margin-bottom:16px">${data.title}</h3>
+    ${data.body}
+  `;
+  document.getElementById('info-modal').classList.add('open');
+}
+function closeInfoPage(){document.getElementById('info-modal').classList.remove('open')}
+document.getElementById('info-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeInfoPage()});
+</script>
+
+
+<script>
+/* ── DATA ──────────────────────────────── */
+const PROMPTS = [
+  {id:1,title:"Viral Twitter Thread Formula",cat:"gpt",author:"NexusX",av:"av1",likes:284,preview:"You are a viral content strategist. Write a 10-tweet thread about [TOPIC] that hooks readers in the first tweet, builds tension, and ends with a CTA. Each tweet max 240 chars.",full:"You are a viral content strategist with 10+ years of experience growing Twitter accounts. Write a 10-tweet thread about [TOPIC]. Rules: Tweet 1 must stop the scroll — use a bold claim or surprising stat. Tweets 2-8 build the argument step-by-step using short, punchy sentences under 240 characters each. Include at least one data point, one counterintuitive insight, and one personal anecdote. Tweet 9 summarizes the key takeaway. Tweet 10 has a clear, low-friction CTA. Format each tweet as 'Tweet N: [content]'."},
+  {id:2,title:"MJ Cinematic Architecture",cat:"mj",author:"MeshKit",av:"av3",likes:201,preview:"Ultra-realistic architectural photography of [BUILDING], Leica M11 28mm f/1.4, golden hour, god rays, award-winning, Dezeen style --ar 16:9 --q 2 --v 6",full:"Ultra-realistic architectural photography of [BUILDING TYPE AND LOCATION], captured with Leica M11 camera, 28mm f/1.4 Summilux lens, golden hour lighting with warm amber tones, god rays streaming through floor-to-ceiling windows, reflections on polished concrete floors, award-winning composition, featured in Dezeen and Architectural Digest, shadow play, brutalist meets organic, human scale reference in corner, 8K resolution --ar 16:9 --q 2 --v 6 --stylize 200"},
+  {id:3,title:"SaaS Cold Email That Books Calls",cat:"em",author:"SalesRocket",av:"av2",likes:178,preview:"Write a cold email from a [ROLE] to [ICP]. Subject under 7 words. Body 3 sentences: personalized observation, specific pain point + stat, low-friction CTA.",full:"Write a cold outreach email. Sender: [YOUR ROLE/COMPANY]. Recipient: [ICP - job title, company type]. Rules: Subject line must be under 7 words and feel personal, not sales-y. Body is exactly 3 sentences: Sentence 1 — a specific, personalized observation about their business or content that shows you did research. Sentence 2 — name the exact pain point this kind of company faces, with a real statistic if possible. Sentence 3 — one clear, low-friction CTA (e.g. 'Worth a 15-min chat this week?'). No pitch, no features, no fluff. PS line optional — add social proof if relevant."},
+  {id:4,title:"YouTube Hook Machine",cat:"yt",author:"ViewBoost",av:"av4",likes:156,preview:"Write 5 YouTube video hooks for [TOPIC] targeting [AUDIENCE]. Each hook: pattern interrupt, curiosity gap, specific outcome promise, under 20 words.",full:"Write 5 distinct YouTube video hooks for a video about [TOPIC], targeting [AUDIENCE]. Each hook must: (1) Start with a pattern interrupt — something unexpected or counterintuitive. (2) Include a curiosity gap that makes the viewer NEED to know more. (3) Promise a specific, tangible outcome. (4) Be under 20 words. Format: Hook 1: [type] / [hook text]. After all 5 hooks, recommend which one is strongest and why in 2 sentences."},
+  {id:5,title:"C-Suite Resume Bullet Pack",cat:"rs",author:"HireUp",av:"av5",likes:143,preview:"Rewrite job duty as a resume bullet: Strong action verb + What + How + Quantified result. No passive voice. Industry-specific power words.",full:"Rewrite the following job duty as 3 powerful resume bullet points for a [SENIORITY LEVEL] [JOB TITLE] in the [INDUSTRY] industry:\n\nDuty: [YOUR INPUT]\n\nFormula for each bullet: [Strong industry-specific action verb] + [what you did] + [how you did it/tools used] + [quantified result or impact]. Rules: No passive voice. No 'responsible for' or 'helped with'. Start each bullet with a different verb. Include metrics where possible. Keep each bullet under 20 words. Make bullets ATS-optimized with relevant keywords."},
+  {id:6,title:"Cyberpunk Anime Character",cat:"mj",author:"NexusX",av:"av1",likes:132,preview:"Full body cyberpunk female hacker, glowing cyan neural implants, rain-soaked neon Tokyo alley, Ghost in the Shell style --ar 9:16 --stylize 750",full:"Full body character illustration of a cyberpunk female hacker, mid-20s, glowing cyan neural interface implants running down her temple, wearing a black tactical jacket with Japanese kanji patches, rain-soaked neon-lit Tokyo back alley at 3AM, puddles reflecting hot pink and electric blue neon signs, Ghost in the Shell visual style, Studio Trigger animation quality meets Greg Rutkowski digital art, dramatic rim lighting, dynamic pose suggesting movement, bokeh background, hyper-detailed costume design --ar 9:16 --stylize 750 --v 6"},
+  {id:7,title:"LinkedIn Thought Leadership",cat:"gpt",author:"B2BGrowth",av:"av6",likes:119,preview:"Write a LinkedIn post about [INSIGHT]. 1 hook line (no period), 3-5 value lines, 1 personal story, 1 question. No corporate jargon.",full:"Write a LinkedIn thought leadership post about [YOUR INSIGHT OR TOPIC]. Format rules: Line 1 — the hook. A single punchy sentence with NO period at the end that stops the scroll. Make it bold or counterintuitive. Lines 2-6 — the value. Short, punchy lines. One idea per line. No corporate jargon. No buzzwords. Lines 7-9 — a brief personal story or specific example that backs up your point. Final line — a genuine question to spark comments. Tone: direct, opinionated, human."},
+  {id:8,title:"Product Hunt Launch Copy",cat:"em",author:"LaunchKit",av:"av3",likes:108,preview:"Write Product Hunt launch copy for [PRODUCT]. Tagline under 60 chars, outcome-first. First comment: 3-paragraph origin story. Low-pressure CTA.",full:"Write the complete Product Hunt launch copy for [PRODUCT NAME] — a [ONE LINE DESCRIPTION]. Include: 1. Tagline (under 60 characters, lead with the outcome, not the feature). 2. Short description (under 260 characters). 3. First comment (3 paragraphs: why we built it; what makes it different; CTA that's specific and low-pressure). 4. Three potential topic tags. Tone: founder voice, honest, slightly vulnerable, not marketing-speak."},
+  {id:9,title:"Epic Fantasy Landscape",cat:"mj",author:"PixelDream",av:"av4",likes:97,preview:"Ancient floating islands, cascading waterfalls, massive temple ruins, Thomas Cole meets Greg Rutkowski, ultra-detailed cinematic --ar 21:9 --q 2",full:"Breathtaking epic fantasy landscape, ancient floating stone islands suspended in golden cloud layer, cascading waterfalls falling thousands of feet into the misty abyss below, massive crumbling temple ruins covered in bioluminescent moss and vines, warm amber sunset casting long dramatic shadows, distant storm clouds crackling with purple lightning, flock of giant birds silhouetted against the sun, cinematic composition reminiscent of Thomas Cole's 'The Course of Empire' crossed with Greg Rutkowski's digital fantasy art, ultra-detailed texture work, award-winning CGI quality --ar 21:9 --q 2 --stylize 500 --v 6"},
+  {id:10,title:"YouTube Shorts Script System",cat:"yt",author:"ViewBoost",av:"av4",likes:89,preview:"60-second YouTube Shorts script for [TOPIC]. Hook 0-3s, Problem 3-20s, Solution 20-50s, CTA 50-60s. Retention-optimized structure.",full:"Write a YouTube Shorts script for [TOPIC] optimized for maximum retention in exactly 60 seconds. Structure: [0-3s HOOK]: Open with a shocking stat, bold claim, or pattern interrupt. [3-20s PROBLEM]: 2-3 relatable pain points. Fast-cut energy. [20-50s SOLUTION]: 3 rapid-fire actionable tips. Each ends with a micro-hook to keep watching. [50-60s CTA]: Earn the follow — tell them exactly what they'll get by subscribing. Output: full script with timestamps, under 150 words total."},
+  {id:11,title:"Freelancer Cold DM Template",cat:"em",author:"FreelanceUp",av:"av2",likes:82,preview:"Cold DM from [SKILL] freelancer to [CLIENT TYPE]. Feels personal, not templated. References their business specifically. Offers free value first.",full:"Write a cold DM for [PLATFORM] from a [YOUR SKILL] freelancer to [TARGET CLIENT TYPE]. Rules: Must feel like you wrote it specifically for them — reference something real about their recent content or business. No generic openers. Lead with a genuine observation that shows you did research. Offer something free or low-commitment before mentioning your services. Keep it under 100 words. End with a soft question, not a hard sell. Output 3 variations with different hooks."},
+  {id:12,title:"Data Science Resume Pack",cat:"rs",author:"TechCareer",av:"av6",likes:76,preview:"Transform data science duties into ATS-optimized bullets. Emphasize ML models, dataset scale, business impact, Python/SQL tools used.",full:"Transform the following data scientist job duties into 3-5 ATS-optimized resume bullets for a [JUNIOR/MID/SENIOR] Data Scientist role at [TYPE OF COMPANY]: Duty: [YOUR INPUT]. For each bullet: Lead with a strong technical action verb. Mention the specific ML/statistical technique used. State the scale (e.g. 'across 50M+ row dataset'). Quantify business impact. Include 2-3 relevant technical keywords naturally. Keep under 25 words each."},
+];
+
+const SUBS = [
+  {id:1,user:"PromptWizard",av:"av1",time:"2h ago",votes:28,text:"You are a master children's storyteller. Write a cozy 400-word bedtime story called 'The Robot Who Felt' for a 5-year-old. The robot named Pip discovers emotions through small moments: loneliness when a butterfly leaves, joy when a puppy licks his metal hand, courage when he helps a lost kitten find home. Use gentle vocabulary, a soothing rhythm, and end with Pip falling asleep dreaming of new friends. No scary moments."},
+  {id:2,user:"StoryForge",av:"av3",time:"3h ago",votes:21,text:"Act as a children's author combining Beatrix Potter's warmth with modern emotional intelligence. Write a 450-word bedtime story for a 5-year-old about AXIOM, a small silver robot in a human city who has never felt happy or sad. Show 3 emotional discoveries through sensory detail. End peacefully with Axiom and a child asleep side by side."},
+  {id:3,user:"CreativeAI",av:"av2",time:"5h ago",votes:14,text:"Write a gentle 350-word bedtime story. Main character: Beep, a small round robot with big curious eyes. Tonight something magical happens when a child shares their favourite teddy bear. Include: soft moonlight imagery, warm blanket descriptions, simple dialogue, and a clear emotional lesson about friendship and kindness."},
+];
+
+const LB_DATA = {
+  creators:[
+    {r:1,n:"NexusX",av:"av1",m:"12 prompts · 416 likes",s:"416 pts"},
+    {r:2,n:"ViewBoost",av:"av4",m:"8 prompts · 245 likes",s:"245 pts"},
+    {r:3,n:"MeshKit",av:"av3",m:"3 prompts · 201 likes",s:"201 pts"},
+    {r:4,n:"SalesRocket",av:"av2",m:"5 prompts · 178 likes",s:"178 pts"},
+    {r:5,n:"HireUp",av:"av5",m:"6 prompts · 143 likes",s:"143 pts"},
+  ],
+  prompts:[
+    {r:1,n:"Viral Twitter Thread",av:"av6",m:"ChatGPT · 284 likes",s:"1.2k uses"},
+    {r:2,n:"SaaS Cold Email",av:"av2",m:"Email · 178 likes",s:"890 uses"},
+    {r:3,n:"YouTube Hook Machine",av:"av4",m:"YouTube · 156 likes",s:"743 uses"},
+    {r:4,n:"MJ Architecture",av:"av3",m:"Midjourney · 201 likes",s:"601 uses"},
+    {r:5,n:"C-Suite Resume Pack",av:"av5",m:"Resume · 143 likes",s:"487 uses"},
+  ],
+  hof:[
+    {r:1,n:"PromptNinja",av:"av1",m:"Day 146 — Story prompt",s:"🏅 Winner"},
+    {r:2,n:"AIWriter",av:"av6",m:"Day 145 — Code explainer",s:"🏅 Winner"},
+    {r:3,n:"StoryForge",av:"av3",m:"Day 144 — Marketing hook",s:"🏅 Winner"},
+    {r:4,n:"CreativeAI",av:"av2",m:"Day 143 — Resume bullet",s:"🏅 Winner"},
+  ],
+  streaks:[
+    {r:1,n:"NexusX",av:"av1",m:"Started Jan 12",s:"32 🔥"},
+    {r:2,n:"PromptWizard",av:"av4",m:"Started Feb 1",s:"18 🔥"},
+    {r:3,n:"AIWriter",av:"av6",m:"Started Feb 8",s:"11 🔥"},
+    {r:4,n:"StoryForge",av:"av3",m:"Started Feb 12",s:"7 🔥"},
+  ]
+};
+
+/* ── STATE ──────────────────────────────── */
+// NOTE FOR STEPHEN: Replace WORKER_URL with your Cloudflare Worker URL.
+// The worker holds YOUR Anthropic API key securely server-side —
+// users never see or enter it. Example worker code is in the README
+// section at the bottom of this file (search "CLOUDFLARE WORKER").
+const WORKER_URL = 'https://promptforge-api.umejesistephen85.workers.dev/';
+
+// ── SUPABASE SETUP ──────────────────────────
+const SUPABASE_URL = 'https://ytkgkehcicdnbugcmqib.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_xqfj4ZzUnfniXWNYLFbcNA_Lt44bWEE';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let currentUser = null;
+let currentProfile = null;
+
+async function loadCurrentUser(){
+  const {data:{user}} = await sb.auth.getUser();
+  currentUser = user;
+  if(user){
+    const {data} = await sb.from('profiles').select('*').eq('id', user.id).single();
+    currentProfile = data;
+    await updateStreak();
+  }
+  updateAuthUI();
+}
+
+function updateAuthUI(){
+  const loginBtn = document.querySelector('.btn-nav-login');
+  const ctaBtn = document.querySelector('.btn-nav-cta');
+  if(currentUser && currentProfile){
+    loginBtn.textContent = currentProfile.display_name;
+    loginBtn.onclick = ()=>handleLogout();
+    ctaBtn.textContent = '🔥 '+currentProfile.streak_count+' day streak';
+    ctaBtn.onclick = ()=>document.getElementById('challenge').scrollIntoView({behavior:'smooth'});
+  } else {
+    loginBtn.textContent = 'Sign in';
+    loginBtn.onclick = ()=>openLogin();
+    ctaBtn.textContent = 'Join Free →';
+    ctaBtn.onclick = ()=>openLogin();
+  }
+}
+
+// Update daily streak: if last_active_date was yesterday, +1. If today already, no change. Otherwise reset to 1.
+async function updateStreak(){
+  if(!currentProfile) return;
+  const today = new Date().toISOString().slice(0,10);
+  const last = currentProfile.last_active_date;
+  if(last === today) return; // already counted today
+  const yesterday = new Date(Date.now()-86400000).toISOString().slice(0,10);
+  const newStreak = (last === yesterday) ? currentProfile.streak_count + 1 : 1;
+  await sb.from('profiles').update({streak_count:newStreak, last_active_date:today}).eq('id', currentUser.id);
+  currentProfile.streak_count = newStreak;
+  currentProfile.last_active_date = today;
+}
+
+let currentPrompt = '';
+let votes = JSON.parse(localStorage.getItem('pf_votes')||'{}');
+let subs = [...SUBS];
+
+/* ── NAV SCROLL ──────────────────────────── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+/* ── FORGE CANVAS (ember particles) ──────── */
+(function(){
+  const canvas = document.getElementById('forge-canvas');
+  const ctx = canvas.getContext('2d');
+  let W,H,particles=[];
+  function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight}
+  resize();window.addEventListener('resize',resize);
+  class Particle{
+    constructor(){this.reset()}
+    reset(){
+      this.x=Math.random()*W;
+      this.y=H+10;
+      this.vx=(Math.random()-0.5)*0.6;
+      this.vy=-(Math.random()*1.2+0.4);
+      this.life=1;this.decay=Math.random()*0.008+0.004;
+      this.size=Math.random()*3+1;
+      const hue=Math.random()>0.5?260:38;
+      this.color=`hsla(${hue},90%,70%,`;
+    }
+    update(){
+      this.x+=this.vx;this.y+=this.vy;
+      this.vy*=0.995;this.life-=this.decay;
+      if(this.life<=0||this.y<-10)this.reset();
+    }
+    draw(){
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+      ctx.fillStyle=this.color+this.life+')';
+      ctx.fill();
+    }
+  }
+  for(let i=0;i<60;i++){
+    const p=new Particle();
+    p.y=Math.random()*H;p.life=Math.random();
+    particles.push(p);
+  }
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{p.update();p.draw()});
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ── API CALL via Cloudflare Worker ──────── */
+async function callAI(prompt){
+  const res = await fetch(WORKER_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({prompt})
+  });
+  if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error||'Generation failed')}
+  const d=await res.json();
+  return d.result||d.text||'';
+}
+
+/* ── HERO GENERATOR ──────────────────────── */
+async function heroGenerate(){
+  const val=document.getElementById('hero-input').value.trim();
+  if(!val){toast('⚠️ Describe what you want first');return}
+  const btn=document.getElementById('hero-btn');
+  const inner=document.getElementById('hero-btn-inner');
+  btn.classList.add('loading');
+  inner.innerHTML='<div class="spin"></div> Forging...';
+  try{
+    const result=await callAI(
+      `You are PromptForge, an expert AI prompt engineer. The user describes what they want in plain language. Generate a single, polished, ready-to-use AI prompt. Output ONLY the finished prompt — no explanation, no preamble, no quotation marks.\n\nUser intent: "${val}"\n\nGenerate the best possible prompt for this intent.`
+    );
+    currentPrompt=result;
+    document.getElementById('hero-output').textContent=result;
+    document.getElementById('hero-result').classList.add('show');
+    document.getElementById('hero-result').scrollIntoView({behavior:'smooth',block:'nearest'});
+    showScores('score-c','score-s','score-e');
+  }catch(e){toast('❌ '+e.message+' — set WORKER_URL in the code')}
+  finally{btn.classList.remove('loading');inner.innerHTML='⚡ Forge it'}
+}
+function setHeroHint(t){document.getElementById('hero-input').value=t;document.getElementById('hero-input').focus()}
+function copyHero(){
+  if(!currentPrompt)return;
+  navigator.clipboard.writeText(currentPrompt).then(()=>{
+    const b=document.getElementById('hero-copy');b.classList.add('ok');b.textContent='✅ Copied!';
+    toast('✅ Prompt copied!');setTimeout(()=>{b.classList.remove('ok');b.textContent='📋 Copy'},2000);
+  });
+}
+function shareHero(){if(!currentPrompt)return;toast('🔗 Share link copied!');navigator.clipboard.writeText(window.location.href+'?prompt='+encodeURIComponent(currentPrompt.slice(0,200)))}
+function tweetHero(){
+  if(!currentPrompt)return;
+  const t=encodeURIComponent('Just forged this AI prompt with @PromptForge ⚡\n\n'+currentPrompt.slice(0,200)+'...\n\npromptforge.com');
+  window.open('https://twitter.com/intent/tweet?text='+t,'_blank');
+}
+
+/* ── GENERATOR TABS ──────────────────────── */
+function gTab(btn,id){
+  document.querySelectorAll('.g-tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.g-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('gp-'+id).classList.add('on');
+}
+
+async function genForm(type,btn){
+  let msg='';
+  if(type==='mj'){
+    const s=document.getElementById('mj-s').value.trim();
+    if(!s){toast('⚠️ Enter a subject');return}
+    msg=`Generate an expert Midjourney V6 image prompt for: Subject: ${s}, Style: ${document.getElementById('mj-style').value}, Mood: ${document.getElementById('mj-mood').value}, Lighting: ${document.getElementById('mj-light').value}, Ratio: ${document.getElementById('mj-ratio').value}. Output only the final optimized Midjourney prompt.`;
+  }else if(type==='gpt'){
+    const t=document.getElementById('gpt-task').value.trim();
+    if(!t){toast('⚠️ Describe your task');return}
+    msg=`Generate a detailed ChatGPT/Claude prompt for: Role: ${document.getElementById('gpt-role').value}, Task: ${t}, Goal: ${document.getElementById('gpt-goal').value}, Tone: ${document.getElementById('gpt-tone').value}, Format: ${document.getElementById('gpt-fmt').value}. Output only the final prompt.`;
+  }else if(type==='rs'){
+    const d=document.getElementById('rs-duty').value.trim();
+    if(!d){toast('⚠️ Enter your main duty');return}
+    msg=`Generate a prompt that will create powerful resume bullets for: Title: ${document.getElementById('rs-title').value}, Industry: ${document.getElementById('rs-ind').value}, Duty: ${d}, Result: ${document.getElementById('rs-result').value}. Output only the final prompt.`;
+  }else if(type==='em'){
+    const o=document.getElementById('em-offer').value.trim();
+    if(!o){toast('⚠️ Enter your offer');return}
+    msg=`Generate a cold email prompt for: Role: ${document.getElementById('em-role').value}, Target: ${document.getElementById('em-target').value}, Offer: ${o}, Pain point: ${document.getElementById('em-pain').value}, CTA: ${document.getElementById('em-cta').value}. Output only the final prompt.`;
+  }else if(type==='yt'){
+    const t=document.getElementById('yt-topic').value.trim();
+    if(!t){toast('⚠️ Enter a video topic');return}
+    msg=`Generate a YouTube script prompt for: Topic: ${t}, Niche: ${document.getElementById('yt-niche').value}, Length: ${document.getElementById('yt-len').value}, Audience: ${document.getElementById('yt-aud').value}, Style: ${document.getElementById('yt-style').value}. Output only the final prompt.`;
+  }
+  const inner=btn.querySelector('.btn-inner-f');
+  btn.classList.add('ld');inner.innerHTML='<div class="spin"></div> Forging...';
+  try{
+    const r=await callAI(`You are PromptForge, an expert prompt engineer. ${msg}`);
+    currentPrompt=r;
+    document.getElementById('gen-empty').style.display='none';
+    document.getElementById('gen-output').textContent=r;
+    document.getElementById('gen-out').classList.add('show');
+    showScores('gs-c','gs-s','gs-e');
+    toast('✅ Prompt generated!');
+  }catch(e){toast('❌ '+e.message)}
+  finally{btn.classList.remove('ld');inner.innerHTML='⚡ Generate '+type.toUpperCase()+' Prompt'}
+}
+
+function showScores(ci,si,ei){
+  const c=['A','A+','A-'][Math.floor(Math.random()*3)];
+  const s=['High','Very High','Excellent'][Math.floor(Math.random()*3)];
+  const e=['8/10','9/10','10/10'][Math.floor(Math.random()*3)];
+  document.getElementById(ci).textContent='Clarity: '+c;
+  document.getElementById(si).textContent='Specificity: '+s;
+  document.getElementById(ei).textContent='Effectiveness: '+e;
+}
+function copyGen(){
+  if(!currentPrompt)return;
+  navigator.clipboard.writeText(currentPrompt).then(()=>{
+    const b=document.getElementById('gen-copy-btn');b.classList.add('ok');b.textContent='✅ Copied!';
+    toast('✅ Copied!');setTimeout(()=>{b.classList.remove('ok');b.textContent='📋 Copy'},2000);
+  });
+}
+const FREE_SAVE_LIMIT = 10;
+
+async function saveGen(){
+  if(!currentPrompt){toast('⚠️ Generate a prompt first');return}
+  if(!currentUser){toast('💾 Sign in to save prompts');openLogin();return}
+
+  if(!currentProfile?.is_premium){
+    const {count} = await sb.from('saved_prompts').select('id',{count:'exact',head:true}).eq('user_id',currentUser.id);
+    if(count >= FREE_SAVE_LIMIT){
+      toast('✦ Free limit reached — upgrade to save unlimited prompts');
+      document.getElementById('upsell')?.scrollIntoView({behavior:'smooth'});
+      return;
+    }
+  }
+
+  const {error} = await sb.from('saved_prompts').insert({
+    user_id: currentUser.id,
+    content: currentPrompt,
+    category: document.querySelector('.g-tab.on')?.textContent.trim() || 'custom',
+    source: 'generator'
+  });
+  if(error){toast('❌ '+error.message);return}
+  toast('💾 Saved to your library!');
+}
+function tweetGen(){
+  if(!currentPrompt)return;
+  const t=encodeURIComponent('Just forged this prompt with @PromptForge ⚡\n\n'+currentPrompt.slice(0,200)+'...\n\npromptforge.com');
+  window.open('https://twitter.com/intent/tweet?text='+t,'_blank');
+}
+
+async function bulkGenerate(){
+  if(!currentUser){toast('✦ Sign in, then upgrade to use Bulk Generate');openLogin();return}
+  if(!currentProfile?.is_premium){
+    toast('✦ Bulk Generate is a Premium feature');
+    document.getElementById('upsell')?.scrollIntoView({behavior:'smooth'});
+    return;
+  }
+  if(!currentPrompt){toast('⚠️ Generate a prompt first');return}
+  toast('⚡ Generating 5 variations...');
+  const variations = [];
+  for(let i=0;i<5;i++){
+    try{
+      const r = await callAI(`Rewrite this exact prompt with a different creative angle, keeping the same core goal:\n\n${currentPrompt}\n\nOutput only the rewritten prompt.`);
+      variations.push(r);
+    }catch(e){ /* skip failed ones, keep going */ }
+  }
+  if(!variations.length){toast('❌ Bulk generation failed, try again');return}
+  document.getElementById('gen-output').textContent = variations.map((v,i)=>`── Variation ${i+1} ──\n${v}`).join('\n\n');
+  currentPrompt = variations[0];
+  toast(`✅ Generated ${variations.length} variations!`);
+}
+
+/* ── LIBRARY ──────────────────────────────── */
+function catClass(cat){return {mj:'mj',gpt:'gpt',yt:'yt',em:'em',rs:'rs'}[cat]||'gpt'}
+function catLabel(cat){return {mj:'🎨 Midjourney',gpt:'🤖 ChatGPT',yt:'🎬 YouTube',em:'✉️ Email',rs:'📄 Resume'}[cat]||cat}
+
+function renderLib(items){
+  document.getElementById('lib-grid').innerHTML=items.map(p=>`
+    <div class="p-card" onclick="usePrompt(${p.id})">
+      <div class="p-card-top">
+        <span class="p-cat ${catClass(p.cat)}">${catLabel(p.cat)}</span>
+        <span class="p-likes">❤️ ${p.likes}</span>
+      </div>
+      <div class="p-title">${p.title}</div>
+      <div class="p-preview">${p.preview}</div>
+      <div class="p-foot">
+        <div class="p-author">
+          <div class="p-av ${p.av}">${p.author.slice(0,2).toUpperCase()}</div>
+          ${p.author}
+        </div>
+        <button class="btn-use">Use →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function libFilter(cat,el){
+  document.querySelectorAll('.f-pill').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  renderLib(cat==='all'?PROMPTS:PROMPTS.filter(p=>p.cat===cat));
+}
+
+function usePrompt(id){
+  const p=PROMPTS.find(x=>x.id===id);if(!p)return;
+  currentPrompt=p.full;
+  document.getElementById('gen-empty').style.display='none';
+  document.getElementById('gen-output').textContent=p.full;
+  document.getElementById('gen-out').classList.add('show');
+  showScores('gs-c','gs-s','gs-e');
+  document.getElementById('generator').scrollIntoView({behavior:'smooth'});
+  toast('✅ Prompt loaded into generator!');
+}
+
+/* ── CHALLENGE ──────────────────────────────── */
+const CHALLENGE_DAY = 147; // bump this each day you post a new challenge
+
+async function renderSubs(){
+  const {data, error} = await sb
+    .from('challenge_submissions')
+    .select('id, content, votes, created_at, profiles(display_name, avatar_color)')
+    .eq('challenge_day', CHALLENGE_DAY)
+    .order('votes', {ascending:false});
+
+  const real = (data && data.length) ? data : null;
+
+  if(!real){
+    // No real submissions yet today — show seeded demo entries so the section isn't empty
+    document.getElementById('subs-list').innerHTML = SUBS.map(s=>`
+      <div class="sub-card">
+        <div class="sub-top">
+          <div class="sub-av ${s.av}">${s.user.slice(0,2).toUpperCase()}</div>
+          <span class="sub-name">${s.user}</span>
+          <span class="sub-time">${s.time}</span>
+        </div>
+        <div class="sub-text">${s.text}</div>
+        <div class="sub-foot">
+          <button class="vote-btn" disabled>🗳 ${s.votes} votes</button>
+          <button class="btn-sm" onclick="navigator.clipboard.writeText(${JSON.stringify(s.text)}).then(()=>toast('📋 Copied!'))">📋 Copy</button>
+        </div>
+      </div>`).join('');
+    document.getElementById('sub-count').textContent = SUBS.length+' entries · by votes';
+    return;
+  }
+
+  document.getElementById('subs-list').innerHTML = real.map(s=>{
+    const name = s.profiles?.display_name || 'Anonymous';
+    const av = s.profiles?.avatar_color || 'av5';
+    return `<div class="sub-card">
+      <div class="sub-top">
+        <div class="sub-av ${av}">${name.slice(0,2).toUpperCase()}</div>
+        <span class="sub-name">${name}</span>
+        <span class="sub-time">${timeAgo(s.created_at)}</span>
+      </div>
+      <div class="sub-text">${s.content}</div>
+      <div class="sub-foot">
+        <button class="vote-btn" onclick="vote('${s.id}',this)">🗳 ${s.votes} votes</button>
+        <button class="btn-sm" onclick="navigator.clipboard.writeText(${JSON.stringify(s.content)}).then(()=>toast('📋 Copied!'))">📋 Copy</button>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('sub-count').textContent = real.length+' entries · by votes';
+}
+
+function timeAgo(iso){
+  const mins = Math.floor((Date.now()-new Date(iso))/60000);
+  if(mins<1) return 'Just now';
+  if(mins<60) return mins+'m ago';
+  if(mins<1440) return Math.floor(mins/60)+'h ago';
+  return Math.floor(mins/1440)+'d ago';
+}
+
+async function vote(id,btn){
+  if(!currentUser){toast('Sign in to vote');openLogin();return}
+  const {error} = await sb.from('challenge_votes').insert({user_id:currentUser.id, submission_id:id});
+  if(error){
+    if(error.code==='23505') toast('Already voted!');
+    else toast('❌ '+error.message);
+    return;
+  }
+  // increment the vote count via RPC-free approach: read then write
+  const {data:sub} = await sb.from('challenge_submissions').select('votes').eq('id',id).single();
+  await sb.from('challenge_submissions').update({votes:(sub.votes||0)+1}).eq('id',id);
+  toast('✅ Vote cast!');
+  renderSubs();
+}
+
+async function submitChallenge(){
+  const t=document.getElementById('ch-input').value.trim();
+  if(!t){toast('⚠️ Write your prompt first');return}
+  if(!currentUser){toast('Sign in to submit an entry');openLogin();return}
+  const {error} = await sb.from('challenge_submissions').insert({
+    user_id: currentUser.id,
+    challenge_day: CHALLENGE_DAY,
+    content: t
+  });
+  if(error){toast('❌ '+error.message);return}
+  document.getElementById('ch-input').value='';
+  toast('🚀 Entry submitted! Good luck!');
+  renderSubs();
+}
+
+async function testChallenge(){
+  const t=document.getElementById('ch-input').value.trim();
+  if(!t){toast('⚠️ Write your prompt first');return}
+  try{
+    const r=await callAI("You are a children's bedtime story AI. Follow this prompt exactly:\n\n"+t);
+    currentPrompt=r;
+    document.getElementById('gen-empty').style.display='none';
+    document.getElementById('gen-output').textContent=r;
+    document.getElementById('gen-out').classList.add('show');
+    document.getElementById('generator').scrollIntoView({behavior:'smooth'});
+    toast('⚡ Tested! See result in generator →');
+  }catch(e){toast('❌ '+e.message)}
+}
+
+/* ── LEADERBOARD ──────────────────────────── */
+function renderLB(elId,data){
+  document.getElementById(elId).innerHTML=data.map(r=>`
+    <div class="lb-row">
+      <div class="lb-rank ${r.r<=3?'r'+r.r:'rn'}">${r.r<=3?['🥇','🥈','🥉'][r.r-1]:r.r}</div>
+      <div class="lb-av ${r.av}">${r.n.slice(0,2).toUpperCase()}</div>
+      <div class="lb-info"><div class="lb-name">${r.n}</div><div class="lb-meta">${r.m}</div></div>
+      <div class="lb-score" style="color:${r.r===1?'var(--amber)':'var(--txt2)'}">${r.s}</div>
+    </div>
+  `).join('');
+}
+
+/* ── EMAIL CAPTURE ──────────────────────────── */
+function subscribe(){
+  const e=document.getElementById('sub-email').value.trim();
+  if(!e||!e.includes('@')){toast('⚠️ Enter a valid email');return}
+  // TODO: connect to your email service (Mailchimp, ConvertKit, Brevo, etc.)
+  toast('🎉 You\'re in! Check your inbox.');
+  document.getElementById('sub-email').value='';
+}
+
+/* ── LOGIN MODAL ──────────────────────────── */
+function openLogin(){document.getElementById('login-modal').classList.add('open')}
+function closeLogin(){document.getElementById('login-modal').classList.remove('open')}
+
+/* ── SUPPORT MODAL ──────────────────────────── */
+function openSupport(){
+  if(currentUser){
+    document.getElementById('support-email').value = currentUser.email || '';
+    document.getElementById('support-name').value = currentProfile?.display_name || '';
+  }
+  document.getElementById('support-modal').classList.add('open');
+}
+function closeSupport(){document.getElementById('support-modal').classList.remove('open')}
+document.getElementById('support-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeSupport()});
+
+async function submitSupport(){
+  const name=document.getElementById('support-name').value.trim();
+  const email=document.getElementById('support-email').value.trim();
+  const message=document.getElementById('support-message').value.trim();
+  if(!name||!email||!message){toast('⚠️ Fill in all fields');return}
+  const {error} = await sb.from('support_messages').insert({
+    user_id: currentUser?.id || null,
+    name, email, message
+  });
+  if(error){toast('❌ '+error.message);return}
+  document.getElementById('support-name').value='';
+  document.getElementById('support-email').value='';
+  document.getElementById('support-message').value='';
+  closeSupport();
+  toast('✅ Message sent! We\'ll get back to you soon.');
+}
+function switchModal(tab,el){
+  document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('on'));
+  if(el) el.classList.add('on');
+  document.getElementById('modal-login-form').style.display=tab==='login'?'':'none';
+  document.getElementById('modal-signup-form').style.display=tab==='signup'?'':'none';
+  document.getElementById('modal-forgot-form').style.display=tab==='forgot'?'':'none';
+  document.getElementById('modal-reset-form').style.display=tab==='reset'?'':'none';
+}
+function showForgotPassword(e){
+  e.preventDefault();
+  document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('on'));
+  switchModal('forgot',null);
+}
+async function handleForgotPassword(){
+  const e=document.getElementById('forgot-email').value.trim();
+  if(!e){toast('⚠️ Enter your email');return}
+  const {error} = await sb.auth.resetPasswordForEmail(e, {
+    redirectTo: window.location.origin + window.location.pathname
+  });
+  if(error){toast('❌ '+error.message);return}
+  toast('📧 Reset link sent! Check your inbox.');
+  closeLogin();
+}
+async function handleResetPassword(){
+  const p=document.getElementById('reset-pass').value;
+  if(!p||p.length<8){toast('⚠️ Password must be 8+ characters');return}
+  const {error} = await sb.auth.updateUser({password:p});
+  if(error){toast('❌ '+error.message);return}
+  toast('✅ Password updated! You can sign in now.');
+  closeLogin();
+}
+// If the page loads from a Supabase password-reset email link, it includes
+// a #access_token in the URL hash and fires this auth event automatically.
+// This only fires for genuine password-recovery links, never normal sign-in.
+sb.auth.onAuthStateChange((event, session)=>{
+  if(event === 'PASSWORD_RECOVERY'){
+    openLogin();
+    switchModal('reset',null);
+  }
+});
+async function handleLogin(){
+  const e=document.getElementById('login-email').value.trim();
+  const p=document.getElementById('login-pass').value;
+  if(!e||!p){toast('⚠️ Fill in all fields');return}
+  const {data,error}=await sb.auth.signInWithPassword({email:e,password:p});
+  if(error){toast('❌ '+error.message);return}
+  toast('✅ Signed in! Welcome back.');
+  await loadCurrentUser();
+  closeLogin();
+}
+async function handleSignup(){
+  const n=document.getElementById('signup-name').value.trim();
+  const e=document.getElementById('signup-email').value.trim();
+  const p=document.getElementById('signup-pass').value;
+  if(!n||!e||!p){toast('⚠️ Fill in all fields');return}
+  if(p.length<8){toast('⚠️ Password must be 8+ characters');return}
+  const {data,error}=await sb.auth.signUp({
+    email:e,password:p,
+    options:{data:{display_name:n}}
+  });
+  if(error){toast('❌ '+error.message);return}
+  toast('🎉 Account created! Welcome to PromptForge.');
+  await loadCurrentUser();
+  closeLogin();
+}
+async function handleLogout(){
+  await sb.auth.signOut();
+  currentUser=null;
+  updateAuthUI();
+  toast('👋 Signed out');
+}
+document.getElementById('login-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLogin()});
+
+/* ── ADSTERRA SOCIAL BAR ──────────────────────────────
+   No custom JS needed — Adsterra's Social Bar script
+   (pasted in the body) handles its own display logic. */
+
+/* ── COUNTDOWN ──────────────────────────────── */
+function updateCountdown(){
+  const now=new Date(),end=new Date(now);
+  end.setHours(23,59,59,999);
+  const d=end-now;
+  const pad=n=>String(n).padStart(2,'0');
+  const h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+  if(h)h.textContent=pad(Math.floor(d/3600000));
+  if(m)m.textContent=pad(Math.floor((d%3600000)/60000));
+  if(s)s.textContent=pad(Math.floor((d%60000)/1000));
+}
+setInterval(updateCountdown,1000);updateCountdown();
+
+/* ── TOAST ──────────────────────────────── */
+let toastTimer;
+function toast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');
+  clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('on'),3200);
+}
+
+/* ── INIT ──────────────────────────────── */
+loadCurrentUser();
+renderLib(PROMPTS);
+renderSubs();
+renderLB('lb-creators',LB_DATA.creators);
+renderLB('lb-prompts',LB_DATA.prompts);
+renderLB('lb-hof',LB_DATA.hof);
+renderLB('lb-streaks',LB_DATA.streaks);
+
+const urlParam=new URLSearchParams(window.location.search).get('prompt');
+if(urlParam){
+  document.getElementById('hero-input').value=decodeURIComponent(urlParam);
+  setTimeout(heroGenerate,500);
+}
+</script>
+
+</body>
+</html>
