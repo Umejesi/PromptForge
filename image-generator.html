@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Image Generator — PromptForge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.gen-layout{display:grid;grid-template-columns:380px 1fr;gap:24px;max-width:1200px;margin:0 auto}
+.gen-controls{display:flex;flex-direction:column;gap:18px}
+
+.field-g{margin-bottom:4px}
+.field-g label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--txt3);margin-bottom:8px}
+.prompt-box{
+  width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--r-sm);
+  padding:14px;font-size:14px;color:var(--txt);min-height:100px;resize:vertical;transition:border-color 0.15s;
+}
+.prompt-box:focus{border-color:rgba(108,99,255,0.5)}
+.prompt-box::placeholder{color:var(--txt3)}
+
+.style-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.style-opt{
+  border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px;cursor:pointer;
+  transition:all 0.15s;text-align:center;background:var(--surface2);
+}
+.style-opt:hover{border-color:var(--border3)}
+.style-opt.on{border-color:var(--indigo);background:var(--indigo-g)}
+.style-opt-icon{font-size:20px;margin-bottom:6px}
+.style-opt-name{font-size:11.5px;font-weight:600}
+
+.quality-tabs{display:flex;gap:8px}
+.q-tab{
+  flex:1;border:1.5px solid var(--border);border-radius:var(--r-sm);padding:14px 10px;cursor:pointer;
+  text-align:center;transition:all 0.15s;background:var(--surface2);
+}
+.q-tab:hover{border-color:var(--border3)}
+.q-tab.on{border-color:var(--amber);background:var(--amber-g)}
+.q-tab-name{font-size:12px;font-weight:700;margin-bottom:4px}
+.q-tab-cost{font-family:var(--display);font-size:16px;font-weight:800;color:var(--amber)}
+
+.size-tabs{display:flex;gap:8px}
+.s-tab{flex:1;border:1.5px solid var(--border);border-radius:var(--r-sm);padding:10px;cursor:pointer;text-align:center;font-size:12px;font-weight:600;transition:all 0.15s;background:var(--surface2)}
+.s-tab.on{border-color:var(--indigo);background:var(--indigo-g);color:var(--indigo2)}
+
+.cost-preview{
+  background:var(--amber-g);border:1px solid rgba(255,184,48,0.25);border-radius:var(--r-sm);
+  padding:12px 14px;font-size:12.5px;color:var(--amber);text-align:center;
+}
+.cost-preview strong{font-family:var(--display)}
+
+.gen-result-area{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);min-height:500px;display:flex;flex-direction:column}
+.result-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--txt3)}
+.result-empty-icon{font-size:48px;opacity:0.3}
+.result-image-wrap{flex:1;display:none;flex-direction:column}
+.result-image-wrap.show{display:flex}
+.result-img{width:100%;flex:1;object-fit:contain;background:var(--void);border-radius:var(--r-lg) var(--r-lg) 0 0}
+.result-actions{padding:16px 20px;display:flex;gap:10px;border-top:1px solid var(--border)}
+.btn-sm{padding:9px 16px;border-radius:var(--r-sm);font-size:12.5px;font-weight:600;background:var(--surface2);border:1px solid var(--border);color:var(--txt2);transition:all 0.15s}
+.btn-sm:hover{color:var(--txt);border-color:var(--border2)}
+
+.samples-strip{margin-top:24px}
+.samples-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
+.sample-tile{aspect-ratio:1;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;transition:transform 0.15s}
+.sample-tile:hover{transform:scale(1.05)}
+.sg1{background:linear-gradient(135deg,#7B5EA7,#3D2A7A)}
+.sg2{background:linear-gradient(135deg,#FFB830,#7B5EA7)}
+.sg3{background:linear-gradient(135deg,#00C8F0,#6C63FF)}
+.sg4{background:linear-gradient(135deg,#FF6B8A,#7B5EA7)}
+.sg5{background:linear-gradient(135deg,#00F5A0,#3D2A7A)}
+.sg6{background:linear-gradient(135deg,#C2410C,#1A1512)}
+
+@media(max-width:900px){.gen-layout{grid-template-columns:1fr}}
+@media(max-width:600px){.samples-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body data-requires-auth="false">
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><div style="width:30px;height:30px;background:linear-gradient(135deg,#6C63FF,#FFB830);border-radius:8px;display:flex;align-items:center;justify-content:center">⚡</div><div class="sidebar-logo-text">PromptForge</div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-label">Create</div>
+        <div class="nav-item" onclick="location.href='home.html'"><span class="nav-icon">🏠</span> Home</div>
+        <div class="nav-item active"><span class="nav-icon">🖼</span> Image Generator</div>
+        <div class="nav-item" onclick="location.href='text-generator.html'"><span class="nav-icon">⚡</span> Text Generator</div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Account</div>
+        <div class="nav-item" onclick="location.href='dashboard.html'"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item" onclick="location.href='premium.html'"><span class="nav-icon">✦</span> Premium</div>
+      </div>
+    </nav>
+    <div class="sidebar-credits">
+      <div class="sc-label">Your Credits</div>
+      <div class="sc-value" data-credits>25</div>
+      <div class="sc-bar"><div class="sc-bar-fill" style="width:80%"></div></div>
+    </div>
+    <div class="sidebar-bottom">
+      <button class="btn-premium-side" onclick="location.href='premium.html'">✦ Go Premium</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div><div class="page-title">AI Image Generator</div><div class="page-breadcrumb">Cast your vision into reality</div></div>
+      </div>
+      <div class="topbar-right"><div class="user-avatar" data-user-initials>?</div></div>
+    </div>
+
+    <div class="content">
+      <div class="gen-layout">
+        <div class="gen-controls">
+          <div class="card">
+            <div class="field-g">
+              <label>Describe your image</label>
+              <textarea class="prompt-box" id="prompt" placeholder="e.g. a luxury sedan parked in front of a modern villa at golden hour"></textarea>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="field-g"><label>Style</label></div>
+            <div class="style-grid">
+              <div class="style-opt on" data-style="photorealistic" onclick="selectStyle(this)"><div class="style-opt-icon">📷</div><div class="style-opt-name">Photorealistic</div></div>
+              <div class="style-opt" data-style="anime" onclick="selectStyle(this)"><div class="style-opt-icon">🎌</div><div class="style-opt-name">Anime/Manga</div></div>
+              <div class="style-opt" data-style="cinematic3d" onclick="selectStyle(this)"><div class="style-opt-icon">🎬</div><div class="style-opt-name">3D Cinematic</div></div>
+              <div class="style-opt" data-style="cyberpunk" onclick="selectStyle(this)"><div class="style-opt-icon">🌆</div><div class="style-opt-name">Cyberpunk</div></div>
+              <div class="style-opt" data-style="fantasy" onclick="selectStyle(this)"><div class="style-opt-icon">🐉</div><div class="style-opt-name">Fantasy/Concept</div></div>
+              <div class="style-opt" data-style="vintage" onclick="selectStyle(this)"><div class="style-opt-icon">📼</div><div class="style-opt-name">Vintage/Retro</div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="field-g"><label>Quality</label></div>
+            <div class="quality-tabs">
+              <div class="q-tab on" data-tier="standard" data-cost="10" onclick="selectQuality(this)"><div class="q-tab-name">Standard</div><div class="q-tab-cost">10</div></div>
+              <div class="q-tab" data-tier="premium" data-cost="20" onclick="selectQuality(this)"><div class="q-tab-name">Premium</div><div class="q-tab-cost">20</div></div>
+              <div class="q-tab" data-tier="advanced" data-cost="30" onclick="selectQuality(this)"><div class="q-tab-name">Advanced</div><div class="q-tab-cost">30</div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="field-g"><label>Size</label></div>
+            <div class="size-tabs">
+              <div class="s-tab on" data-size="desktop" onclick="selectSize(this)">🖥 Desktop</div>
+              <div class="s-tab" data-size="mobile" onclick="selectSize(this)">📱 Mobile</div>
+              <div class="s-tab" data-size="square" onclick="selectSize(this)">◻ Square</div>
+            </div>
+          </div>
+
+          <div class="cost-preview" id="costPreview">This generation will use <strong>10 credits</strong>. You have <strong data-credits>25</strong> credits remaining.</div>
+
+          <button class="btn-amber" id="genBtn" onclick="generateImage()" style="width:100%;padding:15px">🖼 Generate Image</button>
+        </div>
+
+        <div class="gen-result-area">
+          <div class="result-empty" id="resultEmpty">
+            <div class="result-empty-icon">🖼</div>
+            <div style="font-size:13px;max-width:200px;text-align:center;line-height:1.6">Your generated image will appear here</div>
+          </div>
+          <div class="result-image-wrap" id="resultWrap">
+            <img class="result-img" id="resultImg" alt="Generated image" />
+            <div class="result-actions">
+              <button class="btn-sm" onclick="downloadImage()">⬇️ Download</button>
+              <button class="btn-sm" onclick="shareImage()">𝕏 Share</button>
+              <button class="btn-sm" onclick="generateImage()">🔄 Regenerate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="samples-strip">
+        <div class="sec-eye" style="display:inline-flex">Inspiration</div>
+        <div style="font-family:var(--display);font-size:18px;font-weight:700;margin-top:8px">Sample creations</div>
+        <div class="samples-grid">
+          <div class="sample-tile sg1" title="Luxury fashion ad">👗</div>
+          <div class="sample-tile sg2" title="Product mockup">📦</div>
+          <div class="sample-tile sg3" title="Cyberpunk character">🤖</div>
+          <div class="sample-tile sg4" title="Restaurant menu design">🍽</div>
+          <div class="sample-tile sg5" title="Fantasy landscape">🏔</div>
+          <div class="sample-tile sg6" title="Vintage poster">🎞</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+let selectedStyle = 'photorealistic';
+let selectedQuality = 'standard';
+let selectedCost = 10;
+let selectedSize = 'desktop';
+let lastImageSrc = '';
+
+function selectStyle(el){
+  document.querySelectorAll('.style-opt').forEach(o=>o.classList.remove('on'));
+  el.classList.add('on');
+  selectedStyle = el.dataset.style;
+}
+function selectQuality(el){
+  document.querySelectorAll('.q-tab').forEach(o=>o.classList.remove('on'));
+  el.classList.add('on');
+  selectedQuality = el.dataset.tier;
+  selectedCost = parseInt(el.dataset.cost);
+  updateCostPreview();
+}
+function selectSize(el){
+  document.querySelectorAll('.s-tab').forEach(o=>o.classList.remove('on'));
+  el.classList.add('on');
+  selectedSize = el.dataset.size;
+}
+function updateCostPreview(){
+  const remaining = currentProfile?.credits ?? 25;
+  document.getElementById('costPreview').innerHTML =
+    `This generation will use <strong>${selectedCost} credits</strong>. You have <strong>${remaining}</strong> credits remaining.`;
+}
+
+async function generateImage(){
+  const prompt = document.getElementById('prompt').value.trim();
+  if(!prompt){toast('⚠️ Describe the image you want');return}
+  if(!currentUser){toast('🖼 Sign in to generate images');window.location.href='index.html#auth';return}
+
+  const btn = document.getElementById('genBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spin" style="border-top-color:#000"></div> Generating...';
+
+  try{
+    const data = await callImageAPI(prompt, selectedQuality, selectedStyle, selectedSize);
+    lastImageSrc = data.image;
+    document.getElementById('resultImg').src = data.image;
+    document.getElementById('resultEmpty').style.display = 'none';
+    document.getElementById('resultWrap').classList.add('show');
+    if(currentProfile) currentProfile.credits = data.creditsRemaining;
+    updateAuthUI();
+    updateCostPreview();
+    toast(`✅ Generated! ${data.creditsUsed} credits used.`);
+  }catch(e){
+    toast('❌ '+e.message);
+  }finally{
+    btn.disabled = false;
+    btn.innerHTML = '🖼 Generate Image';
+  }
+}
+
+function downloadImage(){
+  if(!lastImageSrc){toast('⚠️ No image yet');return}
+  const a = document.createElement('a');
+  a.href = lastImageSrc; a.download = 'promptforge-image.png'; a.click();
+}
+function shareImage(){
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent('Just generated this with PromptForge ⚡'), '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', async ()=>{
+  await loadCurrentUser();
+  updateCostPreview();
+});
+</script>
+</body>
+</html>
