@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard — PromptForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.lb-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.lb-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.lb-head{padding:18px 22px;border-bottom:1px solid var(--border)}
+.lb-h{font-family:var(--display);font-size:15px;font-weight:700}
+.lb-sub{font-size:12px;color:var(--txt2)}
+.lb-row{display:flex;align-items:center;gap:12px;padding:13px 22px;border-bottom:1px solid var(--border)}
+.lb-rank{font-family:var(--display);font-weight:800;font-size:15px;width:26px}
+.r1{color:var(--amber)}.r2{color:var(--txt2)}.r3{color:#CD9060}
+.lb-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--amber));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.lb-info{flex:1}.lb-name{font-size:13.5px;font-weight:600}.lb-meta{font-size:11.5px;color:var(--txt2)}
+.lb-score{font-family:var(--display);font-size:13px;font-weight:700;color:var(--amber)}
+@media(max-width:760px){.lb-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-requires-auth="false">
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><div style="width:30px;height:30px;background:linear-gradient(135deg,#6C63FF,#FFB830);border-radius:8px"></div><div class="sidebar-logo-text">PromptForge</div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section"><div class="nav-label">Create</div>
+        <div class="nav-item" onclick="location.href='home.html'"><span class="nav-icon">🏠</span> Home</div>
+        <div class="nav-item" onclick="location.href='image-generator.html'"><span class="nav-icon">🖼</span> Image Generator</div>
+        <div class="nav-item" onclick="location.href='text-generator.html'"><span class="nav-icon">⚡</span> Text Generator</div>
+        <div class="nav-item" onclick="location.href='library.html'"><span class="nav-icon">📚</span> Library</div>
+      </div>
+      <div class="nav-section"><div class="nav-label">Community</div>
+        <div class="nav-item" onclick="location.href='challenge.html'"><span class="nav-icon">🔥</span> Daily Challenge</div>
+        <div class="nav-item active"><span class="nav-icon">🏆</span> Leaderboard</div>
+      </div>
+    </nav>
+  </aside>
+  <main class="main">
+    <div class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <div><div class="page-title">Leaderboard</div><div class="page-breadcrumb">Resets every Monday</div></div></div>
+      <div class="topbar-right"><div class="user-avatar" data-user-initials>?</div></div>
+    </div>
+    <div class="content">
+      <div class="lb-grid">
+        <div class="lb-card"><div class="lb-head"><div class="lb-h">👑 Top Creators</div><div class="lb-sub">By likes this week</div></div><div id="lb1"></div></div>
+        <div class="lb-card"><div class="lb-head"><div class="lb-h">🔥 Most Used Prompts</div><div class="lb-sub">Copied this week</div></div><div id="lb2"></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+const creators=[{r:1,n:"NexusX",m:"12 prompts · 416 likes",s:"416 pts"},{r:2,n:"ViewBoost",m:"8 prompts · 245 likes",s:"245 pts"},{r:3,n:"MeshKit",m:"3 prompts · 201 likes",s:"201 pts"}];
+const prompts=[{r:1,n:"Viral Twitter Thread",m:"ChatGPT",s:"1.2k uses"},{r:2,n:"SaaS Cold Email",m:"Email",s:"890 uses"},{r:3,n:"YouTube Hook Machine",m:"YouTube",s:"743 uses"}];
+function render(id,data){
+  document.getElementById(id).innerHTML = data.map(r=>`
+    <div class="lb-row"><div class="lb-rank ${r.r<=3?'r'+r.r:''}">${r.r}</div>
+    <div class="lb-av">${r.n.slice(0,2).toUpperCase()}</div>
+    <div class="lb-info"><div class="lb-name">${r.n}</div><div class="lb-meta">${r.m}</div></div>
+    <div class="lb-score">${r.s}</div></div>`).join('');
+}
+render('lb1',creators); render('lb2',prompts);
+</script>
+</body>
+</html>
