@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Prompt Generator — PromptForge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.gen-wrap{max-width:1000px;margin:0 auto;background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-xl);overflow:hidden}
+.gen-topbar{display:flex;padding:16px 24px;border-bottom:1px solid var(--border);background:var(--deep);overflow-x:auto}
+.g-tab{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r-sm);font-size:13px;font-weight:600;color:var(--txt2);transition:all 0.15s;white-space:nowrap;cursor:pointer}
+.g-tab:hover{color:var(--txt);background:var(--surface2)}
+.g-tab.on{background:linear-gradient(135deg,rgba(108,99,255,0.2),rgba(108,99,255,0.08));border:1px solid rgba(108,99,255,0.25);color:var(--indigo2)}
+.gen-body{display:grid;grid-template-columns:1fr 1fr;min-height:420px}
+.gen-left{padding:28px;border-right:1px solid var(--border)}
+.gen-right{padding:28px;background:rgba(0,0,0,0.15)}
+.g-panel{display:none}.g-panel.on{display:block}
+.field-g{margin-bottom:16px}
+.field-g label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--txt3);margin-bottom:7px}
+.fi{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:10px 14px;font-size:14px;color:var(--txt);transition:border-color 0.15s}
+.fi:focus{border-color:rgba(108,99,255,0.5)}
+.fi.sel{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%234E4B65' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;cursor:pointer}
+.result-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;color:var(--txt3);text-align:center}
+.result-out{display:none}.result-out.show{display:block}
+.result-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:var(--mint);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--mint)}
+#genOutput{font-family:var(--mono);font-size:13px;line-height:1.75;color:var(--txt);white-space:pre-wrap;word-break:break-word}
+.result-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.btn-sm{padding:9px 16px;border-radius:var(--r-sm);font-size:12.5px;font-weight:600;background:var(--surface2);border:1px solid var(--border);color:var(--txt2);transition:all 0.15s}
+@media(max-width:760px){.gen-body{grid-template-columns:1fr}.gen-left{border-right:none;border-bottom:1px solid var(--border)}}
+</style>
+</head>
+<body data-requires-auth="false">
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><div style="width:30px;height:30px;background:linear-gradient(135deg,#6C63FF,#FFB830);border-radius:8px;display:flex;align-items:center;justify-content:center">⚡</div><div class="sidebar-logo-text">PromptForge</div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-label">Create</div>
+        <div class="nav-item" onclick="location.href='home.html'"><span class="nav-icon">🏠</span> Home</div>
+        <div class="nav-item" onclick="location.href='studio.html'"><span class="nav-icon">🧪</span> Prompt Studio</div>
+        <div class="nav-item active"><span class="nav-icon">⚡</span> Generator</div>
+        <div class="nav-item" onclick="location.href='library.html'"><span class="nav-icon">📚</span> Library</div>
+        <div class="nav-item" onclick="location.href='collections.html'"><span class="nav-icon">🗂</span> Collections</div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Community</div>
+        <div class="nav-item" onclick="location.href='challenge.html'"><span class="nav-icon">🔥</span> Daily Challenge</div>
+        <div class="nav-item" onclick="location.href='leaderboard.html'"><span class="nav-icon">🏆</span> Leaderboard</div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Account</div>
+        <div class="nav-item" onclick="location.href='dashboard.html'"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item" onclick="location.href='premium.html'"><span class="nav-icon">✦</span> Premium</div>
+      </div>
+    </nav>
+    <div class="sidebar-credits"><div class="sc-label">Prompts This Month</div><div class="sc-value" id="sidebarUsage" data-prompts-used>0</div><div style="font-size:11px;color:var(--txt3);margin-top:2px">of 10 free</div></div>
+    <div class="sidebar-bottom"><button class="btn-premium-side" onclick="location.href='premium.html'">✦ Go Premium</button></div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div><div class="page-title">Prompt Generator</div><div class="page-breadcrumb">9 specialized generators</div></div>
+      </div>
+      <div class="topbar-right"><div class="user-avatar" data-user-initials>?</div></div>
+    </div>
+
+    <div class="content">
+      <div class="gen-wrap">
+        <div class="gen-topbar">
+          <div class="g-tab on" onclick="gTab(this,'article')">📰 Article</div>
+          <div class="g-tab" onclick="gTab(this,'imgp')">🎨 Image Prompt</div>
+          <div class="g-tab" onclick="gTab(this,'post')">📱 Social Post</div>
+          <div class="g-tab" onclick="gTab(this,'video')">🎬 Video Script</div>
+          <div class="g-tab" onclick="gTab(this,'mj')">🖌 Midjourney</div>
+          <div class="g-tab" onclick="gTab(this,'gpt')">🤖 ChatGPT</div>
+          <div class="g-tab" onclick="gTab(this,'rs')">📄 Resume</div>
+          <div class="g-tab" onclick="gTab(this,'em')">✉️ Cold Email</div>
+          <div class="g-tab" onclick="gTab(this,'yt')">📺 YouTube</div>
+        </div>
+        <div class="gen-body">
+          <div class="gen-left">
+            <div class="g-panel on" id="gp-article">
+              <div class="field-g"><label>Article topic</label><input class="fi" id="article-topic" placeholder="e.g. why remote work is changing how teams collaborate"></div>
+              <div class="field-g"><label>Tone</label><select class="fi sel" id="article-tone"><option>Informative</option><option>Persuasive</option><option>Conversational</option><option>Authoritative</option></select></div>
+              <div class="field-g"><label>Length</label><select class="fi sel" id="article-length"><option>Short (500 words)</option><option>Medium (1000 words)</option><option>Long (2000+ words)</option></select></div>
+              <button class="btn-primary" style="width:100%" onclick="genForm('article',this)">⚡ Generate Article Prompt</button>
+            </div>
+            <div class="g-panel" id="gp-imgp">
+              <div class="field-g"><label>Subject</label><input class="fi" id="imgp-subject" placeholder="a lone samurai on a cliff at sunset"></div>
+              <div class="field-g"><label>Style</label><select class="fi sel" id="imgp-style"><option>Photorealistic</option><option>Digital art</option><option>Anime</option><option>Cyberpunk</option><option>Fantasy</option></select></div>
+              <button class="btn-primary" style="width:100%" onclick="genForm('imgp',this)">⚡ Generate Image Prompt</button>
+            </div>
+            <div class="g-panel" id="gp-post">
+              <div class="field-g"><label>Platform</label><select class="fi sel" id="post-platform"><option>Twitter/X</option><option>LinkedIn</option><option>Instagram</option><option>Facebook</option></select></div>
+              <div class="field-g"><label>Topic</label><input class="fi" id="post-topic" placeholder="e.g. launching my new product"></div>
+              <button class="btn-primary" style="width:100%" onclick="genForm('post',this)">⚡ Generate Post Prompt</button>
+            </div>
+            <div class="g-panel" id="gp-video">
+              <div class="field-g"><label>Platform</label><select class="fi sel" id="video-platform"><option>YouTube</option><option>TikTok</option><option>Instagram Reels</option></select></div>
+              <div class="field-g"><label>Topic</label><input class="fi" id="video-topic" placeholder="e.g. how to start investing with $100"></div>
+              <button class="btn-primary" style="width:100%" onclick="genForm('video',this)">⚡ Generate Video Script Prompt</button>
+            </div>
+            <div class="g-panel" id="gp-mj">
+              <div class="field-g"><label>Subject</label><input class="fi" id="mj-s" placeholder="a lone samurai on a cliff at sunset"></div>
+              <div class="field-g"><label>Style</label><select class="fi sel" id="mj-style"><option>Cinematic photography</option><option>Digital art</option><option>Anime</option><option>3D render</option><option>Photorealistic</option></select></div>
+              <button class="btn-primary" style="width:100%" onclick="genForm('mj',this)">⚡ Generate Midjourney Prompt</button>
+            </div>
+            <div class="g-panel" id="gp-gpt">
+              <div class="field-g"><label>Role</label><select class="fi sel" id="gpt-role"><option>Expert copywriter</option><option>Software engineer</option><option>Business consultant</option></select></div>
+              <div class="field-g"><label>Task</label><input class="fi" id="gpt-task" placeholder="writing product descriptions"></div>
+              <button class="btn-primary" style="width:100%" onclick="genForm('gpt',this)">⚡ Generate ChatGPT Prompt</button>
+            </div>
+            <div class="g-panel" id="gp-rs">
+              <div class="field-g"><label>Job title</label><input class="fi" id="rs-title" placeholder="Marketing Manager"></div>
+              <div class="field-g"><label>Main duty</label><input class="fi" id="rs-duty" placeholder="managed social media accounts"></div>
+              <button class="btn-primary" style="width:100%" onclick="genForm('rs',this)">⚡ Generate Resume Bullets</button>
+            </div>
+            <div class="g-panel" id="gp-em">
+              <div class="field-g"><label>Your role</label><input class="fi" id="em-role" placeholder="freelance web designer"></div>
+              <div class="field-g"><label>Offer</label><input class="fi" id="em-offer" placeholder="free website audit"></div>
+              <button class="btn-primary" style="width:100%" onclick="genForm('em',this)">⚡ Generate Cold Email Prompt</button>
+            </div>
+            <div class="g-panel" id="gp-yt">
+              <div class="field-g"><label>Video topic</label><input class="fi" id="yt-topic" placeholder="how to start investing with $100"></div>
+              <div class="field-g"><label>Niche</label><select class="fi sel" id="yt-niche"><option>Personal finance</option><option>Tech reviews</option><option>Educational</option></select></div>
+              <button class="btn-primary" style="width:100%" onclick="genForm('yt',this)">⚡ Generate YouTube Script Prompt</button>
+            </div>
+          </div>
+          <div class="gen-right">
+            <div class="result-empty" id="genEmpty"><div style="font-size:36px;opacity:0.4">⚡</div><div style="font-size:13px;max-width:180px">Your prompt will appear here</div></div>
+            <div class="result-out" id="genOut">
+              <div class="result-label"><div class="pulse"></div>Generated Prompt</div>
+              <div id="genOutput"></div>
+              <div class="result-actions">
+                <button class="btn-sm" id="copyBtn" onclick="copyResult()">📋 Copy</button>
+                <button class="btn-sm" onclick="saveResult()">💾 Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+let currentResult = '';
+function gTab(btn,id){
+  document.querySelectorAll('.g-tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.g-panel').forEach(p=>p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('gp-'+id).classList.add('on');
+}
+async function genForm(type, btn){
+  // Check the free-tier monthly limit before doing anything else
+  const allowed = await checkPromptLimit();
+  if(!allowed) return;
+
+  let msg = '';
+  if(type==='article'){
+    const t = document.getElementById('article-topic').value.trim();
+    if(!t){toast('⚠️ Enter an article topic');return}
+    msg = `Generate a detailed article-writing prompt for: Topic: ${t}, Tone: ${document.getElementById('article-tone').value}, Length: ${document.getElementById('article-length').value}. Output only the final prompt.`;
+  } else if(type==='imgp'){
+    const s = document.getElementById('imgp-subject').value.trim();
+    if(!s){toast('⚠️ Enter a subject');return}
+    msg = `Generate an expert AI image generation prompt for: Subject: ${s}, Style: ${document.getElementById('imgp-style').value}. Make it detailed and ready to use in Midjourney, DALL-E, or Stable Diffusion. Output only the final prompt.`;
+  } else if(type==='post'){
+    const t = document.getElementById('post-topic').value.trim();
+    if(!t){toast('⚠️ Enter a topic');return}
+    msg = `Generate a social media post-writing prompt for: Platform: ${document.getElementById('post-platform').value}, Topic: ${t}. Output only the final prompt.`;
+  } else if(type==='video'){
+    const t = document.getElementById('video-topic').value.trim();
+    if(!t){toast('⚠️ Enter a video topic');return}
+    msg = `Generate a video script-writing prompt for: Platform: ${document.getElementById('video-platform').value}, Topic: ${t}. Output only the final prompt.`;
+  } else if(type==='mj'){
+    const s = document.getElementById('mj-s').value.trim();
+    if(!s){toast('⚠️ Enter a subject');return}
+    msg = `Generate an expert Midjourney V6 prompt for: Subject: ${s}, Style: ${document.getElementById('mj-style').value}. Output only the final prompt.`;
+  } else if(type==='gpt'){
+    const t = document.getElementById('gpt-task').value.trim();
+    if(!t){toast('⚠️ Describe your task');return}
+    msg = `Generate a ChatGPT prompt for: Role: ${document.getElementById('gpt-role').value}, Task: ${t}. Output only the final prompt.`;
+  } else if(type==='rs'){
+    const d = document.getElementById('rs-duty').value.trim();
+    if(!d){toast('⚠️ Enter your duty');return}
+    msg = `Generate resume bullets for: Title: ${document.getElementById('rs-title').value}, Duty: ${d}. Output only the prompt.`;
+  } else if(type==='em'){
+    const o = document.getElementById('em-offer').value.trim();
+    if(!o){toast('⚠️ Enter your offer');return}
+    msg = `Generate a cold email prompt for: Role: ${document.getElementById('em-role').value}, Offer: ${o}. Output only the prompt.`;
+  } else if(type==='yt'){
+    const t = document.getElementById('yt-topic').value.trim();
+    if(!t){toast('⚠️ Enter a video topic');return}
+    msg = `Generate a YouTube script prompt for: Topic: ${t}, Niche: ${document.getElementById('yt-niche').value}. Output only the prompt.`;
+  }
+  btn.disabled = true;
+  const origText = btn.textContent;
+  btn.innerHTML = '<div class="spin"></div> Forging...';
+  try{
+    const r = await callAI(`You are PromptForge, an expert prompt engineer. ${msg}`);
+    currentResult = r;
+    document.getElementById('genEmpty').style.display = 'none';
+    document.getElementById('genOutput').textContent = r;
+    document.getElementById('genOut').classList.add('show');
+    await recordPromptUsage(type, r);
+    toast('✅ Prompt generated!');
+  }catch(e){
+    toast('❌ '+e.message);
+  }finally{
+    btn.disabled = false;
+    btn.textContent = origText;
+  }
+}
+function copyResult(){
+  if(!currentResult)return;
+  navigator.clipboard.writeText(currentResult).then(()=>toast('✅ Copied!'));
+}
+function saveResult(){
+  if(!currentUser){toast('💾 Sign in to save prompts');return}
+  toast('💾 Saved!');
+}
+
+// Jump to the right tab if linked via ?cat=article etc, and load any
+// prompt passed from the library's "Use" button
+document.addEventListener('DOMContentLoaded', ()=>{
+  const params = new URLSearchParams(window.location.search);
+  const cat = params.get('cat');
+  if(cat){
+    const tabMap = {article:'article', image_prompt:'imgp', post:'post', video:'video', mj:'mj', gpt:'gpt', rs:'rs', em:'em', yt:'yt'};
+    const target = tabMap[cat];
+    if(target){
+      const tabEl = Array.from(document.querySelectorAll('.g-tab')).find(t => t.getAttribute('onclick')?.includes(`'${target}'`));
+      if(tabEl) gTab(tabEl, target);
+    }
+  }
+});
+</script>
+</body>
+</html>
