@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — PromptForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.support-content{max-width:520px;margin:0 auto;padding:60px 24px}
+.support-content h1{font-family:var(--display);font-size:clamp(26px,4vw,38px);font-weight:800;margin-bottom:10px}
+.support-content p{color:var(--txt2);font-size:14px;margin-bottom:24px}
+.s-field{margin-bottom:14px}
+.s-field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;color:var(--txt3);margin-bottom:7px}
+.s-input{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px 14px;font-size:14px;color:var(--txt)}
+textarea.s-input{min-height:120px;resize:vertical}
+</style>
+</head>
+<body data-requires-auth="false">
+<nav class="pub-nav">
+  <div class="pub-logo">⚡ PromptForge</div>
+  <div class="pub-links"><a href="home.html">Home</a><a href="studio.html">Prompt Studio</a><a href="library.html">Library</a><a href="collections.html">Collections</a><a href="premium.html">Premium</a><a href="about.html">About</a><a href="support.html" class="active">Support</a></div>
+  <div class="pub-right"><button class="btn-ghost" onclick="openLogin()">Sign in</button></div>
+  <button class="pub-mobile-btn" onclick="togglePubMobileNav()">☰</button>
+</nav>
+<div class="pub-mobile-overlay" id="pubMobileOverlay" onclick="closePubMobileNav()"></div>
+<div class="pub-mobile-drawer" id="pubMobileDrawer">
+  <a href="home.html">Home</a>
+  <a href="studio.html">Prompt Studio</a>
+  <a href="text-generator.html">Generator</a>
+  <a href="library.html">Library</a>
+  <a href="collections.html">Collections</a>
+  <a href="premium.html">Premium</a>
+  <a href="about.html">About</a>
+  <a href="support.html">Support</a>
+</div>
+<div class="support-content">
+  <h1>Get in touch</h1>
+  <p>Something broken, or just have a question? We read every message.</p>
+  <div class="s-field"><label>Your name</label><input class="s-input" id="sName" /></div>
+  <div class="s-field"><label>Your email</label><input class="s-input" id="sEmail" type="email" /></div>
+  <div class="s-field"><label>Message</label><textarea class="s-input" id="sMsg"></textarea></div>
+  <button class="btn-primary" style="width:100%" onclick="submitSupport()">Send message →</button>
+  <p style="margin-top:16px">Or email us directly at <a href="mailto:supportaipromptsforge.site@gmail.com">supportaipromptsforge.site@gmail.com</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+async function submitSupport(){
+  const name=document.getElementById('sName').value.trim();
+  const email=document.getElementById('sEmail').value.trim();
+  const message=document.getElementById('sMsg').value.trim();
+  if(!name||!email||!message){toast('⚠️ Fill in all fields');return}
+  const {error} = await sb.from('support_messages').insert({user_id:currentUser?.id||null,name,email,message});
+  if(error){toast('❌ '+error.message);return}
+  toast('✅ Message sent!');
+  document.getElementById('sName').value='';document.getElementById('sEmail').value='';document.getElementById('sMsg').value='';
+}
+</script>
+</body>
+</html>
