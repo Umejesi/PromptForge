@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaderboard — PromptForge</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.lb-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.lb-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden}
+.lb-head{padding:18px 22px;border-bottom:1px solid var(--border)}
+.lb-h{font-family:var(--display);font-size:15px;font-weight:700}
+.lb-sub{font-size:12px;color:var(--txt2)}
+.lb-row{display:flex;align-items:center;gap:12px;padding:13px 22px;border-bottom:1px solid var(--border)}
+.lb-rank{font-family:var(--display);font-weight:800;font-size:15px;width:26px}
+.r1{color:var(--amber)}.r2{color:var(--txt2)}.r3{color:#CD9060}
+.lb-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--amber));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.lb-info{flex:1}.lb-name{font-size:13.5px;font-weight:600}.lb-meta{font-size:11.5px;color:var(--txt2)}
+.lb-score{font-family:var(--display);font-size:13px;font-weight:700;color:var(--amber)}
+@media(max-width:760px){.lb-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-requires-auth="false">
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><div style="width:30px;height:30px;background:linear-gradient(135deg,#6C63FF,#FFB830);border-radius:8px"></div><div class="sidebar-logo-text">PromptForge</div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-label">Create</div>
+        <div class="nav-item" onclick="location.href='home.html'"><span class="nav-icon">🏠</span> Home</div>
+        <div class="nav-item" onclick="location.href='studio.html'"><span class="nav-icon">🧪</span> Prompt Studio</div>
+        <div class="nav-item" onclick="location.href='text-generator.html'"><span class="nav-icon">⚡</span> Generator</div>
+        <div class="nav-item" onclick="location.href='library.html'"><span class="nav-icon">📚</span> Library</div>
+        <div class="nav-item" onclick="location.href='collections.html'"><span class="nav-icon">🗂</span> Collections</div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Community</div>
+        <div class="nav-item" onclick="location.href='challenge.html'"><span class="nav-icon">🔥</span> Daily Challenge</div>
+        <div class="nav-item active"><span class="nav-icon">🏆</span> Leaderboard</div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Account</div>
+        <div class="nav-item" onclick="location.href='dashboard.html'"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item" onclick="location.href='premium.html'"><span class="nav-icon">✦</span> Premium</div>
+      </div>
+    </nav>
+  </aside>
+  <main class="main">
+    <div class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <div><div class="page-title">Leaderboard</div><div class="page-breadcrumb">Resets every Monday</div></div></div>
+      <div class="topbar-right">
+        <div class="user-menu-wrap">
+          <div class="user-avatar" data-user-initials onclick="toggleUserMenu(event)" title="Account">?</div>
+          <div class="user-menu" id="userMenu">
+            <div class="um-name" data-user-name>Guest</div>
+            <a href="dashboard.html" class="um-item">📊 Dashboard</a>
+            <a href="premium.html" class="um-item">✦ Premium</a>
+            <div class="um-divider"></div>
+            <div class="um-item um-signout" onclick="handleLogout()">🚪 Sign out</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="lb-grid">
+        <div class="lb-card"><div class="lb-head"><div class="lb-h">👑 Top Creators</div><div class="lb-sub">By likes this week</div></div><div id="lb1"></div></div>
+        <div class="lb-card"><div class="lb-head"><div class="lb-h">🔥 Most Liked Prompts</div><div class="lb-sub">Community favorites</div></div><div id="lb2"></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+async function loadLeaderboards(){
+  // Top creators: sum of likes across each user's library_prompts
+  const {data: libData, error: libErr} = await sb
+    .from('library_prompts')
+    .select('user_id, likes, profiles(display_name)');
+
+  if(libErr){
+    console.error('Leaderboard (creators) error:', libErr);
+    document.getElementById('lb1').innerHTML = emptyRow('Couldn\'t load creators right now.');
+  } else if(libData && libData.length){
+    const byUser = {};
+    libData.forEach(p=>{
+      const uid = p.user_id;
+      if(!uid) return; // skip official/staff-seeded prompts with no user
+      if(!byUser[uid]) byUser[uid] = {name: p.profiles?.display_name || 'Anonymous', count:0, likes:0};
+      byUser[uid].count++;
+      byUser[uid].likes += p.likes || 0;
+    });
+    const ranked = Object.values(byUser).sort((a,b)=>b.likes-a.likes).slice(0,8);
+    if(ranked.length){
+      render('lb1', ranked.map((c,i)=>({r:i+1, n:c.name, m:`${c.count} prompts · ${c.likes} likes`, s:`${c.likes} pts`})));
+    } else {
+      document.getElementById('lb1').innerHTML = emptyRow('No creators yet — be the first to submit a prompt!');
+    }
+  } else {
+    document.getElementById('lb1').innerHTML = emptyRow('No creators yet — be the first to submit a prompt!');
+  }
+
+  // Most liked: top individual prompts
+  const {data: topPrompts, error: topErr} = await sb
+    .from('library_prompts')
+    .select('title, category, likes')
+    .order('likes', {ascending:false})
+    .limit(8);
+
+  if(topErr){
+    console.error('Leaderboard (prompts) error:', topErr);
+    document.getElementById('lb2').innerHTML = emptyRow('Couldn\'t load prompts right now.');
+  } else if(topPrompts && topPrompts.length){
+    render('lb2', topPrompts.map((p,i)=>({r:i+1, n:p.title, m:p.category, s:`❤️ ${p.likes||0}`})));
+  } else {
+    document.getElementById('lb2').innerHTML = emptyRow('No prompts yet — check back soon!');
+  }
+}
+
+function emptyRow(msg){
+  return `<div style="padding:30px 22px;text-align:center;color:var(--txt3);font-size:13px">${msg}</div>`;
+}
+
+function render(id,data){
+  document.getElementById(id).innerHTML = data.map(r=>`
+    <div class="lb-row"><div class="lb-rank ${r.r<=3?'r'+r.r:''}">${r.r}</div>
+    <div class="lb-av">${escapeHtmlLb(r.n).slice(0,2).toUpperCase()}</div>
+    <div class="lb-info"><div class="lb-name">${escapeHtmlLb(r.n)}</div><div class="lb-meta">${escapeHtmlLb(r.m)}</div></div>
+    <div class="lb-score">${r.s}</div></div>`).join('');
+}
+function escapeHtmlLb(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+
+loadLeaderboards();
+</script>
+</body>
+</html>
