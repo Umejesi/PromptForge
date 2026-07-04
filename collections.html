@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collections — PromptForge</title>
+<meta name="description" content="Curated multi-prompt workflows for launching products, hiring, content planning, and more — all in one place.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.col-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.col-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px;display:flex;flex-direction:column;gap:12px;transition:all 0.2s;cursor:pointer}
+.col-card:hover{border-color:rgba(108,99,255,0.3);transform:translateY(-2px)}
+.col-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.col-icon{width:44px;height:44px;border-radius:var(--r-sm);background:var(--indigo-g);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.col-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:3px 10px;border-radius:99px;background:var(--amber-g);color:var(--amber)}
+.col-title{font-family:var(--display);font-size:17px;font-weight:700}
+.col-desc{font-size:13px;color:var(--txt2);line-height:1.6}
+.col-meta{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--txt3);padding-top:10px;border-top:1px solid var(--border)}
+.col-empty{text-align:center;padding:50px 20px;color:var(--txt3);font-size:13px}
+
+.col-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:500;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;backdrop-filter:blur(4px)}
+.col-modal-overlay.open{display:flex}
+.col-modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-xl);max-width:720px;width:100%}
+.col-modal-head{padding:26px 26px 18px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.col-modal-close{width:30px;height:30px;border-radius:var(--r-sm);background:var(--surface2);color:var(--txt2);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.col-modal-body{padding:20px 26px 26px;display:flex;flex-direction:column;gap:14px;max-height:60vh;overflow-y:auto}
+.col-item{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px}
+.col-item-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.col-item-num{width:22px;height:22px;border-radius:6px;background:var(--indigo-g);color:var(--indigo2);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.col-item-title{font-size:14px;font-weight:700;flex:1}
+.col-item-desc{font-size:12px;color:var(--txt3);margin-bottom:8px}
+.col-item-prompt{font-family:var(--mono);font-size:12px;line-height:1.6;color:var(--txt2);background:var(--deep);border-radius:8px;padding:10px 12px;white-space:pre-wrap}
+.col-item-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:10px}
+.col-ai-tags{display:flex;gap:5px;flex-wrap:wrap}
+.col-ai-tag{font-size:10px;padding:2px 8px;border-radius:99px;background:var(--surface);border:1px solid var(--border);color:var(--txt3)}
+.btn-copy-item{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;background:var(--indigo-g);border:1px solid rgba(108,99,255,0.3);color:var(--indigo2);cursor:pointer}
+.col-modal-actions{padding:18px 26px;border-top:1px solid var(--border)}
+
+@media(max-width:640px){
+  .col-grid{grid-template-columns:1fr}
+  .col-modal-overlay{padding:0}
+  .col-modal{border-radius:0;min-height:100vh}
+}
+</style>
+</head>
+<body data-requires-auth="false">
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo"><div style="width:30px;height:30px;background:linear-gradient(135deg,#6C63FF,#FFB830);border-radius:8px"></div><div class="sidebar-logo-text">PromptForge</div></div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-label">Create</div>
+        <div class="nav-item" onclick="location.href='home.html'"><span class="nav-icon">🏠</span> Home</div>
+        <div class="nav-item" onclick="location.href='studio.html'"><span class="nav-icon">🧪</span> Prompt Studio</div>
+        <div class="nav-item" onclick="location.href='text-generator.html'"><span class="nav-icon">⚡</span> Generator</div>
+        <div class="nav-item" onclick="location.href='library.html'"><span class="nav-icon">📚</span> Library</div>
+        <div class="nav-item active"><span class="nav-icon">🗂</span> Collections</div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Community</div>
+        <div class="nav-item" onclick="location.href='challenge.html'"><span class="nav-icon">🔥</span> Daily Challenge</div>
+        <div class="nav-item" onclick="location.href='leaderboard.html'"><span class="nav-icon">🏆</span> Leaderboard</div>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Account</div>
+        <div class="nav-item" onclick="location.href='dashboard.html'"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item" onclick="location.href='premium.html'"><span class="nav-icon">✦</span> Premium</div>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+        <div><div class="page-title">Collections</div><div class="page-breadcrumb">Complete multi-step workflows</div></div>
+      </div>
+      <div class="topbar-right">
+        <div class="user-menu-wrap">
+          <div class="user-avatar" data-user-initials onclick="toggleUserMenu(event)" title="Account">?</div>
+          <div class="user-menu" id="userMenu">
+            <div class="um-name" data-user-name>Guest</div>
+            <a href="dashboard.html" class="um-item">📊 Dashboard</a>
+            <a href="premium.html" class="um-item">✦ Premium</a>
+            <div class="um-divider"></div>
+            <div class="um-item um-signout" onclick="handleLogout()">🚪 Sign out</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="ad-banner-slot">
+        <script type="text/javascript">
+          atOptions = { 'key':'0455fdb4bf2b181d83af7523b36c4eb9', 'format':'iframe', 'height':50, 'width':320, 'params':{} };
+        </script>
+        <script src="https://www.highperformanceformat.com/0455fdb4bf2b181d83af7523b36c4eb9/invoke.js"></script>
+      </div>
+
+      <div class="col-grid" id="colGrid">
+        <div class="col-empty">Loading collections…</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="col-modal-overlay" id="colModal" onclick="if(event.target===this)closeColModal()">
+  <div class="col-modal">
+    <div class="col-modal-head">
+      <div>
+        <div id="modalIcon" style="font-size:26px;margin-bottom:6px"></div>
+        <div style="font-family:var(--display);font-size:20px;font-weight:800" id="modalTitle"></div>
+        <div style="font-size:13px;color:var(--txt2);margin-top:4px" id="modalDesc"></div>
+      </div>
+      <div class="col-modal-close" onclick="closeColModal()">✕</div>
+    </div>
+    <div class="col-modal-body" id="modalBody"></div>
+    <div class="col-modal-actions">
+      <button class="btn-primary" style="width:100%" id="saveColBtn" onclick="toggleSaveCollection()">💾 Save this Collection</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+let allCollections = [];
+let activeCollection = null;
+let savedCollectionIds = new Set();
+
+// Matches the real `categories` table exactly, same as Library/Studio.
+const CATEGORY_ICONS = {
+  'Business':'💼','Content Creation':'🎬','Customer Support':'🎧','Cybersecurity':'🛡',
+  'Design':'🎨','Education':'🎓','Finance':'💰','Human Resources':'🧑\u200d💼',
+  'Legal':'⚖️','Marketing':'📣','Sales':'📈','Software Development':'💻','Writing':'✍️'
+};
+function catIcon(name){ return CATEGORY_ICONS[name] ? CATEGORY_ICONS[name]+' ' : ''; }
+
+async function loadCollections(){
+  const grid = document.getElementById('colGrid');
+  try{
+    const { data: cols, error } = await sb
+      .from('collections')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if(error) throw error;
+    allCollections = cols || [];
+
+    const {user} = await loadCurrentUser();
+    if(user){
+      const { data: saved } = await sb.from('saved_collections').select('collection_id').eq('user_id', user.id);
+      savedCollectionIds = new Set((saved||[]).map(s=>s.collection_id));
+    }
+
+    renderCollections(allCollections);
+  }catch(err){
+    console.error('Collections load error:', err);
+    grid.innerHTML = '<div class="col-empty">Couldn\'t load collections right now — ' + escapeHtml(err.message||'try refreshing') + '</div>';
+  }
+}
+
+function renderCollections(list){
+  const grid = document.getElementById('colGrid');
+  if(!list.length){
+    grid.innerHTML = '<div class="col-empty">No collections yet — check back soon.</div>';
+    return;
+  }
+  grid.innerHTML = list.map(c => `
+    <div class="col-card" onclick="openCollection('${c.id}')">
+      <div class="col-card-top">
+        <div class="col-icon">${c.icon || '📦'}</div>
+        ${c.is_premium ? '<span class="col-badge">✦ Premium</span>' : ''}
+      </div>
+      <div class="col-title">${escapeHtml(c.title)}</div>
+      <div class="col-desc">${escapeHtml(c.description)}</div>
+      <div class="col-meta">
+        <span>${catIcon(c.category_name)}${escapeHtml(c.category_name || 'General')}</span>
+        <span>·</span>
+        <span>${c.use_count || 0} uses</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function openCollection(id){
+  const col = allCollections.find(c => c.id === id);
+  if(!col) return;
+  activeCollection = col;
+
+  document.getElementById('modalIcon').textContent = col.icon || '📦';
+  document.getElementById('modalTitle').textContent = col.title;
+  document.getElementById('modalDesc').textContent = col.description;
+
+  const body = document.getElementById('modalBody');
+  body.innerHTML = '<div class="col-empty">Loading prompts…</div>';
+  document.getElementById('colModal').classList.add('open');
+
+  const saveBtn = document.getElementById('saveColBtn');
+  const isSaved = savedCollectionIds.has(col.id);
+  saveBtn.textContent = isSaved ? '✓ Saved to your account' : '💾 Save this Collection';
+
+  try{
+    const { data: items, error } = await sb
+      .from('collection_items')
+      .select('*')
+      .eq('collection_id', id)
+      .order('position', { ascending: true });
+    if(error) throw error;
+
+    body.innerHTML = (items||[]).map((it,i) => `
+      <div class="col-item">
+        <div class="col-item-top">
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="col-item-num">${i+1}</div>
+            <div class="col-item-title">${escapeHtml(it.title)}</div>
+          </div>
+        </div>
+        ${it.description ? `<div class="col-item-desc">${escapeHtml(it.description)}</div>` : ''}
+        <div class="col-item-prompt" id="item-${it.id}">${escapeHtml(it.prompt_text)}</div>
+        <div class="col-item-foot">
+          <div class="col-ai-tags">${(it.ai_models||[]).map(m=>`<span class="col-ai-tag">✓ ${escapeHtml(m)}</span>`).join('')}</div>
+          <button class="btn-copy-item" onclick="copyItem('${it.id}','${col.id}')">📋 Copy</button>
+        </div>
+      </div>
+    `).join('') || '<div class="col-empty">No prompts in this collection yet.</div>';
+  }catch(err){
+    console.error(err);
+    body.innerHTML = '<div class="col-empty">Couldn\'t load these prompts. Try again.</div>';
+  }
+}
+
+function closeColModal(){ document.getElementById('colModal').classList.remove('open'); }
+
+function copyItem(itemId, collectionId){
+  const el = document.getElementById('item-' + itemId);
+  if(!el) return;
+  navigator.clipboard.writeText(el.textContent).then(async ()=>{
+    toast('📋 Copied to clipboard');
+    try{ await sb.rpc('increment_collection_use', { p_collection_id: collectionId }); }catch(e){}
+  });
+}
+
+async function toggleSaveCollection(){
+  if(!activeCollection) return;
+  if(!currentUser){ openLogin(); return; }
+
+  try{
+    const btn = document.getElementById('saveColBtn');
+    const isSaved = savedCollectionIds.has(activeCollection.id);
+
+    if(isSaved){
+      await sb.from('saved_collections').delete().eq('user_id', currentUser.id).eq('collection_id', activeCollection.id);
+      savedCollectionIds.delete(activeCollection.id);
+      btn.textContent = '💾 Save this Collection';
+      toast('Removed from saved');
+    }else{
+      await sb.from('saved_collections').insert({ user_id: currentUser.id, collection_id: activeCollection.id });
+      savedCollectionIds.add(activeCollection.id);
+      btn.textContent = '✓ Saved to your account';
+      toast('✅ Collection saved');
+    }
+  }catch(err){
+    console.error(err);
+    toast('❌ Something went wrong — try again');
+  }
+}
+
+function escapeHtml(str){
+  if(!str) return '';
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+loadCollections();
+</script>
+</body>
+</html>
