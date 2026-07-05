@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PromptForge — Your home for prompts and business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000; --white:#fff;
+  --gray:#86868B; --gray-dim:#48484A;
+  --border:rgba(255,255,255,0.12);
+  --indigo:#5E5CE6; --amber:#FFB830;
+  --font:'Inter',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#000;color:#fff;font-family:var(--font);overflow-x:hidden;min-height:100vh}
+button{cursor:pointer;font-family:var(--font);border:none;background:none}
+input{font-family:var(--font)}
+
+/* ── GATE (static, no mouse-tracking) ── */
+.gate{
+  height:100vh;position:relative;display:flex;align-items:center;justify-content:center;
+  background:#000;overflow:hidden;
+}
+.gate-noise{
+  position:absolute;inset:0;opacity:0.5;
+  background-image:radial-gradient(circle at 30% 20%, rgba(94,92,230,0.12), transparent 50%),
+                    radial-gradient(circle at 75% 80%, rgba(255,184,48,0.08), transparent 50%);
+}
+.gate-menu{position:fixed;top:36px;right:40px;z-index:20;display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:14px}
+.gate-menu span{width:22px;height:1.5px;background:#fff;transition:all 0.3s}
+.gate-menu:hover span{background:var(--gray)}
+
+.gate-logo{position:relative;z-index:5;text-align:center}
+.gate-mark{width:88px;height:88px;margin:0 auto 28px}
+.gate-mark svg{width:100%;height:100%;filter:drop-shadow(0 0 40px rgba(94,92,230,0.5))}
+.gate-word{font-size:13px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:#fff}
+.gate-tag{font-size:13px;color:var(--gray);margin-top:14px;font-weight:300}
+
+.gate-cta{margin-top:36px;display:flex;gap:12px;justify-content:center}
+.btn-gate-primary{background:#fff;color:#000;font-weight:600;font-size:14px;padding:13px 28px;border-radius:10px}
+.btn-gate-ghost{background:transparent;border:1px solid var(--border);color:#fff;font-weight:500;font-size:14px;padding:13px 28px;border-radius:10px}
+
+.gate-scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--gray-dim);letter-spacing:0.15em;text-transform:uppercase}
+
+.gate-footer{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);text-align:center;z-index:5;width:100%}
+.gate-legal{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+.gate-legal a{font-size:10.5px;color:var(--gray-dim);letter-spacing:0.03em;text-decoration:none}
+.gate-legal a:hover{color:var(--gray)}
+.gate-legal span{font-size:10.5px;color:var(--gray-dim)}
+
+/* ── DRAWER ── */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(2px);z-index:30;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.drawer-overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:380px;background:rgba(10,10,12,0.94);backdrop-filter:blur(24px);border-left:1px solid var(--border);z-index:31;padding:90px 40px 40px;transform:translateX(100%);transition:transform 0.4s cubic-bezier(.16,1,.3,1)}
+.drawer.open{transform:translateX(0)}
+.drawer-close{position:absolute;top:34px;right:36px;font-size:22px;color:var(--gray);cursor:pointer}
+.drawer-links{display:flex;flex-direction:column;gap:6px;margin-bottom:48px}
+.drawer-links a{font-size:26px;font-weight:300;color:#fff;padding:10px 0;text-decoration:none;display:block}
+.drawer-links a:hover{color:var(--gray)}
+.drawer-auth{display:flex;flex-direction:column;gap:10px}
+.btn-drawer-signup{background:#fff;color:#000;font-weight:600;font-size:14px;padding:14px;border-radius:10px;text-align:center;width:100%}
+.btn-drawer-signin{background:transparent;border:1px solid var(--border);color:#fff;font-weight:500;font-size:14px;padding:14px;border-radius:10px;text-align:center;width:100%}
+
+/* ── AUTH MODAL ── */
+.auth-overlay{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}
+.auth-overlay.open{display:flex}
+.auth-card{width:100%;max-width:400px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(30px);padding:40px 36px;text-align:center;position:relative}
+.auth-mark{width:42px;height:42px;margin:0 auto 20px}
+.auth-title{font-size:20px;font-weight:600;margin-bottom:8px}
+.auth-sub{font-size:13.5px;color:var(--gray);margin-bottom:28px}
+.auth-tabs{display:flex;gap:2px;background:rgba(0,0,0,0.3);border-radius:10px;padding:3px;margin-bottom:22px}
+.auth-tab{flex:1;padding:9px;border-radius:8px;font-size:13.5px;font-weight:600;color:var(--gray);text-align:center}
+.auth-tab.on{background:rgba(255,255,255,0.1);color:#fff}
+.auth-oauth{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.btn-oauth{display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(255,255,255,0.08);border:1px solid var(--border);color:#fff;font-size:14px;font-weight:500;padding:13px;border-radius:10px;transition:background 0.2s}
+.btn-oauth:hover{background:rgba(255,255,255,0.14)}
+.btn-oauth.discord{background:rgba(88,101,242,0.15);border-color:rgba(88,101,242,0.3)}
+.auth-divider{display:flex;align-items:center;gap:12px;margin:16px 0;font-size:11.5px;color:#555}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.auth-field{margin-bottom:12px;text-align:left}
+.auth-input{width:100%;background:rgba(255,255,255,0.06);border:1px solid var(--border);color:#fff;font-size:14px;padding:12px 14px;border-radius:10px;outline:none}
+.btn-auth-submit{width:100%;background:linear-gradient(135deg,var(--indigo),#7B5EA7);color:#fff;font-weight:600;font-size:14px;padding:13px;border-radius:10px;margin-top:4px}
+.auth-close{position:absolute;top:-44px;right:0;color:var(--gray);font-size:14px;cursor:pointer}
+
+@media(max-width:760px){.drawer{width:100%}}
+</style>
+</head>
+<body>
+
+<!-- ═══ GATE ═══ -->
+<div class="gate" id="gate">
+  <div class="gate-noise"></div>
+  <div class="gate-menu" onclick="document.getElementById('drawer').classList.add('open');document.getElementById('drawerOverlay').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="gate-logo">
+    <div class="gate-mark">
+      <svg viewBox="0 0 100 100"><path d="M55 5 L25 55 L45 55 L40 95 L75 45 L55 45 Z" fill="url(#g1)"/>
+      <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5E5CE6"/><stop offset="100%" stop-color="#FFB830"/></linearGradient></defs></svg>
+    </div>
+    <div class="gate-word">PromptForge</div>
+    <div class="gate-tag">your home for prompts and business</div>
+    <div class="gate-cta">
+      <button class="btn-gate-primary" onclick="openAuth('signup')">Get Started Free</button>
+      <button class="btn-gate-ghost" onclick="openAuth('login')">Sign in</button>
+    </div>
+  </div>
+  <div class="gate-footer">
+    <div class="gate-scroll-hint" style="position:static;transform:none">10 free prompts every month</div>
+    <div class="gate-legal">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <span>·</span>
+      <a href="terms-and-conditions.html">Terms & Conditions</a>
+      <span>·</span>
+      <a href="refund-policy.html">Refund Policy</a>
+      <span>·</span>
+      <a href="support.html">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay" onclick="document.getElementById('drawer').classList.remove('open');this.classList.remove('open')"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-close" onclick="document.getElementById('drawer').classList.remove('open');document.getElementById('drawerOverlay').classList.remove('open')">✕</div>
+  <div class="drawer-links">
+    <a href="studio.html">Prompt Studio</a>
+    <a href="text-generator.html">Generator</a>
+    <a href="library.html">Library</a>
+    <a href="collections.html">Collections</a>
+    <a href="premium.html">Premium</a>
+    <a href="about.html">About</a>
+    <a href="support.html">Support</a>
+  </div>
+  <div class="drawer-auth">
+    <button class="btn-drawer-signup" onclick="openAuth('signup')">Create account</button>
+    <button class="btn-drawer-signin" onclick="openAuth('login')">Sign in</button>
+  </div>
+</div>
+
+<!-- ═══ AUTH MODAL ═══ -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-card">
+    <div class="auth-close" onclick="closeAuth()">Close ✕</div>
+    <div class="auth-mark">
+      <svg viewBox="0 0 100 100"><path d="M55 5 L25 55 L45 55 L40 95 L75 45 L55 45 Z" fill="url(#g2)"/>
+      <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5E5CE6"/><stop offset="100%" stop-color="#FFB830"/></linearGradient></defs></svg>
+    </div>
+    <div class="auth-title" id="authTitle">Enter the Forge</div>
+    <div class="auth-sub" id="authSub">Sign in to start crafting</div>
+
+    <div class="auth-oauth">
+      <button class="btn-oauth" onclick="signInWithProvider('google')">
+        <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C34.5 6.5 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20s20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 18.9 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C34.5 6.5 29.6 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.5 26.7 36 24 36c-5.3 0-9.6-3.3-11.3-8l-6.6 5.1C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.4-2.3 4.5-4.1 6l6.2 5.2C40.8 36.4 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+        Continue with Google
+      </button>
+      <button class="btn-oauth discord" onclick="signInWithProvider('discord')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#5865F2"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        Continue with Discord
+      </button>
+    </div>
+    <div class="auth-divider">or</div>
+
+    <div class="auth-tabs">
+      <div class="auth-tab on" id="atLogin" onclick="switchAuthTab2('login')">Sign in</div>
+      <div class="auth-tab" id="atSignup" onclick="switchAuthTab2('signup')">Create account</div>
+    </div>
+    <div id="loginPane">
+      <div class="auth-field"><input class="auth-input" type="email" id="loginEmail" placeholder="you@example.com" /></div>
+      <div class="auth-field"><input class="auth-input" type="password" id="loginPass" placeholder="Password" /></div>
+      <button class="btn-auth-submit" onclick="handleLoginSubmit()">Sign in →</button>
+    </div>
+    <div id="signupPane" style="display:none">
+      <div class="auth-field"><input class="auth-input" type="text" id="signupName" placeholder="Your name" /></div>
+      <div class="auth-field"><input class="auth-input" type="email" id="signupEmail" placeholder="you@example.com" /></div>
+      <div class="auth-field"><input class="auth-input" type="password" id="signupPass" placeholder="Min. 8 characters" /></div>
+      <button class="btn-auth-submit" onclick="handleSignupSubmit()">Create account →</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+function openAuth(tab){
+  document.getElementById('authOverlay').classList.add('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+  switchAuthTab2(tab || 'login');
+}
+function closeAuth(){document.getElementById('authOverlay').classList.remove('open')}
+function switchAuthTab2(tab){
+  document.getElementById('atLogin').classList.toggle('on', tab==='login');
+  document.getElementById('atSignup').classList.toggle('on', tab==='signup');
+  document.getElementById('loginPane').style.display = tab==='login' ? '' : 'none';
+  document.getElementById('signupPane').style.display = tab==='signup' ? '' : 'none';
+  document.getElementById('authTitle').textContent = tab==='login' ? 'Welcome back' : 'Join the Forge';
+  document.getElementById('authSub').textContent = tab==='login' ? 'Sign in to continue crafting' : '10 free prompts every month, no card needed';
+}
+async function signInWithProvider(provider){
+  const {error} = await sb.auth.signInWithOAuth({
+    provider: provider,
+    options: { redirectTo: window.location.origin + '/index.html' }
+  });
+  if(error){ toast('❌ '+error.message); }
+  // On success, Supabase redirects the browser to the provider's login page,
+  // then back to redirectTo — so there's nothing else to do here; the page
+  // will reload and enterInside() picks up the new session automatically.
+}
+
+async function handleLoginSubmit(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  if(!email||!pass){toast('⚠️ Fill in all fields');return}
+  const {error} = await sb.auth.signInWithPassword({email, password:pass});
+  if(error){toast('❌ '+error.message);return}
+  toast('✅ Signed in!');
+  await enterInside();
+}
+async function handleSignupSubmit(){
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const pass = document.getElementById('signupPass').value;
+  if(!name||!email||!pass){toast('⚠️ Fill in all fields');return}
+  if(pass.length<8){toast('⚠️ Password must be 8+ characters');return}
+  const {error} = await sb.auth.signUp({email, password:pass, options:{data:{display_name:name}}});
+  if(error){toast('❌ '+error.message);return}
+  toast('🎉 Account created!');
+  await enterInside();
+}
+async function enterInside(){
+  closeAuth();
+  await loadCurrentUser();
+  if(!currentUser) return;
+  window.location.href = 'dashboard.html';
+}
+
+// If already signed in (returning visitor), skip the gate entirely
+document.addEventListener('DOMContentLoaded', async ()=>{
+  const {data:{session}} = await sb.auth.getSession();
+  if(session) await enterInside();
+});
+</script>
+</body>
+</html>
