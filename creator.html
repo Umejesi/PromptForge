@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Creator Profile — PromptForge</title>
+<meta name="description" id="pageDesc" content="See what this PromptForge creator has published — prompts, ratings, and templates.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.cp-wrap{max-width:760px;margin:0 auto;padding:40px 24px 80px}
+.cp-header{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-xl);padding:32px;display:flex;gap:20px;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap}
+.cp-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--amber));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:22px;color:#fff;flex-shrink:0}
+.cp-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.cp-name{font-family:var(--display);font-size:22px;font-weight:800}
+.cp-handle{font-size:13px;color:var(--txt3);margin-bottom:10px}
+.cp-badge{font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:99px}
+.cp-badge.verified{background:var(--mint-g);color:var(--mint)}
+.cp-badge.staffpick{background:var(--amber-g);color:var(--amber)}
+.cp-bio{font-size:13.5px;color:var(--txt2);line-height:1.6;max-width:480px}
+.cp-joined{font-size:12px;color:var(--txt3);margin-top:8px}
+.cp-share{margin-left:auto}
+
+.cp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.cp-stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px;text-align:center}
+.cp-stat-value{font-family:var(--display);font-size:24px;font-weight:800;color:var(--amber)}
+.cp-stat-label{font-size:11px;color:var(--txt3);text-transform:uppercase;letter-spacing:0.06em;margin-top:4px}
+
+.cp-section-title{font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:14px}
+.cp-prompt-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:18px 20px;margin-bottom:10px;cursor:pointer;transition:all 0.15s}
+.cp-prompt-card:hover{border-color:rgba(108,99,255,0.3)}
+.cp-prompt-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.cp-prompt-title{font-size:14.5px;font-weight:700}
+.cp-prompt-meta{font-size:12px;color:var(--txt3);display:flex;gap:12px}
+.cp-empty{text-align:center;padding:40px 20px;color:var(--txt3);font-size:13px}
+
+@media(max-width:600px){
+  .cp-stats{grid-template-columns:1fr 1fr}
+  .cp-share{margin-left:0}
+}
+</style>
+</head>
+<body data-requires-auth="false">
+<nav class="pub-nav">
+  <div class="pub-logo">⚡ PromptForge</div>
+  <div class="pub-links"><a href="home.html">Home</a><a href="studio.html">Prompt Studio</a><a href="library.html">Library</a><a href="collections.html">Collections</a><a href="premium.html">Premium</a><a href="about.html">About</a></div>
+  <div class="pub-right"><button class="btn-ghost" onclick="openLogin()">Sign in</button></div>
+  <button class="pub-mobile-btn" onclick="togglePubMobileNav()">☰</button>
+</nav>
+<div class="pub-mobile-overlay" id="pubMobileOverlay" onclick="closePubMobileNav()"></div>
+<div class="pub-mobile-drawer" id="pubMobileDrawer">
+  <a href="home.html">Home</a>
+  <a href="studio.html">Prompt Studio</a>
+  <a href="text-generator.html">Generator</a>
+  <a href="library.html">Library</a>
+  <a href="collections.html">Collections</a>
+  <a href="premium.html">Premium</a>
+  <a href="about.html">About</a>
+  <a href="support.html">Support</a>
+</div>
+
+<div class="cp-wrap" id="cpWrap">
+  <div class="cp-empty">Loading profile…</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+// Supports both /creator/<slug> (clean path, once routing is live) and
+// /creator.html?u=<slug> (works immediately, zero server config needed).
+function getCreatorSlug(){
+  const params = new URLSearchParams(location.search);
+  if(params.get('u')) return params.get('u');
+  const parts = location.pathname.split('/').filter(Boolean);
+  const last = parts[parts.length - 1];
+  return (last && last !== 'creator' && last !== 'creator.html') ? decodeURIComponent(last) : null;
+}
+
+async function loadCreatorProfile(){
+  const slug = getCreatorSlug();
+  const wrap = document.getElementById('cpWrap');
+
+  if(!slug){
+    wrap.innerHTML = '<div class="cp-empty">No creator specified.</div>';
+    return;
+  }
+
+  const { data: profile, error } = await sb
+    .from('profiles')
+    .select('*')
+    .eq('username', slug)
+    .maybeSingle();
+
+  if(error || !profile){
+    wrap.innerHTML = '<div class="cp-empty">Couldn\'t find this creator.</div>';
+    return;
+  }
+
+  document.getElementById('pageTitle').textContent = `${profile.display_name} — PromptForge Creator`;
+  document.getElementById('pageDesc').content = `${profile.display_name}'s published prompts and templates on PromptForge.`;
+
+  const { data: stats } = await sb.rpc('get_creator_stats', { p_user_id: profile.id }).maybeSingle();
+  const s = stats || { published_prompts:0, total_uses:0, total_likes:0, avg_rating:0, public_templates:0 };
+
+  const joined = profile.created_at ? new Date(profile.created_at).toLocaleDateString('en-US',{month:'long',year:'numeric'}) : '';
+
+  wrap.innerHTML = `
+    <div class="cp-header">
+      <div class="cp-avatar">${escapeHtmlCp(profile.display_name||'??').slice(0,2).toUpperCase()}</div>
+      <div>
+        <div class="cp-name-row">
+          <div class="cp-name">${escapeHtmlCp(profile.display_name)}</div>
+          ${profile.is_verified_creator ? '<span class="cp-badge verified">✓ Verified</span>' : ''}
+          ${profile.is_staff_pick_creator ? '<span class="cp-badge staffpick">★ Staff Pick</span>' : ''}
+        </div>
+        <div class="cp-handle">@${escapeHtmlCp(profile.username)}</div>
+        ${profile.bio ? `<div class="cp-bio">${escapeHtmlCp(profile.bio)}</div>` : ''}
+        ${joined ? `<div class="cp-joined">Joined ${joined}</div>` : ''}
+      </div>
+      <button class="btn-ghost cp-share" onclick="shareCreatorProfile()">🔗 Share</button>
+    </div>
+
+    <div class="cp-stats">
+      <div class="cp-stat"><div class="cp-stat-value">${s.published_prompts||0}</div><div class="cp-stat-label">Prompts</div></div>
+      <div class="cp-stat"><div class="cp-stat-value">${s.total_uses||0}</div><div class="cp-stat-label">Uses</div></div>
+      <div class="cp-stat"><div class="cp-stat-value">${s.total_likes||0}</div><div class="cp-stat-label">Likes</div></div>
+      <div class="cp-stat"><div class="cp-stat-value">${s.avg_rating ? s.avg_rating.toFixed(1) : '—'}</div><div class="cp-stat-label">Avg rating</div></div>
+    </div>
+
+    <div class="cp-section-title">Published Prompts</div>
+    <div id="cpPrompts"><div class="cp-empty">Loading…</div></div>
+  `;
+
+  loadCreatorPrompts(profile.id);
+}
+
+async function loadCreatorPrompts(userId){
+  const { data: prompts } = await sb
+    .from('library_prompts')
+    .select('*')
+    .eq('user_id', userId)
+    .order('likes', { ascending: false });
+
+  const el = document.getElementById('cpPrompts');
+  if(!prompts || !prompts.length){
+    el.innerHTML = '<div class="cp-empty">Nothing published yet.</div>';
+    return;
+  }
+
+  el.innerHTML = prompts.map(p => `
+    <div class="cp-prompt-card" onclick="location.href='library.html'">
+      <div class="cp-prompt-top">
+        <div class="cp-prompt-title">${escapeHtmlCp(p.title)}</div>
+      </div>
+      <div class="cp-prompt-meta">
+        <span>${escapeHtmlCp(p.category||'General')}</span>
+        <span>⭐ ${(p.avg_rating||0).toFixed(1)}</span>
+        <span>❤️ ${p.likes||0}</span>
+        <span>${p.use_count||0} uses</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function shareCreatorProfile(){
+  navigator.clipboard.writeText(location.href).then(()=>toast('🔗 Profile link copied'));
+}
+
+function escapeHtmlCp(s){
+  const d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+loadCreatorProfile();
+</script>
+</body>
+</html>
