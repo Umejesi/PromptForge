@@ -1,14 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "promptforge",
-  "compatibility_date": "2026-06-18",
-  "main": "_worker.js",
+  "compatibility_date": "2026-07-07",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": ".",
-    "binding": "ASSETS"
+    "directory": "."
   },
   "compatibility_flags": [
     "nodejs_compat"
