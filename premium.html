@@ -113,7 +113,8 @@
 <script>
 function upgrade(){
   if(!currentUser){toast('Sign in first, then upgrade');return}
-  window.open('https://umejesi6.gumroad.com/l/nyflzj','_blank');
+  const paystackUrl = `https://paystack.shop/pay/promptforge-premium?email=${encodeURIComponent(currentUser.email)}&read_only=email`;
+  window.open(paystackUrl, '_blank');
 }
 </script>
 </body>
