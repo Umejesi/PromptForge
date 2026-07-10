@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PromptForge — Forge better AI prompts</title>
+<meta name="description" content="Describe what you want, get a precision-built AI prompt in seconds. Free to start.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#08090C; --card:#111219; --gray:#9B98A8; --gray-dim:#5C5A68;
+  --border:rgba(255,255,255,0.08); --indigo:#6C63FF; --indigo2:#8B85FF; --amber:#FFB830;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--black); color:#fff; font-family:'Inter',sans-serif;
+  min-height:100vh; overflow-x:hidden; position:relative;
+}
+h1,h2,.display{font-family:'Plus Jakarta Sans',sans-serif}
+button{cursor:pointer;font-family:inherit;border:none;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+input{font-family:inherit;background:none;border:none;color:#fff;outline:none}
+
+/* ── Animated gradient background + floating orbs ── */
+.bg-gradient{
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 900px 600px at 15% 10%, rgba(108,99,255,0.16), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 85% 85%, rgba(255,184,48,0.10), transparent 60%),
+    radial-gradient(ellipse 600px 400px at 50% 50%, rgba(108,99,255,0.06), transparent 70%);
+  animation:drift 18s ease-in-out infinite alternate;
+}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-3%,2%) scale(1.05)}}
+.orb{position:fixed;border-radius:50%;filter:blur(2px);opacity:0.35;z-index:0;pointer-events:none}
+.orb1{width:8px;height:8px;background:var(--indigo2);top:20%;left:12%;animation:float1 9s ease-in-out infinite}
+.orb2{width:5px;height:5px;background:var(--amber);top:65%;left:85%;animation:float2 12s ease-in-out infinite}
+.orb3{width:6px;height:6px;background:var(--indigo2);top:80%;left:20%;animation:float1 14s ease-in-out infinite}
+.orb4{width:4px;height:4px;background:var(--amber);top:30%;left:90%;animation:float2 10s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(24px)}}
+
+.wrap{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:32px 24px 60px}
+
+/* ── Nav ── */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0 48px}
+.nav-logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px}
+.nav-mark{width:26px;height:26px}
+.menu-btn{padding:8px;color:var(--gray);font-size:20px}
+
+/* ── Rotating banner ── */
+.banner{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:12px;color:var(--indigo2);background:rgba(108,99,255,0.08);
+  border:1px solid rgba(108,99,255,0.2);border-radius:99px;
+  padding:6px 16px;margin:0 auto 24px;width:fit-content;
+  opacity:0;animation:fadeIn 0.6s ease forwards;
+}
+@keyframes fadeIn{to{opacity:1}}
+
+/* ── Hero ── */
+.hero{text-align:center;margin-bottom:44px;opacity:0;animation:riseIn 0.7s ease 0.1s forwards}
+@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:-1.2px;line-height:1.08;margin-bottom:14px}
+.hero h1 span{background:linear-gradient(90deg,var(--indigo2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:16px;color:var(--gray);max-width:440px;margin:0 auto}
+
+/* ── Two column layout ── */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;max-width:900px;margin:0 auto}
+
+/* ── Login card (glassmorphic, gradient border) ── */
+.card-border{
+  border-radius:22px;padding:1.5px;
+  background:linear-gradient(135deg,rgba(108,99,255,0.5),rgba(255,184,48,0.3),rgba(108,99,255,0.2));
+  opacity:0;animation:riseIn 0.7s ease 0.25s forwards;
+}
+.card{
+  background:rgba(17,18,25,0.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-radius:20.5px;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+.card-title{font-size:19px;font-weight:800;margin-bottom:4px}
+.card-sub{font-size:13px;color:var(--gray);margin-bottom:20px}
+.oauth-row{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.btn-oauth{
+  display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:11px;
+  background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:11px;
+  font-size:13.5px;font-weight:600;transition:all 0.15s;
+}
+.btn-oauth:hover{background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.16)}
+.divider{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--gray-dim);margin-bottom:16px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.field{margin-bottom:10px}
+.field input{
+  width:100%;background:rgba(255,255,255,0.03);border:1.5px solid var(--border);border-radius:10px;
+  padding:11px 14px;font-size:13.5px;transition:border-color 0.15s;
+}
+.field input:focus{border-color:rgba(108,99,255,0.5)}
+.field input::placeholder{color:var(--gray-dim)}
+.btn-submit{
+  width:100%;padding:12px;border-radius:10px;font-weight:700;font-size:14px;
+  background:linear-gradient(135deg,var(--indigo),#8B5CF6);color:#fff;margin-top:4px;
+  box-shadow:0 4px 20px rgba(108,99,255,0.3);transition:transform 0.15s;
+}
+.btn-submit:hover{transform:translateY(-1px)}
+.link-row{display:flex;justify-content:space-between;margin-top:12px;font-size:12px}
+.link-row a{color:var(--gray)}
+.link-row a:hover{color:var(--indigo2)}
+.tabs{display:flex;gap:4px;background:rgba(0,0,0,0.3);border-radius:10px;padding:3px;margin-bottom:16px}
+.tab{flex:1;text-align:center;padding:7px;border-radius:8px;font-size:12.5px;font-weight:600;color:var(--gray);cursor:pointer}
+.tab.on{background:rgba(255,255,255,0.08);color:#fff}
+.trust{border-top:1px solid var(--border);margin-top:18px;padding-top:14px;display:flex;flex-direction:column;gap:6px}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--gray)}
+
+/* ── Feature preview panel ── */
+.features{opacity:0;animation:riseIn 0.7s ease 0.4s forwards}
+.features-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-dim);margin-bottom:12px}
+.feat-item{
+  display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);border-radius:12px;padding:13px 16px;margin-bottom:8px;
+  transition:all 0.15s;
+}
+.feat-item:hover{background:rgba(255,255,255,0.05);border-color:rgba(108,99,255,0.25)}
+.feat-icon{font-size:17px;width:22px;text-align:center}
+.feat-text{font-size:13px;font-weight:500}
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:20px}
+.stat{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:14px 8px;text-align:center}
+.stat-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(90deg,var(--indigo2),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{font-size:10px;color:var(--gray-dim);margin-top:3px;text-transform:uppercase;letter-spacing:0.05em}
+
+/* ── Footer ── */
+.gate-footer{text-align:center;margin-top:56px;padding-top:24px;border-top:1px solid var(--border)}
+.gate-footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.gate-footer-links a{font-size:12px;color:var(--gray)}
+.gate-footer-links a:hover{color:var(--indigo2)}
+.gate-footer p{font-size:11px;color:var(--gray-dim)}
+
+/* ── Loading overlay after auth ── */
+.loading-overlay{
+  display:none;position:fixed;inset:0;background:rgba(8,9,12,0.85);backdrop-filter:blur(6px);
+  z-index:500;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+}
+.loading-overlay.on{display:flex}
+.spin{width:28px;height:28px;border:2.5px solid rgba(255,255,255,0.15);border-top-color:var(--indigo2);border-radius:50%;animation:rot 0.7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.loading-overlay p{font-size:13px;color:var(--gray)}
+
+/* ── Toast ── */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(14px);
+  background:var(--card);border:1px solid var(--border);color:#fff;font-size:13px;
+  padding:11px 22px;border-radius:99px;opacity:0;pointer-events:none;transition:all 0.25s;z-index:600;white-space:nowrap;
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── Mobile drawer ── */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:198;opacity:0;pointer-events:none;transition:opacity 0.3s}
+.drawer-overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:280px;background:var(--card);border-left:1px solid var(--border);z-index:199;padding:70px 26px 26px;transform:translateX(100%);transition:transform 0.3s ease}
+.drawer.open{transform:translateX(0)}
+.drawer a{display:block;font-size:16px;padding:12px 0;border-bottom:1px solid var(--border)}
+.drawer-auth{margin-top:18px;display:flex;flex-direction:column;gap:8px}
+.btn-drawer-signin{padding:11px;border:1px solid var(--border);border-radius:10px;font-weight:600;font-size:13px}
+.btn-drawer-signup{padding:11px;border-radius:10px;font-weight:700;font-size:13px;background:linear-gradient(135deg,var(--indigo),#8B5CF6);color:#fff}
+
+@media(max-width:760px){
+  .split{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:1fr 1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-gradient"></div>
+<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="orb orb4"></div>
+
+<div class="wrap">
+  <div class="nav">
+    <div class="nav-logo">
+      <svg class="nav-mark" viewBox="0 0 100 100"><path d="M55 5 L25 55 L45 55 L40 95 L75 45 L55 45 Z" fill="url(#gnav)"/>
+      <defs><linearGradient id="gnav" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#FFB830"/></linearGradient></defs></svg>
+      PromptForge
+    </div>
+    <button class="menu-btn" onclick="document.getElementById('drawer').classList.add('open');document.getElementById('drawerOverlay').classList.add('open')">☰</button>
+  </div>
+
+  <div class="banner" id="rotatingBanner">Discover thousands of AI prompts</div>
+
+  <div class="hero">
+    <h1>Forge better<br><span>AI prompts</span></h1>
+    <p>Describe what you want in plain English — get a precision-built prompt in seconds.</p>
+  </div>
+
+  <div class="split">
+    <div class="card-border">
+      <div class="card">
+        <div class="card-title" id="authTitle">Welcome back</div>
+        <div class="card-sub" id="authSub">Sign in to continue crafting</div>
+
+        <div class="oauth-row">
+          <button class="btn-oauth" onclick="signInWithProvider('google')">
+            <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C34.5 6.5 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20s20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.5 16 18.9 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C34.5 6.5 29.6 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.5 26.7 36 24 36c-5.3 0-9.6-3.3-11.3-8l-6.6 5.1C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.4-2.3 4.5-4.1 6l6.2 5.2C40.8 36.4 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+            Continue with Google
+          </button>
+          <button class="btn-oauth" onclick="signInWithProvider('discord')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#5865F2"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.927 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+            Continue with Discord
+          </button>
+        </div>
+        <div class="divider">or</div>
+
+        <div class="tabs">
+          <div class="tab on" id="atLogin" onclick="switchAuthTab2('login')">Sign in</div>
+          <div class="tab" id="atSignup" onclick="switchAuthTab2('signup')">Create account</div>
+        </div>
+
+        <div id="loginPane">
+          <div class="field"><input type="email" id="loginEmail" placeholder="you@example.com" /></div>
+          <div class="field"><input type="password" id="loginPass" placeholder="Password" /></div>
+          <button class="btn-submit" onclick="handleLoginSubmit()">Sign in →</button>
+          <div class="link-row">
+            <a href="#" onclick="openForgotPassword();return false">Forgot password?</a>
+            <a href="#" onclick="switchAuthTab2('signup');return false">Create account</a>
+          </div>
+        </div>
+
+        <div id="signupPane" style="display:none">
+          <div class="field"><input type="text" id="signupName" placeholder="Your name" /></div>
+          <div class="field"><input type="email" id="signupEmail" placeholder="you@example.com" /></div>
+          <div class="field"><input type="password" id="signupPass" placeholder="Min. 8 characters" /></div>
+          <button class="btn-submit" onclick="handleSignupSubmit()">Create account →</button>
+        </div>
+
+        <div id="forgotPane" style="display:none">
+          <p style="font-size:12.5px;color:var(--gray);margin-bottom:12px">Enter your email and we'll send a reset link.</p>
+          <div class="field"><input type="email" id="forgotEmail" placeholder="you@example.com" /></div>
+          <button class="btn-submit" onclick="handleForgotPassword()">Send reset link →</button>
+          <div class="link-row"><a href="#" onclick="switchAuthTab2('login');return false">Back to sign in</a><span></span></div>
+        </div>
+
+        <div id="resetPane" style="display:none">
+          <p style="font-size:12.5px;color:var(--gray);margin-bottom:12px">Choose a new password.</p>
+          <div class="field"><input type="password" id="newPass" placeholder="New password, min. 8 characters" /></div>
+          <button class="btn-submit" onclick="handleResetPassword()">Set new password →</button>
+        </div>
+
+        <div class="trust">
+          <div class="trust-item"><span>🔒</span> Secured with HTTPS encryption</div>
+          <div class="trust-item"><span>🛡️</span> We never sell your data</div>
+          <div class="trust-item"><span>✉️</span> No spam, ever</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="features-label">What you get inside</div>
+      <div class="feat-item"><span class="feat-icon">📚</span><span class="feat-text">AI prompt library</span></div>
+      <div class="feat-item"><span class="feat-icon">🗂</span><span class="feat-text">Prompt collections</span></div>
+      <div class="feat-item"><span class="feat-icon">❤️</span><span class="feat-text">Save favorites</span></div>
+      <div class="feat-item"><span class="feat-icon">✦</span><span class="feat-text">Premium prompt packs</span></div>
+      <div class="feat-item"><span class="feat-icon">📊</span><span class="feat-text">Usage history</span></div>
+      <div class="feat-item"><span class="feat-icon">🔍</span><span class="feat-text">Smart search</span></div>
+
+      <div class="stats-row">
+        <div class="stat"><div class="stat-val" id="statPrompts">—</div><div class="stat-label">Prompts</div></div>
+        <div class="stat"><div class="stat-val">13</div><div class="stat-label">Categories</div></div>
+        <div class="stat"><div class="stat-val">9</div><div class="stat-label">Generators</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gate-footer">
+    <div class="gate-footer-links">
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms of Service</a>
+      <a href="support.html">Contact</a>
+    </div>
+    <p>© 2026 PromptForge</p>
+  </div>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay" onclick="document.getElementById('drawer').classList.remove('open');this.classList.remove('open')"></div>
+<div class="drawer" id="drawer">
+  <a href="home.html">Home</a>
+  <a href="studio.html">Prompt Studio</a>
+  <a href="text-generator.html">Generator</a>
+  <a href="library.html">Library</a>
+  <a href="collections.html">Collections</a>
+  <a href="premium.html">Premium</a>
+  <a href="about.html">About</a>
+  <a href="support.html">Support</a>
+  <div class="drawer-auth">
+    <button class="btn-drawer-signup" onclick="openLoginFromDrawer('signup')">Create account</button>
+    <button class="btn-drawer-signin" onclick="openLoginFromDrawer('login')">Sign in</button>
+  </div>
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spin"></div>
+  <p>Taking you in…</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="shared.js"></script>
+<script>
+function openLoginFromDrawer(tab){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawerOverlay').classList.remove('open');
+  switchAuthTab2(tab || 'login');
+  document.querySelector('.split').scrollIntoView({behavior:'smooth'});
+}
+
+function switchAuthTab2(tab){
+  document.getElementById('atLogin').classList.toggle('on', tab==='login');
+  document.getElementById('atSignup').classList.toggle('on', tab==='signup');
+  document.getElementById('loginPane').style.display = tab==='login' ? '' : 'none';
+  document.getElementById('signupPane').style.display = tab==='signup' ? '' : 'none';
+  document.getElementById('forgotPane').style.display = 'none';
+  document.getElementById('resetPane').style.display = 'none';
+  document.getElementById('authTitle').textContent = tab==='login' ? 'Welcome back' : 'Join the Forge';
+  document.getElementById('authSub').textContent = tab==='login' ? 'Sign in to continue crafting' : '10 free prompts every month, no card needed';
+}
+
+function openForgotPassword(){
+  document.getElementById('loginPane').style.display = 'none';
+  document.getElementById('signupPane').style.display = 'none';
+  document.getElementById('forgotPane').style.display = '';
+  document.getElementById('authTitle').textContent = 'Reset your password';
+  document.getElementById('authSub').textContent = "We'll email you a secure link";
+}
+
+async function handleForgotPassword(){
+  const email = document.getElementById('forgotEmail').value.trim();
+  if(!email){ toast('⚠️ Enter your email'); return; }
+  const { error } = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/index.html'
+  });
+  if(error){ toast('❌ '+error.message); return; }
+  toast('✅ Check your email for a reset link');
+}
+
+async function handleResetPassword(){
+  const newPass = document.getElementById('newPass').value;
+  if(!newPass || newPass.length < 8){ toast('⚠️ Password must be 8+ characters'); return; }
+  const { error } = await sb.auth.updateUser({ password: newPass });
+  if(error){ toast('❌ '+error.message); return; }
+  toast('✅ Password updated — signing you in');
+  await enterInside();
+}
+
+async function signInWithProvider(provider){
+  const {error} = await sb.auth.signInWithOAuth({
+    provider: provider,
+    options: { redirectTo: window.location.origin + '/index.html' }
+  });
+  if(error){ toast('❌ '+error.message); }
+}
+
+async function handleLoginSubmit(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  if(!email||!pass){toast('⚠️ Fill in all fields');return}
+  const {error} = await sb.auth.signInWithPassword({email, password:pass});
+  if(error){toast('❌ '+error.message);return}
+  await enterInside();
+}
+async function handleSignupSubmit(){
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const pass = document.getElementById('signupPass').value;
+  if(!name||!email||!pass){toast('⚠️ Fill in all fields');return}
+  if(pass.length<8){toast('⚠️ Password must be 8+ characters');return}
+  const {error} = await sb.auth.signUp({email, password:pass, options:{data:{display_name:name}}});
+  if(error){toast('❌ '+error.message);return}
+  await enterInside();
+}
+async function enterInside(){
+  document.getElementById('loadingOverlay').classList.add('on');
+  await loadCurrentUser();
+  if(!currentUser){ document.getElementById('loadingOverlay').classList.remove('on'); return; }
+  window.location.href = 'dashboard.html';
+}
+
+// If already signed in (returning visitor), skip the gate entirely
+document.addEventListener('DOMContentLoaded', async ()=>{
+  const {data:{session}} = await sb.auth.getSession();
+  if(session) await enterInside();
+});
+
+// Password recovery link lands back here — show the "set new password" form
+sb.auth.onAuthStateChange((event)=>{
+  if(event === 'PASSWORD_RECOVERY'){
+    document.getElementById('loginPane').style.display = 'none';
+    document.getElementById('signupPane').style.display = 'none';
+    document.getElementById('forgotPane').style.display = 'none';
+    document.getElementById('resetPane').style.display = '';
+    document.getElementById('authTitle').textContent = 'Choose a new password';
+    document.getElementById('authSub').textContent = '';
+  }
+});
+
+// ── Rotating banner ──
+const bannerMessages = [
+  'Discover thousands of AI prompts',
+  'Unlock premium prompt collections',
+  'Compatible with ChatGPT, Claude, Gemini and Grok',
+  'Save and organize your favorite prompts',
+  'New prompts added every week',
+];
+let bannerIdx = 0;
+setInterval(()=>{
+  bannerIdx = (bannerIdx + 1) % bannerMessages.length;
+  const el = document.getElementById('rotatingBanner');
+  el.style.opacity = 0;
+  setTimeout(()=>{ el.textContent = bannerMessages[bannerIdx]; el.style.opacity = 1; }, 250);
+}, 3500);
+
+// ── Real, live-computed stats (no fabricated numbers) ──
+async function loadRealStats(){
+  const { count } = await sb.from('library_prompts').select('*', { count: 'exact', head: true });
+  document.getElementById('statPrompts').textContent = count != null ? count : '—';
+}
+loadRealStats();
+</script>
+</body>
+</html>
